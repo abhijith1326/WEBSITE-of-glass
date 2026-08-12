@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VitraGroup Sustainability — Our commitment to carbon neutrality by 2030, renewable energy, zero-waste manufacturing, and green building solutions." />
+  <title>Sustainability | VitraGroup</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text x='50%25' y='55%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='white' font-family='Georgia' font-weight='bold'>V</text></svg>" />
+  <style>
+    .green-initiative-card {
+      padding:var(--space-8); background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:var(--radius-xl); transition:all var(--transition-base); position:relative; overflow:hidden;
+    }
+    .green-initiative-card::before { content:''; position:absolute; top:-30px; right:-30px; width:100px; height:100px; background:radial-gradient(circle, rgba(16,185,129,0.12), transparent); border-radius:50%; transition:all 0.5s; }
+    .green-initiative-card:hover { border-color:var(--glass-border-em); transform:translateY(-4px); }
+    .green-initiative-card:hover::before { width:180px; height:180px; }
+    .green-icon { font-size:2.5rem; margin-bottom:var(--space-4); display:block; }
+    .green-title { font-family:var(--font-display); font-size:var(--text-xl); font-weight:600; color:var(--white); margin-bottom:var(--space-3); }
+    .green-desc { font-size:var(--text-sm); color:var(--silver-mid); line-height:1.7; }
+    .green-metric { margin-top:var(--space-4); padding-top:var(--space-4); border-top:1px solid rgba(255,255,255,0.06); display:flex; align-items:center; gap:var(--space-3); }
+    .green-metric-num { font-family:var(--font-display); font-size:var(--text-2xl); font-weight:700; color:var(--emerald); }
+    .green-metric-label { font-size:var(--text-xs); color:var(--silver-mid); font-family:var(--font-mono); text-transform:uppercase; }
+
+    .goal-card {
+      display:flex; gap:var(--space-5); align-items:flex-start; padding:var(--space-6);
+      background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius-lg);
+      transition:all var(--transition-base);
+    }
+    .goal-card:hover { border-color:var(--glass-border-em); }
+    .goal-year { font-family:var(--font-display); font-size:var(--text-3xl); font-weight:800; color:var(--emerald); line-height:1; flex-shrink:0; min-width:70px; }
+    .goal-title { font-weight:600; color:var(--white); margin-bottom:var(--space-2); }
+    .goal-desc { font-size:var(--text-sm); color:var(--silver-mid); }
+    .goal-progress { margin-top:var(--space-3); }
+    .goal-progress-label { display:flex; justify-content:space-between; font-size:var(--text-xs); color:var(--silver-mid); margin-bottom:var(--space-2); }
+    .goal-progress-bar { height:4px; background:rgba(255,255,255,0.1); border-radius:var(--radius-full); overflow:hidden; }
+    .goal-progress-fill { height:100%; background:linear-gradient(90deg, var(--emerald), var(--emerald-light)); border-radius:var(--radius-full); transition:width 1.5s cubic-bezier(0.4,0,0.2,1); width:0; }
+    .goal-progress-fill.animated { width: var(--progress); }
+  </style>
+</head>
+<body>
+<div id="reading-progress"></div>
+<div id="page-loader"><div class="loader-logo">Vitra<span>Group</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div></div>
+
+<nav class="navbar"><div class="navbar-inner">
+  <a href="index.html" class="navbar-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></a>
+  <nav class="navbar-nav">
+    <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+    <a href="products.html" class="nav-link">Products</a><a href="industries.html" class="nav-link">Industries</a>
+    <a href="projects.html" class="nav-link">Projects</a><a href="sustainability.html" class="nav-link active">Sustainability</a><a href="blog.html" class="nav-link">Blog</a>
+  </nav>
+  <div class="navbar-cta"><a href="contact.html" class="btn btn-primary btn-sm magnetic">Get a Quote</a></div>
+  <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+  <a href="products.html" class="nav-link">Products</a><a href="contact.html" class="nav-link">Contact</a>
+</div>
+
+<section class="page-hero" style="background:radial-gradient(ellipse at 40% 50%, rgba(16,185,129,0.15) 0%, transparent 60%), linear-gradient(135deg, var(--navy) 0%, var(--charcoal) 100%);">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">Sustainability</span></div>
+    <div class="page-hero-eyebrow">Our Planet Commitment</div>
+    <h1 class="page-hero-title">Building for Today,<br/><span class="gradient-text">Protecting Tomorrow</span></h1>
+    <p class="page-hero-subtitle">VitraGroup is committed to carbon neutrality by 2030. We are transforming our manufacturing, products, and supply chain to leave a positive legacy for future generations.</p>
+  </div>
+  <div class="orb orb-emerald" style="width:600px;height:600px;top:-100px;right:-200px;opacity:0.5;" aria-hidden="true"></div>
+</section>
+
+<section style="padding:var(--space-10) 0;background:var(--charcoal);">
+  <div class="container">
+    <div class="grid-4 stagger">
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="40" data-suffix="%">40%</span></div><div class="stat-label">Renewable Energy Used</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="30" data-suffix="%">30%</span></div><div class="stat-label">CO₂ Reduction Since 2018</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="85" data-suffix="%">85%</span></div><div class="stat-label">Cullet Recycling Rate</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="5" data-suffix=" MW">5 MW</span></div><div class="stat-label">Solar Power Installed</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-mesh">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Green Initiatives</div>
+      <h2 class="section-title">Our Environmental<br/><span class="gradient-text">Action Plan</span></h2>
+    </div>
+    <div class="grid-3 stagger">
+      <div class="green-initiative-card reveal">
+        <span class="green-icon">☀️</span>
+        <div class="green-title">Renewable Energy</div>
+        <div class="green-desc">5 MW solar installation on factory rooftops generates 40% of total energy needs. Expanding to 12 MW by 2026 to achieve 70% renewable energy dependence.</div>
+        <div class="green-metric"><div class="green-metric-num">5 MW</div><div class="green-metric-label">Solar capacity<br/>installed</div></div>
+      </div>
+      <div class="green-initiative-card reveal">
+        <span class="green-icon">♻️</span>
+        <div class="green-title">Glass Cullet Recycling</div>
+        <div class="green-desc">85% of glass waste and off-cuts are recycled back into the furnace as cullet. Every 10% increase in cullet reduces energy consumption by 2.5% and CO₂ by 5%.</div>
+        <div class="green-metric"><div class="green-metric-num">85%</div><div class="green-metric-label">Glass waste<br/>recycled</div></div>
+      </div>
+      <div class="green-initiative-card reveal">
+        <span class="green-icon">💧</span>
+        <div class="green-title">Water Conservation</div>
+        <div class="green-desc">Closed-loop water recycling system recycles 92% of process water. Zero effluent discharge policy with advanced water treatment plants at all facilities.</div>
+        <div class="green-metric"><div class="green-metric-num">92%</div><div class="green-metric-label">Water<br/>recycled</div></div>
+      </div>
+      <div class="green-initiative-card reveal">
+        <span class="green-icon">🌳</span>
+        <div class="green-title">Sustainable Sourcing</div>
+        <div class="green-desc">100% of timber used in plywood manufacturing sourced from PEFC or FSC certified forests. Traceability from forest to finished product guaranteed.</div>
+        <div class="green-metric"><div class="green-metric-num">100%</div><div class="green-metric-label">Certified<br/>timber</div></div>
+      </div>
+      <div class="green-initiative-card reveal">
+        <span class="green-icon">🚛</span>
+        <div class="green-title">Green Logistics</div>
+        <div class="green-desc">Electric fleet for last-mile delivery in key cities. Rail freight preference over road for long-distance transport. Carbon offset program for international shipping.</div>
+        <div class="green-metric"><div class="green-metric-num">25%</div><div class="green-metric-label">Fleet<br/>electrified</div></div>
+      </div>
+      <div class="green-initiative-card reveal">
+        <span class="green-icon">🏗️</span>
+        <div class="green-title">Green Building Products</div>
+        <div class="green-desc">Our Low-E glass reduces building energy consumption by 30-50%. IGUs contribute to LEED, BREEAM, and GRIHA green building certifications for our clients' projects.</div>
+        <div class="green-metric"><div class="green-metric-num">50%</div><div class="green-metric-label">Energy savings<br/>possible</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-deep">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">2030 Roadmap</div>
+      <h2 class="section-title">Our Carbon<br/><span class="gradient-text">Neutrality Goals</span></h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:var(--space-4);max-width:800px;margin:0 auto" class="stagger">
+      <div class="goal-card reveal">
+        <div class="goal-year">2025</div>
+        <div style="flex:1">
+          <div class="goal-title">50% Renewable Energy</div>
+          <div class="goal-desc">Expand solar and wind energy procurement to cover 50% of total manufacturing energy needs.</div>
+          <div class="goal-progress">
+            <div class="goal-progress-label"><span>Current Progress</span><span>40/50%</span></div>
+            <div class="goal-progress-bar"><div class="goal-progress-fill" style="--progress:80%" data-progress="80"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="goal-card reveal">
+        <div class="goal-year">2026</div>
+        <div style="flex:1">
+          <div class="goal-title">Zero Liquid Discharge (ZLD)</div>
+          <div class="goal-desc">Achieve complete zero liquid discharge at all 4 manufacturing plants through advanced wastewater treatment.</div>
+          <div class="goal-progress">
+            <div class="goal-progress-label"><span>Current Progress</span><span>65%</span></div>
+            <div class="goal-progress-bar"><div class="goal-progress-fill" style="--progress:65%" data-progress="65"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="goal-card reveal">
+        <div class="goal-year">2028</div>
+        <div style="flex:1">
+          <div class="goal-title">100% Certified Sustainable Supply Chain</div>
+          <div class="goal-desc">All raw material suppliers to hold ISO 14001 and achieve sustainability benchmarks set by VitraGroup.</div>
+          <div class="goal-progress">
+            <div class="goal-progress-label"><span>Current Progress</span><span>45%</span></div>
+            <div class="goal-progress-bar"><div class="goal-progress-fill" style="--progress:45%" data-progress="45"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="goal-card reveal">
+        <div class="goal-year">2030</div>
+        <div style="flex:1">
+          <div class="goal-title">Net Carbon Neutral Operations</div>
+          <div class="goal-desc">Achieve carbon neutrality across Scope 1 and Scope 2 emissions. Offset remaining through verified reforestation and carbon capture projects.</div>
+          <div class="goal-progress">
+            <div class="goal-progress-label"><span>On Track</span><span>30% of way there</span></div>
+            <div class="goal-progress-bar"><div class="goal-progress-fill" style="--progress:30%" data-progress="30"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="cta-banner-content reveal-scale">
+    <h2 class="cta-banner-title">Build Green With<br/><span class="gradient-text">VitraGroup</span></h2>
+    <p class="cta-banner-desc">Our energy-efficient glass products can help your building achieve LEED, BREEAM, or GRIHA certification. Talk to our green building specialists today.</p>
+    <div style="display:flex;justify-content:center;gap:var(--space-4);flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary btn-xl magnetic">Talk to an Expert →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="footer-brand-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></div><p class="footer-tagline">Precision-engineered glass and building materials since 1989.</p><div class="footer-social"><a href="#" class="footer-social-link">in</a></div></div>
+    <div><div class="footer-col-title">Products</div><div class="footer-links"><a href="glass-solutions.html" class="footer-link">Glass Solutions</a><a href="plywood-solutions.html" class="footer-link">Plywood Solutions</a></div></div>
+    <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html" class="footer-link">About Us</a><a href="quality.html" class="footer-link">Quality</a><a href="process.html" class="footer-link">Manufacturing</a></div></div>
+    <div><div class="footer-col-title">Resources</div><div class="footer-links"><a href="industries.html" class="footer-link">Industries</a><a href="blog.html" class="footer-link">Blog</a></div></div>
+    <div><div class="footer-col-title">Contact</div><div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+911234567890" style="color:inherit">+91 484 123 4567</a></div></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2026 VitraGroup. All rights reserved.</div><div class="footer-legal"><a href="#" class="footer-legal-link">Privacy Policy</a></div></div>
+</div></footer>
+<button id="back-to-top">↑</button>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
+<script>
+  // Animate progress bars on scroll
+  const progressFills = document.querySelectorAll('.goal-progress-fill');
+  const progressObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
+        progressObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  progressFills.forEach(el => progressObserver.observe(el));
+</script>
+</body>
+</html>

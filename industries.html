@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VitraGroup Industries — Glass and building materials solutions for Architecture, Construction, Automotive, Hospitality, Healthcare, Solar, and more." />
+  <title>Industries Served | VitraGroup</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text x='50%25' y='55%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='white' font-family='Georgia' font-weight='bold'>V</text></svg>" />
+  <style>
+    .industry-detail-card {
+      background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius-xl);
+      overflow:hidden; transition:all var(--transition-base);
+    }
+    .industry-detail-card:hover { border-color:var(--glass-border-em); transform:translateY(-4px); box-shadow:var(--glass-shadow-lg); }
+    .industry-detail-header { padding:var(--space-8) var(--space-8) 0; }
+    .industry-detail-emoji { font-size:3rem; margin-bottom:var(--space-4); display:block; }
+    .industry-detail-name { font-family:var(--font-display); font-size:var(--text-2xl); font-weight:700; color:var(--white); margin-bottom:var(--space-3); }
+    .industry-detail-desc { font-size:var(--text-sm); color:var(--silver-mid); line-height:1.7; margin-bottom:var(--space-5); }
+    .industry-products { padding:var(--space-5) var(--space-8) var(--space-8); border-top:1px solid rgba(255,255,255,0.06); }
+    .industry-products-title { font-size:var(--text-xs); font-family:var(--font-mono); color:var(--emerald); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:var(--space-3); }
+    .industry-product-tags { display:flex; flex-wrap:wrap; gap:var(--space-2); }
+    .industry-product-tag { background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2); border-radius:var(--radius-full); padding:var(--space-1) var(--space-3); font-size:var(--text-xs); color:var(--emerald); }
+  </style>
+</head>
+<body>
+<div id="reading-progress"></div>
+<div id="page-loader"><div class="loader-logo">Vitra<span>Group</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div></div>
+
+<nav class="navbar"><div class="navbar-inner">
+  <a href="index.html" class="navbar-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></a>
+  <nav class="navbar-nav">
+    <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+    <a href="products.html" class="nav-link">Products</a><a href="industries.html" class="nav-link active">Industries</a>
+    <a href="projects.html" class="nav-link">Projects</a><a href="sustainability.html" class="nav-link">Sustainability</a><a href="blog.html" class="nav-link">Blog</a>
+  </nav>
+  <div class="navbar-cta"><a href="contact.html" class="btn btn-primary btn-sm magnetic">Get a Quote</a></div>
+  <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+  <a href="products.html" class="nav-link">Products</a><a href="contact.html" class="nav-link">Contact</a>
+</div>
+
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">Industries Served</span></div>
+    <div class="page-hero-eyebrow">Industries We Serve</div>
+    <h1 class="page-hero-title">Powering Every<br/><span class="gradient-text">Sector With Glass</span></h1>
+    <p class="page-hero-subtitle">From towering commercial facades to precision automotive glass — VitraGroup materials are at the heart of the world's most demanding projects.</p>
+  </div>
+  <div class="orb orb-emerald" style="width:500px;height:500px;top:0;right:-150px;opacity:0.3;" aria-hidden="true"></div>
+</section>
+
+<section class="section bg-mesh">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Industry Solutions</div>
+      <h2 class="section-title">Tailored Solutions for<br/><span class="gradient-text">Every Industry</span></h2>
+    </div>
+    <div class="grid-3 stagger" style="gap:var(--space-6)">
+      <div class="industry-detail-card reveal">
+        <div class="industry-detail-header">
+          <span class="industry-detail-emoji">🏢</span>
+          <div class="industry-detail-name">Architecture & Design</div>
+          <div class="industry-detail-desc">Architects and designers choose VitraGroup for iconic facades, floor-to-ceiling glazing, skylight systems, and bespoke decorative glass that transforms buildings into landmarks.</div>
+        </div>
+        <div class="industry-products">
+          <div class="industry-products-title">Key Products</div>
+          <div class="industry-product-tags"><span class="industry-product-tag">Structural Glazing</span><span class="industry-product-tag">Low-E Glass</span><span class="industry-product-tag">Decorative Glass</span><span class="industry-product-tag">Frameless Systems</span></div>
+        </div>
+      </div>
+
+      <div class="industry-detail-card reveal">
+        <div class="industry-detail-header">
+          <span class="industry-detail-emoji">🏗️</span>
+          <div class="industry-detail-name">Construction</div>
+          <div class="industry-detail-desc">Builders and developers rely on our comprehensive range — from curtain walls and windows to plywood, formwork, and complete building envelope solutions for residential and commercial projects.</div>
+        </div>
+        <div class="industry-products">
+          <div class="industry-products-title">Key Products</div>
+          <div class="industry-product-tags"><span class="industry-product-tag">IGU Windows</span><span class="industry-product-tag">Marine Plywood</span><span class="industry-product-tag">Fire-Rated Glass</span><span class="industry-product-tag">Formwork LVL</span></div>
+        </div>
+      </div>
+
+      <div class="industry-detail-card reveal">
+        <div class="industry-detail-header">
+          <span class="industry-detail-emoji">🚗</span>
+          <div class="industry-detail-name">Automotive</div>
+          <div class="industry-detail-desc">Precision-cut, heat-treated glass for OEM and aftermarket automotive applications. Windshields, side windows, sunroofs, and specialty display glass meeting stringent safety standards.</div>
+        </div>
+        <div class="industry-products">
+          <div class="industry-products-title">Key Products</div>
+          <div class="industry-product-tags"><span class="industry-product-tag">Laminated Windshield</span><span class="industry-product-tag">Tempered Side Glass</span><span class="industry-product-tag">Acoustic Glass</span></div>
+        </div>
+      </div>
+
+      <div class="industry-detail-card reveal">
+        <div class="industry-detail-header">
+          <span class="industry-detail-emoji">🏨</span>
+          <div class="industry-detail-name">Hospitality</div>
+          <div class="industry-detail-desc">Hotels, resorts, and restaurants demand glass that is beautiful, durable, and safe. We supply frameless partitions, back-painted feature walls, privacy glass, and decorative mirrors for luxury spaces.</div>
+        </div>
+        <div class="industry-products">
+          <div class="industry-products-title">Key Products</div>
+          <div class="industry-product-tags"><span class="industry-product-tag">Back-Painted Glass</span><span class="industry-product-tag">Mirrors</span><span class="industry-product-tag">Frameless Partitions</span><span class="industry-product-tag">Smart Glass</span></div>
+        </div>
+      </div>
+
+      <div class="industry-detail-card reveal">
+        <div class="industry-detail-header">
+          <span class="industry-detail-emoji">🏥</span>
+          <div class="industry-detail-name">Healthcare</div>
+          <div class="industry-detail-desc">Hospitals and medical facilities require glass that is hygienic, safe, and fire-resistant. We supply antimicrobial coated glass, fire-rated partitions, cleanroom glass, and privacy PDLC systems.</div>
+        </div>
+        <div class="industry-products">
+          <div class="industry-products-title">Key Products</div>
+          <div class="industry-product-tags"><span class="industry-product-tag">Antimicrobial Glass</span><span class="industry-product-tag">Fire-Rated</span><span class="industry-product-tag">Privacy PDLC</span><span class="industry-product-tag">Lead Glass</span></div>
+        </div>
+      </div>
+
+      <div class="industry-detail-card reveal">
+        <div class="industry-detail-header">
+          <span class="industry-detail-emoji">☀️</span>
+          <div class="industry-detail-name">Solar Energy</div>
+          <div class="industry-detail-desc">Solar panels and photovoltaic systems require high-transparency, low-iron tempered glass. We produce AR-coated solar glass with transmittance above 91.5% for maximum energy yield.</div>
+        </div>
+        <div class="industry-products">
+          <div class="industry-products-title">Key Products</div>
+          <div class="industry-product-tags"><span class="industry-product-tag">Low-Iron Glass</span><span class="industry-product-tag">AR Coated</span><span class="industry-product-tag">BIPV Glass</span><span class="industry-product-tag">Tempered Solar</span></div>
+        </div>
+      </div>
+
+      <div class="industry-detail-card reveal">
+        <div class="industry-detail-header">
+          <span class="industry-detail-emoji">🛋️</span>
+          <div class="industry-detail-name">Interior Design</div>
+          <div class="industry-detail-desc">Interior designers love our extensive decorative glass and surface material range. Frosted, etched, digital-printed, back-painted, and textured glass for partitions, feature walls, and furniture.</div>
+        </div>
+        <div class="industry-products">
+          <div class="industry-products-title">Key Products</div>
+          <div class="industry-product-tags"><span class="industry-product-tag">Decorative Veneer</span><span class="industry-product-tag">HPL Laminates</span><span class="industry-product-tag">Frosted Glass</span><span class="industry-product-tag">Solid Surface</span></div>
+        </div>
+      </div>
+
+      <div class="industry-detail-card reveal">
+        <div class="industry-detail-header">
+          <span class="industry-detail-emoji">🛍️</span>
+          <div class="industry-detail-name">Retail & Luxury</div>
+          <div class="industry-detail-desc">Flagship stores and luxury boutiques trust VitraGroup for frameless display glass, high-clarity showcases, structural glass floors, and bespoke decorative applications that showcase products perfectly.</div>
+        </div>
+        <div class="industry-products">
+          <div class="industry-products-title">Key Products</div>
+          <div class="industry-product-tags"><span class="industry-product-tag">Ultra-Clear Glass</span><span class="industry-product-tag">Showcase Glass</span><span class="industry-product-tag">Display Counters</span></div>
+        </div>
+      </div>
+
+      <div class="industry-detail-card reveal">
+        <div class="industry-detail-header">
+          <span class="industry-detail-emoji">🏭</span>
+          <div class="industry-detail-name">Industrial / Manufacturing</div>
+          <div class="industry-detail-desc">Industrial facilities need robust, chemical-resistant, and thermally stable glass for observation windows, equipment covers, cleanroom panels, and industrial displays.</div>
+        </div>
+        <div class="industry-products">
+          <div class="industry-products-title">Key Products</div>
+          <div class="industry-product-tags"><span class="industry-product-tag">Borosilicate Glass</span><span class="industry-product-tag">Wired Glass</span><span class="industry-product-tag">Safety Glass</span><span class="industry-product-tag">Industrial Ply</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-deep">
+  <div class="container">
+    <div class="grid-4 stagger">
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="9" data-suffix="+">9+</span></div><div class="stat-label">Industries Served</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="1200" data-suffix="+">1200+</span></div><div class="stat-label">Completed Projects</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="48" data-suffix="">48</span></div><div class="stat-label">Countries</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="500" data-suffix="+">500+</span></div><div class="stat-label">Satisfied Clients</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="cta-banner-content reveal-scale">
+    <h2 class="cta-banner-title">Don't See Your<br/><span class="gradient-text">Industry Listed?</span></h2>
+    <p class="cta-banner-desc">We work with every sector that needs precision glass, plywood, or building materials. Contact us to discuss your specific requirements.</p>
+    <div style="display:flex;justify-content:center;gap:var(--space-4);flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary btn-xl magnetic">Talk to Our Experts →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="footer-brand-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></div><p class="footer-tagline">Precision-engineered glass and building materials since 1989.</p><div class="footer-social"><a href="#" class="footer-social-link">in</a><a href="#" class="footer-social-link">𝕏</a></div></div>
+    <div><div class="footer-col-title">Products</div><div class="footer-links"><a href="glass-solutions.html" class="footer-link">Glass Solutions</a><a href="plywood-solutions.html" class="footer-link">Plywood Solutions</a><a href="products.html" class="footer-link">Building Products</a></div></div>
+    <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html" class="footer-link">About Us</a><a href="projects.html" class="footer-link">Projects</a><a href="quality.html" class="footer-link">Quality</a></div></div>
+    <div><div class="footer-col-title">Resources</div><div class="footer-links"><a href="industries.html" class="footer-link">Industries</a><a href="gallery.html" class="footer-link">Gallery</a><a href="blog.html" class="footer-link">Blog</a></div></div>
+    <div><div class="footer-col-title">Contact</div><div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+911234567890" style="color:inherit">+91 484 123 4567</a></div><div class="footer-contact-item"><span class="footer-contact-icon">✉️</span><a href="mailto:info@vitragroup.com" style="color:inherit">info@vitragroup.com</a></div></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2026 VitraGroup. All rights reserved.</div><div class="footer-legal"><a href="#" class="footer-legal-link">Privacy Policy</a><a href="#" class="footer-legal-link">Terms</a></div></div>
+</div></footer>
+<button id="back-to-top">↑</button>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

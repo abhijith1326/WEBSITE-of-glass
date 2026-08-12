@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore VitraGroup's complete range of glass solutions, plywood products, interior materials, and building products." />
+  <title>Products | VitraGroup — Glass & Building Materials</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text x='50%25' y='55%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='white' font-family='Georgia' font-weight='bold'>V</text></svg>" />
+  <style>
+    .product-hero-cards { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--space-6); margin-top:var(--space-12); }
+    .product-hero-card {
+      position:relative; border-radius:var(--radius-2xl); overflow:hidden;
+      aspect-ratio:16/9; cursor:pointer; display:block;
+    }
+    .product-hero-card img { width:100%; height:100%; object-fit:cover; transition:transform 0.7s ease; }
+    .product-hero-card:hover img { transform:scale(1.05); }
+    .product-hero-card-overlay {
+      position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(10,22,40,0.9) 0%, rgba(10,22,40,0.3) 60%, transparent 100%);
+      padding:var(--space-6); display:flex; flex-direction:column; justify-content:flex-end;
+    }
+    .phc-tag { font-family:var(--font-mono); font-size:var(--text-xs); color:var(--emerald); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:var(--space-2); }
+    .phc-title { font-family:var(--font-display); font-size:var(--text-2xl); font-weight:700; color:var(--white); margin-bottom:var(--space-2); }
+    .phc-desc { font-size:var(--text-sm); color:var(--silver); }
+    .phc-arrow { position:absolute; top:var(--space-4); right:var(--space-4); width:40px; height:40px; background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--white); opacity:0; transform:scale(0.8); transition:all var(--transition-base); backdrop-filter:blur(8px); }
+    .product-hero-card:hover .phc-arrow { opacity:1; transform:scale(1); }
+
+    .spec-table { width:100%; border-collapse:collapse; }
+    .spec-table tr:not(:last-child) { border-bottom:1px solid var(--glass-border); }
+    .spec-table td { padding:var(--space-3) var(--space-4); font-size:var(--text-sm); }
+    .spec-table td:first-child { color:var(--silver-mid); width:40%; }
+    .spec-table td:last-child { color:var(--white); font-weight:500; }
+
+    @media(max-width:768px) { .product-hero-cards { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+
+<!-- Custom Magnetic Cursor -->
+<div id="cursor-dot"></div>
+<div id="cursor-follower"></div>
+
+<div id="reading-progress"></div>
+<div id="page-loader"><div class="loader-logo">Vitra<span>Group</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div></div>
+
+<nav class="navbar"><div class="navbar-inner">
+  <a href="index.html" class="navbar-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></a>
+  <nav class="navbar-nav">
+    <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+    <a href="products.html" class="nav-link active">Products</a><a href="industries.html" class="nav-link">Industries</a>
+    <a href="projects.html" class="nav-link">Projects</a><a href="sustainability.html" class="nav-link">Sustainability</a><a href="blog.html" class="nav-link">Blog</a>
+  </nav>
+  <div class="navbar-cta" style="display:flex; align-items:center; gap:var(--space-3);">
+    <button class="icon-ctrl-btn" data-cp-trigger aria-label="Search (Cmd+K)"><span>🔍</span><span style="font-size:11px; opacity:0.8;">Cmd+K</span></button>
+    <button class="icon-ctrl-btn" id="audio-fx-toggle" aria-label="Toggle UI Audio"><span>🔊</span></button>
+    <button class="icon-ctrl-btn" data-open-samples aria-label="Sample Kit Drawer"><span>📦 Swatches</span><span id="sample-cart-count" class="badge" style="background:var(--emerald); color:#fff; font-weight:bold; padding:2px 6px; border-radius:10px; font-size:10px; display:none;">0</span></button>
+    <a href="contact.html" class="btn btn-primary btn-sm magnetic">Get a Quote</a>
+  </div>
+  <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+  <a href="products.html" class="nav-link">Products</a><a href="glass-solutions.html" class="nav-link">Glass Solutions</a>
+  <a href="plywood-solutions.html" class="nav-link">Plywood Solutions</a><a href="contact.html" class="nav-link">Contact</a>
+</div>
+
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">Products</span></div>
+    <div class="page-hero-eyebrow">Product Range</div>
+    <h1 class="page-hero-title">Complete Material<br/><span class="gradient-text">Solutions</span></h1>
+    <p class="page-hero-subtitle">From precision-engineered glass to premium plywood and interior materials — everything your project needs from one trusted source.</p>
+  </div>
+  <div class="orb orb-emerald" style="width:500px;height:500px;top:0;right:-150px;opacity:0.4;" aria-hidden="true"></div>
+</section>
+
+<!-- PRODUCT CATEGORY HERO CARDS -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="product-hero-cards">
+      <a href="glass-solutions.html" class="product-hero-card reveal-left">
+        <img src="assets/images/glass-products.png" alt="Glass Solutions" loading="lazy" />
+        <div class="product-hero-card-overlay">
+          <div class="phc-tag">20+ Product Types</div>
+          <div class="phc-title">Glass Solutions</div>
+          <div class="phc-desc">Tempered, laminated, insulated, fire-rated, decorative, solar control, and more.</div>
+        </div>
+        <div class="phc-arrow">↗</div>
+      </a>
+      <a href="plywood-solutions.html" class="product-hero-card reveal-right">
+        <img src="assets/images/plywood.png" alt="Plywood Solutions" loading="lazy" />
+        <div class="product-hero-card-overlay">
+          <div class="phc-tag">8 Grades Available</div>
+          <div class="phc-title">Plywood Solutions</div>
+          <div class="phc-desc">Marine, BWR, commercial, flexible, and decorative plywood in all thicknesses.</div>
+        </div>
+        <div class="phc-arrow">↗</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT CATEGORIES TABS -->
+<section class="section bg-mesh">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Our Range</div>
+      <h2 class="section-title">Explore Our Full<br/><span class="gradient-text">Product Portfolio</span></h2>
+    </div>
+
+    <div data-tabs>
+      <div class="tabs-nav reveal">
+        <button class="tab-btn active" id="tab-glass">🪟 Glass Products</button>
+        <button class="tab-btn" id="tab-plywood">🪵 Plywood</button>
+        <button class="tab-btn" id="tab-interior">🏠 Interior Materials</button>
+        <button class="tab-btn" id="tab-building">🏗️ Building Products</button>
+      </div>
+
+      <!-- Glass Products Tab -->
+      <div class="tab-content active">
+        <div class="grid-3 stagger">
+          <div class="feature-card reveal"><div class="feature-icon">🌡️</div><div class="feature-title">Tempered Glass</div><p class="feature-desc">4–19mm. 5x stronger than float glass. Thermal & safety applications. Available in clear, tinted, coated.</p><div style="margin-top:var(--space-4)"><table class="spec-table"><tr><td>Thickness</td><td>4–19mm</td></tr><tr><td>Strength</td><td>120–200 MPa</td></tr><tr><td>Standard</td><td>IS 2553 / EN 12150</td></tr></table></div><a href="glass-solutions.html" class="product-card-link mt-4">Explore →</a></div>
+          <div class="feature-card reveal"><div class="feature-icon">🛡️</div><div class="feature-title">Laminated Glass</div><p class="feature-desc">PVB / SGP interlayer. Safety, acoustic, UV control. Ideal for skylights, floors, overhead glazing.</p><div style="margin-top:var(--space-4)"><table class="spec-table"><tr><td>Layers</td><td>2–5 panes</td></tr><tr><td>Interlayer</td><td>PVB / SGP</td></tr><tr><td>Standard</td><td>IS 6479 / EN 14449</td></tr></table></div><a href="glass-solutions.html" class="product-card-link mt-4">Explore →</a></div>
+          <div class="feature-card reveal"><div class="feature-icon">❄️</div><div class="feature-title">Insulated Glass Units</div><p class="feature-desc">Double & triple glazed IGUs with argon fill and warm-edge spacers for maximum thermal efficiency.</p><div style="margin-top:var(--space-4)"><table class="spec-table"><tr><td>U-Value</td><td>0.8–1.4 W/m²K</td></tr><tr><td>SHGC</td><td>0.2–0.6</td></tr><tr><td>Spacer</td><td>Warm-edge / SS</td></tr></table></div><a href="glass-solutions.html" class="product-card-link mt-4">Explore →</a></div>
+          <div class="feature-card reveal"><div class="feature-icon">🔥</div><div class="feature-title">Fire-Rated Glass</div><p class="feature-desc">EW & EI ratings up to 120 minutes. Intumescent interlayer technology. Tested to BS 476 / EN 1364.</p><div style="margin-top:var(--space-4)"><table class="spec-table"><tr><td>Rating</td><td>30/60/90/120 min</td></tr><tr><td>Type</td><td>EW & EI rated</td></tr><tr><td>Standard</td><td>BS 476 / EN 1364</td></tr></table></div><a href="glass-solutions.html" class="product-card-link mt-4">Explore →</a></div>
+          <div class="feature-card reveal"><div class="feature-icon">☀️</div><div class="feature-title">Solar Control Glass</div><p class="feature-desc">Reduces solar heat gain by 50–70%. Available in reflective, low-E, and spectrally selective variants.</p><div style="margin-top:var(--space-4)"><table class="spec-table"><tr><td>SHGC</td><td>0.15–0.35</td></tr><tr><td>VLT</td><td>30–75%</td></tr><tr><td>Coating</td><td>Hard / Soft coat</td></tr></table></div><a href="glass-solutions.html" class="product-card-link mt-4">Explore →</a></div>
+          <div class="feature-card reveal"><div class="feature-icon">✨</div><div class="feature-title">Decorative Glass</div><p class="feature-desc">Frosted, acid-etched, back-painted, digitally printed, and textured glass for designer applications.</p><div style="margin-top:var(--space-4)"><table class="spec-table"><tr><td>Finish</td><td>Matte / Gloss</td></tr><tr><td>Printing</td><td>UV Ceramic Print</td></tr><tr><td>Custom</td><td>Any RAL Color</td></tr></table></div><a href="glass-solutions.html" class="product-card-link mt-4">Explore →</a></div>
+        </div>
+      </div>
+
+      <!-- Plywood Tab -->
+      <div class="tab-content">
+        <div class="grid-3 stagger">
+          <div class="feature-card"><div class="feature-icon">⚓</div><div class="feature-title">Marine Plywood</div><p class="feature-desc">Fully waterproof, BWP grade. IS 710 certified. Used in marine, construction, and heavy-duty applications.</p></div>
+          <div class="feature-card"><div class="feature-icon">💧</div><div class="feature-title">BWR Grade Plywood</div><p class="feature-desc">Boiling Water Resistant. Ideal for furniture, kitchen cabinets, and exterior applications in humid environments.</p></div>
+          <div class="feature-card"><div class="feature-icon">🏠</div><div class="feature-title">Commercial Plywood</div><p class="feature-desc">MR grade. Interior furniture, flooring, partitioning. Available in 4mm to 25mm thickness.</p></div>
+          <div class="feature-card"><div class="feature-icon">🎨</div><div class="feature-title">Decorative Veneer</div><p class="feature-desc">Natural wood veneer faces: teak, oak, walnut, maple. Premium interior applications and luxury furniture.</p></div>
+          <div class="feature-card"><div class="feature-icon">🌀</div><div class="feature-title">Flexible Plywood</div><p class="feature-desc">Bends to 50mm radius. Curved furniture, wall paneling, and creative interior designs.</p></div>
+          <div class="feature-card"><div class="feature-icon">🔩</div><div class="feature-title">Structural LVL</div><p class="feature-desc">Laminated Veneer Lumber for structural beams, formwork, and heavy construction applications.</p></div>
+        </div>
+      </div>
+
+      <!-- Interior Tab -->
+      <div class="tab-content">
+        <div class="grid-3 stagger">
+          <div class="feature-card"><div class="feature-icon">📋</div><div class="feature-title">HPL Laminates</div><p class="feature-desc">High Pressure Laminate in 1000+ designs. Scratch, heat, and moisture resistant surfaces.</p></div>
+          <div class="feature-card"><div class="feature-icon">📐</div><div class="feature-title">MDF Boards</div><p class="feature-desc">Medium Density Fibreboard. Smooth surface for painting, routing, and interior joinery work.</p></div>
+          <div class="feature-card"><div class="feature-icon">🎵</div><div class="feature-title">Acoustic Panels</div><p class="feature-desc">Fabric-wrapped, perforated timber, and foam acoustic panels for NRC up to 0.95.</p></div>
+          <div class="feature-card"><div class="feature-icon">🧱</div><div class="feature-title">Gypsum Boards</div><p class="feature-desc">Standard, fire-rated, moisture-resistant, and acoustic gypsum boards for partition systems.</p></div>
+          <div class="feature-card"><div class="feature-icon">🌳</div><div class="feature-title">Wall Cladding</div><p class="feature-desc">Composite panels, wood-effect, metal-effect, and solid surface wall cladding systems.</p></div>
+          <div class="feature-card"><div class="feature-icon">🏔️</div><div class="feature-title">Solid Surface</div><p class="feature-desc">Corian-type solid surface for countertops, reception desks, and seamless custom shapes.</p></div>
+        </div>
+      </div>
+
+      <!-- Building Products Tab -->
+      <div class="tab-content">
+        <div class="grid-3 stagger">
+          <div class="feature-card"><div class="feature-icon">🏢</div><div class="feature-title">ACP Cladding</div><p class="feature-desc">Aluminium Composite Panels in PVDF and PE finish. Fire-retardant grades available (FR / A2).</p></div>
+          <div class="feature-card"><div class="feature-icon">🔲</div><div class="feature-title">Structural Glazing Systems</div><p class="feature-desc">Unitised curtain wall, stick system, and spider glazing systems for building facades.</p></div>
+          <div class="feature-card"><div class="feature-icon">🚪</div><div class="feature-title">Aluminium Sections</div><p class="feature-desc">Extruded aluminium profiles for windows, doors, curtain walls, and frameless glazing.</p></div>
+          <div class="feature-card"><div class="feature-icon">🌧️</div><div class="feature-title">Waterproofing Systems</div><p class="feature-desc">Crystalline, membrane, and injection grouting waterproofing for basements and terraces.</p></div>
+          <div class="feature-card"><div class="feature-icon">🔦</div><div class="feature-title">Sealants & Adhesives</div><p class="feature-desc">Structural silicone, weatherseal, and fire-rated sealants for glass and curtain wall applications.</p></div>
+          <div class="feature-card"><div class="feature-icon">🏗️</div><div class="feature-title">Roofing Systems</div><p class="feature-desc">Glass roofs, polycarbonate roofing, and metal roofing systems for commercial projects.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="cta-banner-content reveal-scale">
+    <h2 class="cta-banner-title">Need Custom<br/><span class="gradient-text">Specifications?</span></h2>
+    <p class="cta-banner-desc">Our technical team can engineer any custom glass or material solution for your specific project requirements.</p>
+    <div style="display:flex;justify-content:center;gap:var(--space-4);flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary btn-xl magnetic">Request a Custom Quote →</a>
+      <a href="quality.html" class="btn btn-secondary btn-xl">Download Brochure</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="footer-brand-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></div><p class="footer-tagline">Precision-engineered glass and building materials since 1989.</p><div class="footer-social"><a href="#" class="footer-social-link">in</a><a href="#" class="footer-social-link">𝕏</a><a href="#" class="footer-social-link">ig</a></div></div>
+    <div><div class="footer-col-title">Products</div><div class="footer-links"><a href="glass-solutions.html" class="footer-link">Glass Solutions</a><a href="plywood-solutions.html" class="footer-link">Plywood Solutions</a><a href="products.html" class="footer-link">Building Products</a></div></div>
+    <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html" class="footer-link">About Us</a><a href="projects.html" class="footer-link">Projects</a><a href="quality.html" class="footer-link">Quality</a><a href="careers.html" class="footer-link">Careers</a></div></div>
+    <div><div class="footer-col-title">Resources</div><div class="footer-links"><a href="industries.html" class="footer-link">Industries</a><a href="gallery.html" class="footer-link">Gallery</a><a href="blog.html" class="footer-link">Blog</a></div></div>
+    <div><div class="footer-col-title">Contact</div><div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+911234567890" style="color:inherit">+91 484 123 4567</a></div><div class="footer-contact-item"><span class="footer-contact-icon">✉️</span><a href="mailto:info@vitragroup.com" style="color:inherit">info@vitragroup.com</a></div></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2026 VitraGroup. All rights reserved.</div><div class="footer-legal"><a href="#" class="footer-legal-link">Privacy Policy</a><a href="#" class="footer-legal-link">Terms</a></div></div>
+</div></footer>
+
+<!-- Command Palette Modal (Cmd+K) -->
+<div id="command-palette-modal" role="dialog" aria-modal="true" aria-label="Global Search">
+  <div class="cp-box">
+    <div class="cp-header">
+      <span>🔍</span>
+      <input type="text" id="cp-search-input" class="cp-input" placeholder="Search products, engineering tools, test certs (Cmd+K)..." autocomplete="off" />
+    </div>
+    <div class="cp-results" id="cp-results"></div>
+  </div>
+</div>
+
+<!-- Architectural Sample Kit Drawer -->
+<div id="sample-cart-drawer" role="dialog" aria-modal="true" aria-label="Sample Kit Drawer">
+  <div class="sample-drawer-panel">
+    <div class="sample-drawer-header">
+      <h3>Architectural Sample Box</h3>
+      <button class="sample-drawer-close" aria-label="Close Drawer">✕</button>
+    </div>
+    <div class="sample-drawer-body" id="sample-cart-items"></div>
+    <div class="sample-drawer-footer">
+      <button class="btn btn-primary" style="width:100%;" id="sample-order-btn">📦 Dispatch Priority Swatch Box</button>
+    </div>
+  </div>
+</div>
+
+<button id="back-to-top">↑</button>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
+<script src="js/spec-calculator.js"></script>
+</body>
+</html>
+

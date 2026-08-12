@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn about VitraGroup's 35-year journey, mission, leadership team, and core values in glass manufacturing excellence." />
+  <title>About Us | VitraGroup — Glass & Building Materials</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text x='50%25' y='55%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='white' font-family='Georgia' font-weight='bold'>V</text></svg>" />
+  <style>
+    .values-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-6); }
+    .value-card {
+      text-align:center; padding:var(--space-8) var(--space-5);
+      background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:var(--radius-xl); transition:all var(--transition-base);
+    }
+    .value-card:hover { border-color:var(--glass-border-em); transform:translateY(-4px); }
+    .value-icon { font-size:2.5rem; margin-bottom:var(--space-4); display:block; }
+    .value-title { font-family:var(--font-display); font-size:var(--text-lg); font-weight:600; color:var(--white); margin-bottom:var(--space-3); }
+    .value-desc { font-size:var(--text-sm); color:var(--silver-mid); line-height:1.7; }
+
+    .leadership-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-6); }
+
+    .company-history { display:flex; flex-direction:column; gap:var(--space-8); }
+    .history-item { display:grid; grid-template-columns:120px 1fr; gap:var(--space-8); align-items:start; }
+    .history-year {
+      font-family:var(--font-display); font-size:var(--text-4xl); font-weight:800;
+      color:var(--emerald); opacity:0.4; line-height:1; text-align:right; transition:opacity var(--transition-base);
+    }
+    .history-item:hover .history-year { opacity:1; }
+    .history-content-title { font-weight:600; color:var(--white); font-size:var(--text-lg); margin-bottom:var(--space-2); }
+    .history-content-desc { font-size:var(--text-sm); color:var(--silver-mid); line-height:1.7; }
+
+    .global-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-6); }
+    .office-card { padding:var(--space-6); background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius-lg); }
+    .office-flag { font-size:2rem; margin-bottom:var(--space-3); }
+    .office-city { font-family:var(--font-display); font-size:var(--text-xl); font-weight:600; color:var(--white); margin-bottom:var(--space-2); }
+    .office-detail { font-size:var(--text-sm); color:var(--silver-mid); line-height:1.6; }
+
+    @media(max-width:900px) {
+      .values-grid { grid-template-columns:repeat(2,1fr); }
+      .leadership-grid { grid-template-columns:repeat(2,1fr); }
+      .global-grid { grid-template-columns:repeat(2,1fr); }
+      .history-item { grid-template-columns:80px 1fr; gap:var(--space-4); }
+    }
+    @media(max-width:600px) {
+      .values-grid { grid-template-columns:1fr; }
+      .global-grid { grid-template-columns:1fr; }
+      .history-item { grid-template-columns:1fr; }
+      .history-year { text-align:left; font-size:var(--text-2xl); }
+    }
+  </style>
+</head>
+<body>
+<div id="reading-progress"></div>
+<div id="page-loader"><div class="loader-logo">Vitra<span>Group</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main Navigation">
+  <div class="navbar-inner">
+    <a href="index.html" class="glaze-logo" id="navbar-logo">
+      <div class="glaze-logo-icon">
+        <div class="glaze-logo-pane-dark"></div>
+        <div class="glaze-logo-pane-blue"></div>
+        <div class="glaze-logo-pane-blue"></div>
+        <div class="glaze-logo-pane-dark"></div>
+      </div>
+      <div class="glaze-logo-text">
+        GLAZE
+        <span>TEMP</span>
+      </div>
+    </a>
+
+    <div class="nav-menu">
+      <a href="index.html" class="nav-link">HOME</a>
+      <a href="about.html" class="nav-link active">ABOUT US</a>
+      <a href="products.html" class="nav-link">PRODUCTS ▾</a>
+      <a href="process.html" class="nav-link">SERVICES</a>
+      <a href="projects.html" class="nav-link">PROJECTS</a>
+      <a href="gallery.html" class="nav-link">GALLERY</a>
+      <a href="contact.html" class="nav-link">CONTACT US</a>
+    </div>
+
+    <div>
+      <a href="contact.html" class="btn btn-royal btn-pill">
+        GET A QUOTE →
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+  <a href="products.html" class="nav-link">Products</a><a href="industries.html" class="nav-link">Industries</a>
+  <a href="projects.html" class="nav-link">Projects</a><a href="contact.html" class="nav-link">Contact</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero" aria-label="About page hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">About Us</span></div>
+    <div class="page-hero-eyebrow">Our Story</div>
+    <h1 class="page-hero-title">Engineering Excellence<br/><span class="gradient-text">Since 1989</span></h1>
+    <p class="page-hero-subtitle">From a single glass processing unit to a global leader — three decades of relentless innovation, precision craftsmanship, and client-first values.</p>
+  </div>
+  <div class="orb orb-emerald" style="width:400px;height:400px;top:10%;right:-100px;opacity:0.5;" aria-hidden="true"></div>
+</section>
+
+<!-- MISSION & VISION -->
+<section class="section bg-mesh">
+  <div class="container">
+    <div class="grid-2" style="gap:var(--space-6)">
+      <div class="glass-emerald reveal" style="padding:var(--space-8);border-radius:var(--radius-xl)">
+        <div style="font-size:2.5rem;margin-bottom:var(--space-4)">🎯</div>
+        <h2 class="h3" style="color:var(--white);margin-bottom:var(--space-4)">Our Mission</h2>
+        <p class="body-base text-silver">To deliver precision-engineered glass, plywood, and building materials that empower architects, builders, and designers to create extraordinary spaces — safely, sustainably, and beautifully.</p>
+      </div>
+      <div class="glass reveal" style="padding:var(--space-8);border-radius:var(--radius-xl)">
+        <div style="font-size:2.5rem;margin-bottom:var(--space-4)">🔭</div>
+        <h2 class="h3" style="color:var(--white);margin-bottom:var(--space-4)">Our Vision</h2>
+        <p class="body-base text-silver">To be the world's most trusted glass and building materials company — recognized for technological innovation, environmental stewardship, and products that shape the skylines of tomorrow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY HISTORY TIMELINE -->
+<section class="section section-deep">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Our Journey</div>
+      <h2 class="section-title">Three Decades of<br/><span class="gradient-text">Building the Future</span></h2>
+    </div>
+    <div class="container-narrow">
+      <div class="company-history">
+        <div class="history-item reveal"><div class="history-year">1989</div><div><div class="history-content-title">The Beginning</div><div class="history-content-desc">Founded as a small glass cutting and processing unit in Cochin, Kerala, with 12 employees and a single flat-bed cutting machine. Supplied to local contractors and interior designers.</div></div></div>
+        <div class="history-item reveal"><div class="history-year">1997</div><div><div class="history-content-title">Tempering Plant Commissioned</div><div class="history-content-desc">Installed our first toughened glass furnace, expanding capacity to 200 m² per day. Secured first large commercial contract — a 5-star hotel facade in Kochi.</div></div></div>
+        <div class="history-item reveal"><div class="history-year">2003</div><div><div class="history-content-title">Plywood Division Launch</div><div class="history-content-desc">Diversified into premium plywood manufacturing, setting up a 50,000 sq.ft. plant in Perumbavoor. BWR and marine-grade products launched, achieving BIS certification.</div></div></div>
+        <div class="history-item reveal"><div class="history-year">2010</div><div><div class="history-content-title">International Expansion</div><div class="history-content-desc">Established export operations to the Middle East, Africa, and Southeast Asia. Received ISO 9001:2008 certification. Revenue crossed ₹500 Crore milestone.</div></div></div>
+        <div class="history-item reveal"><div class="history-year">2016</div><div><div class="history-content-title">Smart Glass R&D Centre</div><div class="history-content-desc">Opened a dedicated R&D facility focusing on smart glass, electrochromic coatings, and low-E glass. Filed 8 patents in advanced glass processing.</div></div></div>
+        <div class="history-item reveal"><div class="history-year">2021</div><div><div class="history-content-title">Sustainability Pledge</div><div class="history-content-desc">Committed to carbon neutrality by 2030. Installed 5 MW solar plant, implemented closed-loop water recycling, and launched green product certifications.</div></div></div>
+        <div class="history-item reveal"><div class="history-year">2024</div><div><div class="history-content-title">Global Operations</div><div class="history-content-desc">Operating 4 manufacturing plants, 6 regional offices, and supply chains spanning 48 countries. Workforce of 2,800+ professionals dedicated to excellence.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CORE VALUES -->
+<section class="section bg-mesh-alt">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Our Values</div>
+      <h2 class="section-title">Principles That<br/><span class="gradient-text">Guide Everything We Do</span></h2>
+    </div>
+    <div class="values-grid stagger">
+      <div class="value-card reveal"><span class="value-icon">🎯</span><div class="value-title">Precision</div><div class="value-desc">Every product manufactured to exacting tolerances, ensuring zero compromise on quality.</div></div>
+      <div class="value-card reveal"><span class="value-icon">🤝</span><div class="value-title">Integrity</div><div class="value-desc">Transparent business practices, honest communication, and ethical sourcing in all operations.</div></div>
+      <div class="value-card reveal"><span class="value-icon">💡</span><div class="value-title">Innovation</div><div class="value-desc">Continuously pushing the boundaries of glass and materials technology for tomorrow's needs.</div></div>
+      <div class="value-card reveal"><span class="value-icon">🌿</span><div class="value-title">Sustainability</div><div class="value-desc">Environmental responsibility at the heart of every manufacturing and business decision.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP TEAM -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Leadership</div>
+      <h2 class="section-title">The Minds Behind<br/><span class="gradient-text">VitraGroup</span></h2>
+    </div>
+    <div class="leadership-grid stagger">
+      <div class="team-card reveal">
+        <div class="team-card-image"><img src="assets/images/team.png" alt="CEO" loading="lazy" /></div>
+        <div class="team-card-body"><div class="team-name">Rajesh Nair</div><div class="team-role">Founder & CEO</div><div class="team-social"><a href="#" class="team-social-link">in</a><a href="#" class="team-social-link">𝕏</a></div></div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-card-image"><img src="assets/images/team.png" alt="COO" loading="lazy" /></div>
+        <div class="team-card-body"><div class="team-name">Priya Menon</div><div class="team-role">Chief Operations Officer</div><div class="team-social"><a href="#" class="team-social-link">in</a></div></div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-card-image"><img src="assets/images/team.png" alt="CTO" loading="lazy" /></div>
+        <div class="team-card-body"><div class="team-name">Dr. Arun Kumar</div><div class="team-role">Chief Technology Officer</div><div class="team-social"><a href="#" class="team-social-link">in</a></div></div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-card-image"><img src="assets/images/team.png" alt="CFO" loading="lazy" /></div>
+        <div class="team-card-body"><div class="team-name">Sunita Varma</div><div class="team-role">Chief Financial Officer</div><div class="team-social"><a href="#" class="team-social-link">in</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL PRESENCE -->
+<section class="section bg-mesh">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Global Presence</div>
+      <h2 class="section-title">Operations Across<br/><span class="gradient-text">4 Continents</span></h2>
+    </div>
+    <div class="global-grid stagger">
+      <div class="office-card reveal"><div class="office-flag">🇮🇳</div><div class="office-city">Cochin, India</div><div class="office-detail">Global Headquarters & Primary Manufacturing<br/>Plant Capacity: 5,000 m²/day</div></div>
+      <div class="office-card reveal"><div class="office-flag">🇦🇪</div><div class="office-city">Dubai, UAE</div><div class="office-detail">Middle East Regional Hub<br/>Sales, Distribution & Project Support</div></div>
+      <div class="office-card reveal"><div class="office-flag">🇬🇧</div><div class="office-city">London, UK</div><div class="office-detail">European Sales Office<br/>Technical Consulting & Design Services</div></div>
+      <div class="office-card reveal"><div class="office-flag">🇸🇬</div><div class="office-city">Singapore</div><div class="office-detail">Southeast Asia Distribution Hub<br/>Warehousing & Logistics Center</div></div>
+      <div class="office-card reveal"><div class="office-flag">🇺🇸</div><div class="office-city">Houston, USA</div><div class="office-detail">Americas Representative Office<br/>Business Development & Partnerships</div></div>
+      <div class="office-card reveal"><div class="office-flag">🇳🇬</div><div class="office-city">Lagos, Nigeria</div><div class="office-detail">Africa Regional Office<br/>Growing Market Presence</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section section-deep">
+  <div class="container">
+    <div class="grid-4 stagger">
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="35" data-suffix="+">35+</span></div><div class="stat-label">Years of Excellence</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="2800" data-suffix="+">2800+</span></div><div class="stat-label">Team Members</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="4" data-suffix="">4</span></div><div class="stat-label">Manufacturing Plants</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="48" data-suffix="">48</span></div><div class="stat-label">Countries Served</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner" aria-label="Join us">
+  <div class="cta-banner-content reveal-scale">
+    <h2 class="cta-banner-title">Ready to Partner<br/><span class="gradient-text">With Excellence?</span></h2>
+    <p class="cta-banner-desc">Let's discuss how VitraGroup can elevate your next project.</p>
+    <div style="display:flex;justify-content:center;gap:var(--space-4);flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary btn-xl magnetic">Get a Quote →</a>
+      <a href="careers.html" class="btn btn-secondary btn-xl">Join Our Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (shared) -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></div>
+        <p class="footer-tagline">Crafting the future through precision glass manufacturing and premium building materials since 1989.</p>
+        <div class="footer-social"><a href="#" class="footer-social-link">in</a><a href="#" class="footer-social-link">𝕏</a><a href="#" class="footer-social-link">ig</a><a href="#" class="footer-social-link">▶</a></div>
+      </div>
+      <div><div class="footer-col-title">Products</div><div class="footer-links"><a href="glass-solutions.html" class="footer-link">Glass Solutions</a><a href="plywood-solutions.html" class="footer-link">Plywood Solutions</a><a href="products.html" class="footer-link">Building Products</a></div></div>
+      <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html" class="footer-link">About Us</a><a href="projects.html" class="footer-link">Projects</a><a href="quality.html" class="footer-link">Quality</a><a href="sustainability.html" class="footer-link">Sustainability</a><a href="careers.html" class="footer-link">Careers</a></div></div>
+      <div><div class="footer-col-title">Resources</div><div class="footer-links"><a href="industries.html" class="footer-link">Industries</a><a href="gallery.html" class="footer-link">Gallery</a><a href="blog.html" class="footer-link">Blog</a></div></div>
+      <div><div class="footer-col-title">Contact</div><div class="footer-contact-item"><span class="footer-contact-icon">📍</span><span>Cochin, Kerala — 682024, India</span></div><div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+911234567890" style="color:inherit">+91 484 123 4567</a></div><div class="footer-contact-item"><span class="footer-contact-icon">✉️</span><a href="mailto:info@vitragroup.com" style="color:inherit">info@vitragroup.com</a></div></div>
+    </div>
+    <div class="footer-bottom"><div class="footer-copy">© 2026 VitraGroup. All rights reserved.</div><div class="footer-legal"><a href="#" class="footer-legal-link">Privacy Policy</a><a href="#" class="footer-legal-link">Terms</a></div></div>
+  </div>
+</footer>
+
+<button id="back-to-top">↑</button>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

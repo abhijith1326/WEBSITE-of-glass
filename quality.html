@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VitraGroup Quality & Certifications — ISO 9001:2015, BIS, CE Mark, and international quality standards ensuring world-class glass and plywood products." />
+  <title>Quality & Certifications | VitraGroup</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text x='50%25' y='55%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='white' font-family='Georgia' font-weight='bold'>V</text></svg>" />
+  <style>
+    .cert-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-6); }
+    .cert-card-big {
+      padding:var(--space-8); background:var(--glass-bg); border:1px solid var(--glass-border);
+      border-radius:var(--radius-xl); text-align:center; transition:all var(--transition-base); position:relative; overflow:hidden;
+    }
+    .cert-card-big::before { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--emerald), transparent); transform:scaleX(0); transform-origin:left; transition:transform 0.5s ease; }
+    .cert-card-big:hover { border-color:var(--glass-border-em); transform:translateY(-4px); }
+    .cert-card-big:hover::before { transform:scaleX(1); }
+    .cert-emblem { font-size:3.5rem; margin-bottom:var(--space-4); display:block; }
+    .cert-name { font-family:var(--font-display); font-size:var(--text-xl); font-weight:700; color:var(--white); margin-bottom:var(--space-2); }
+    .cert-issuer { font-size:var(--text-xs); font-family:var(--font-mono); color:var(--emerald); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:var(--space-3); }
+    .cert-desc { font-size:var(--text-sm); color:var(--silver-mid); line-height:1.7; }
+    .cert-validity { margin-top:var(--space-4); padding:var(--space-2) var(--space-3); background:rgba(16,185,129,0.08); border:1px solid rgba(16,185,129,0.2); border-radius:var(--radius-full); font-size:var(--text-xs); color:var(--emerald); font-family:var(--font-mono); display:inline-block; }
+
+    .qc-steps { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-4); }
+    .qc-step { text-align:center; padding:var(--space-6); }
+    .qc-step-icon { font-size:2rem; margin-bottom:var(--space-3); display:block; }
+    .qc-step-num { font-family:var(--font-mono); font-size:var(--text-xs); color:var(--emerald); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:var(--space-2); }
+    .qc-step-title { font-weight:600; color:var(--white); margin-bottom:var(--space-2); }
+    .qc-step-desc { font-size:var(--text-sm); color:var(--silver-mid); }
+
+    @media(max-width:900px) { .cert-grid { grid-template-columns:repeat(2,1fr); } .qc-steps { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:600px) { .cert-grid { grid-template-columns:1fr; } .qc-steps { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<div id="reading-progress"></div>
+<div id="page-loader"><div class="loader-logo">Vitra<span>Group</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div></div>
+
+<nav class="navbar"><div class="navbar-inner">
+  <a href="index.html" class="navbar-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></a>
+  <nav class="navbar-nav">
+    <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+    <a href="products.html" class="nav-link">Products</a><a href="industries.html" class="nav-link">Industries</a>
+    <a href="projects.html" class="nav-link">Projects</a><a href="sustainability.html" class="nav-link">Sustainability</a><a href="blog.html" class="nav-link">Blog</a>
+  </nav>
+  <div class="navbar-cta"><a href="contact.html" class="btn btn-primary btn-sm magnetic">Get a Quote</a></div>
+  <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+  <a href="products.html" class="nav-link">Products</a><a href="contact.html" class="nav-link">Contact</a>
+</div>
+
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">Quality & Certifications</span></div>
+    <div class="page-hero-eyebrow">Quality Assurance</div>
+    <h1 class="page-hero-title">Certified Excellence,<br/><span class="gradient-text">Every Single Time</span></h1>
+    <p class="page-hero-subtitle">22+ internationally recognized certifications. Rigorous quality controls at every production stage. Your guarantee that every VitraGroup product meets the highest global standards.</p>
+  </div>
+  <div class="orb orb-emerald" style="width:500px;height:500px;top:0;right:-150px;opacity:0.3;" aria-hidden="true"></div>
+</section>
+
+<section class="section bg-mesh">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Certifications</div>
+      <h2 class="section-title">International Standards<br/><span class="gradient-text">We're Certified To</span></h2>
+    </div>
+    <div class="cert-grid stagger">
+      <div class="cert-card-big reveal"><span class="cert-emblem">🏆</span><div class="cert-name">ISO 9001:2015</div><div class="cert-issuer">Bureau Veritas</div><div class="cert-desc">Quality Management System certification covering all glass manufacturing, processing, and distribution operations worldwide.</div><div class="cert-validity">Valid Until: Dec 2027</div></div>
+      <div class="cert-card-big reveal"><span class="cert-emblem">🌿</span><div class="cert-name">ISO 14001:2015</div><div class="cert-issuer">SGS</div><div class="cert-desc">Environmental Management System certification demonstrating commitment to minimizing environmental impact across all operations.</div><div class="cert-validity">Valid Until: Jun 2026</div></div>
+      <div class="cert-card-big reveal"><span class="cert-emblem">⚡</span><div class="cert-name">ISO 45001:2018</div><div class="cert-issuer">Bureau Veritas</div><div class="cert-desc">Occupational Health & Safety Management System. Protecting our workforce with globally recognized safety protocols.</div><div class="cert-validity">Valid Until: Mar 2027</div></div>
+      <div class="cert-card-big reveal"><span class="cert-emblem">🇮🇳</span><div class="cert-name">BIS Certification</div><div class="cert-issuer">Bureau of Indian Standards</div><div class="cert-desc">IS 2553, IS 6479, IS 303, IS 710 certifications for toughened, laminated, and plywood products manufactured in India.</div><div class="cert-validity">Continuously Maintained</div></div>
+      <div class="cert-card-big reveal"><span class="cert-emblem">🇪🇺</span><div class="cert-name">CE Marking</div><div class="cert-issuer">European Notified Body</div><div class="cert-desc">CE Declaration of Performance for glass products conforming to EN 12150, EN 14449, EN 1279, and related European standards.</div><div class="cert-validity">Continuously Maintained</div></div>
+      <div class="cert-card-big reveal"><span class="cert-emblem">🌍</span><div class="cert-name">REACH Compliance</div><div class="cert-issuer">ECHA</div><div class="cert-desc">Full compliance with EU REACH regulations. All chemical substances used in coatings and interlayers are registered and compliant.</div><div class="cert-validity">Annually Reviewed</div></div>
+      <div class="cert-card-big reveal"><span class="cert-emblem">⭐</span><div class="cert-name">ASTM International</div><div class="cert-issuer">ASTM</div><div class="cert-desc">Products tested and compliant with ASTM C1036, C1048, C1172 standards for flat, heat-treated, and laminated glass.</div><div class="cert-validity">Continuously Maintained</div></div>
+      <div class="cert-card-big reveal"><span class="cert-emblem">🔬</span><div class="cert-name">BS Standards</div><div class="cert-issuer">BSI</div><div class="cert-desc">British Standards compliance including BS 6206 (safety glass) and BS 476 (fire resistance) for UK market supply.</div><div class="cert-validity">Continuously Maintained</div></div>
+      <div class="cert-card-big reveal"><span class="cert-emblem">🛡️</span><div class="cert-name">IFC Compliant</div><div class="cert-issuer">International Finance Corporation</div><div class="cert-desc">IFC Performance Standards compliance for environmental and social governance — required for major infrastructure and hospitality projects.</div><div class="cert-validity">Continuously Maintained</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-deep">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">QC Process</div>
+      <h2 class="section-title">Our 4-Stage<br/><span class="gradient-text">Quality Control</span></h2>
+    </div>
+    <div class="qc-steps stagger">
+      <div class="qc-step reveal"><span class="qc-step-icon">🔍</span><div class="qc-step-num">Stage 01</div><div class="qc-step-title">Incoming Material Check</div><div class="qc-step-desc">100% testing of raw materials: silica purity, chemical composition, and physical properties verified before production.</div></div>
+      <div class="qc-step reveal"><span class="qc-step-icon">📡</span><div class="qc-step-num">Stage 02</div><div class="qc-step-title">In-Process Monitoring</div><div class="qc-step-desc">Automated optical scanning at 400m/min detects defects as small as 0.3mm during continuous glass production.</div></div>
+      <div class="qc-step reveal"><span class="qc-step-icon">🧪</span><div class="qc-step-num">Stage 03</div><div class="qc-step-title">Laboratory Testing</div><div class="qc-step-desc">Mechanical strength, thermal shock, optical distortion, UV transmission, and dimensional accuracy tested in our accredited lab.</div></div>
+      <div class="qc-step reveal"><span class="qc-step-icon">✅</span><div class="qc-step-num">Stage 04</div><div class="qc-step-title">Pre-Dispatch Inspection</div><div class="qc-step-desc">Final dimensional check, visual inspection, and documentation package — quality certificate accompanies every shipment.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section bg-mesh">
+  <div class="container">
+    <div class="grid-4 stagger">
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="22" data-suffix="+">22+</span></div><div class="stat-label">Certifications Held</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="100" data-suffix="%">100%</span></div><div class="stat-label">Product Inspection Rate</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="0.3" data-suffix="mm">0.3mm</span></div><div class="stat-label">Minimum Defect Detection</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="35" data-suffix="yr">35yr</span></div><div class="stat-label">Quality Heritage</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="cta-banner-content reveal-scale">
+    <h2 class="cta-banner-title">Download Our<br/><span class="gradient-text">Quality Brochure</span></h2>
+    <p class="cta-banner-desc">Get detailed specifications, certification documents, and test reports for our complete product range.</p>
+    <div style="display:flex;justify-content:center;gap:var(--space-4);flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary btn-xl magnetic">Download Brochure →</a>
+      <a href="contact.html" class="btn btn-secondary btn-xl">Request Test Reports</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="footer-brand-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></div><p class="footer-tagline">Precision-engineered glass and building materials since 1989.</p><div class="footer-social"><a href="#" class="footer-social-link">in</a></div></div>
+    <div><div class="footer-col-title">Products</div><div class="footer-links"><a href="glass-solutions.html" class="footer-link">Glass Solutions</a><a href="plywood-solutions.html" class="footer-link">Plywood Solutions</a></div></div>
+    <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html" class="footer-link">About Us</a><a href="projects.html" class="footer-link">Projects</a><a href="process.html" class="footer-link">Manufacturing</a></div></div>
+    <div><div class="footer-col-title">Resources</div><div class="footer-links"><a href="gallery.html" class="footer-link">Gallery</a><a href="blog.html" class="footer-link">Blog</a></div></div>
+    <div><div class="footer-col-title">Contact</div><div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+911234567890" style="color:inherit">+91 484 123 4567</a></div></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2026 VitraGroup. All rights reserved.</div><div class="footer-legal"><a href="#" class="footer-legal-link">Privacy Policy</a></div></div>
+</div></footer>
+<button id="back-to-top">↑</button>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

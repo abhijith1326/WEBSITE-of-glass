@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VitraGroup Gallery — Explore our glass projects, product showcase, factory operations, and industry events through stunning photography." />
+  <title>Gallery | VitraGroup</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text x='50%25' y='55%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='white' font-family='Georgia' font-weight='bold'>V</text></svg>" />
+</head>
+<body>
+<div id="reading-progress"></div>
+<div id="page-loader"><div class="loader-logo">Vitra<span>Group</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div></div>
+
+<nav class="navbar"><div class="navbar-inner">
+  <a href="index.html" class="navbar-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></a>
+  <nav class="navbar-nav">
+    <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+    <a href="products.html" class="nav-link">Products</a><a href="industries.html" class="nav-link">Industries</a>
+    <a href="projects.html" class="nav-link">Projects</a><a href="sustainability.html" class="nav-link">Sustainability</a><a href="blog.html" class="nav-link">Blog</a>
+  </nav>
+  <div class="navbar-cta"><a href="contact.html" class="btn btn-primary btn-sm magnetic">Get a Quote</a></div>
+  <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+  <a href="products.html" class="nav-link">Products</a><a href="contact.html" class="nav-link">Contact</a>
+</div>
+
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">Gallery</span></div>
+    <div class="page-hero-eyebrow">Visual Showcase</div>
+    <h1 class="page-hero-title">Our Work,<br/><span class="gradient-text">In Full View</span></h1>
+    <p class="page-hero-subtitle">A curated collection of our glass projects, product range, manufacturing excellence, and global events.</p>
+  </div>
+  <div class="orb orb-emerald" style="width:500px;height:500px;top:0;right:-150px;opacity:0.3;" aria-hidden="true"></div>
+</section>
+
+<section class="section bg-mesh">
+  <div class="container">
+    <div class="filter-group reveal" data-filter-group="gallery-grid">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="projects">Projects</button>
+      <button class="filter-btn" data-filter="products">Products</button>
+      <button class="filter-btn" data-filter="factory">Factory</button>
+      <button class="filter-btn" data-filter="events">Events</button>
+    </div>
+
+    <div class="gallery-grid stagger" id="gallery-grid">
+      <div class="gallery-item reveal" data-category="projects" data-src="assets/images/hero.png">
+        <img src="assets/images/hero.png" alt="Skyline Tower Glass Facade" loading="lazy" />
+        <div class="gallery-item-overlay"><span class="gallery-zoom-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item reveal" data-category="products" data-src="assets/images/glass-products.png">
+        <img src="assets/images/glass-products.png" alt="Premium Glass Products" loading="lazy" />
+        <div class="gallery-item-overlay"><span class="gallery-zoom-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item reveal" data-category="factory" data-src="assets/images/factory.png">
+        <img src="assets/images/factory.png" alt="Glass Manufacturing Plant" loading="lazy" />
+        <div class="gallery-item-overlay"><span class="gallery-zoom-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item reveal" data-category="projects" data-src="assets/images/hero.png">
+        <img src="assets/images/hero.png" alt="Commercial Building Facade" loading="lazy" />
+        <div class="gallery-item-overlay"><span class="gallery-zoom-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item reveal" data-category="products" data-src="assets/images/plywood.png">
+        <img src="assets/images/plywood.png" alt="Premium Plywood Range" loading="lazy" />
+        <div class="gallery-item-overlay"><span class="gallery-zoom-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item reveal" data-category="factory" data-src="assets/images/factory.png">
+        <img src="assets/images/factory.png" alt="CNC Processing Center" loading="lazy" />
+        <div class="gallery-item-overlay"><span class="gallery-zoom-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item reveal" data-category="projects" data-src="assets/images/glass-products.png">
+        <img src="assets/images/glass-products.png" alt="Hotel Interior Glazing" loading="lazy" />
+        <div class="gallery-item-overlay"><span class="gallery-zoom-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item reveal" data-category="events" data-src="assets/images/team.png">
+        <img src="assets/images/team.png" alt="Industry Exhibition 2025" loading="lazy" />
+        <div class="gallery-item-overlay"><span class="gallery-zoom-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item reveal" data-category="factory" data-src="assets/images/factory.png">
+        <img src="assets/images/factory.png" alt="Quality Testing Lab" loading="lazy" />
+        <div class="gallery-item-overlay"><span class="gallery-zoom-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item reveal" data-category="projects" data-src="assets/images/hero.png">
+        <img src="assets/images/hero.png" alt="Residential Tower Dubai" loading="lazy" />
+        <div class="gallery-item-overlay"><span class="gallery-zoom-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item reveal" data-category="products" data-src="assets/images/glass-products.png">
+        <img src="assets/images/glass-products.png" alt="Decorative Glass Collection" loading="lazy" />
+        <div class="gallery-item-overlay"><span class="gallery-zoom-icon">🔍</span></div>
+      </div>
+      <div class="gallery-item reveal" data-category="events" data-src="assets/images/office.png">
+        <img src="assets/images/office.png" alt="Client Award Ceremony" loading="lazy" />
+        <div class="gallery-item-overlay"><span class="gallery-zoom-icon">🔍</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox">
+  <img src="" alt="Gallery Image" class="lightbox-img" id="lightbox-img" />
+  <button class="lightbox-close" id="lightbox-close">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev">‹</button>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next">›</button>
+</div>
+
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="footer-brand-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></div><p class="footer-tagline">Precision-engineered glass and building materials since 1989.</p><div class="footer-social"><a href="#" class="footer-social-link">in</a></div></div>
+    <div><div class="footer-col-title">Products</div><div class="footer-links"><a href="glass-solutions.html" class="footer-link">Glass Solutions</a><a href="plywood-solutions.html" class="footer-link">Plywood Solutions</a></div></div>
+    <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html" class="footer-link">About Us</a><a href="projects.html" class="footer-link">Projects</a></div></div>
+    <div><div class="footer-col-title">Resources</div><div class="footer-links"><a href="gallery.html" class="footer-link">Gallery</a><a href="blog.html" class="footer-link">Blog</a></div></div>
+    <div><div class="footer-col-title">Contact</div><div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+911234567890" style="color:inherit">+91 484 123 4567</a></div></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2026 VitraGroup. All rights reserved.</div><div class="footer-legal"><a href="#" class="footer-legal-link">Privacy Policy</a></div></div>
+</div></footer>
+<button id="back-to-top">↑</button>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

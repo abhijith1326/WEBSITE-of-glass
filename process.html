@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="VitraGroup Manufacturing Process — From raw material to precision glass, explore our state-of-the-art glass and plywood manufacturing steps." />
+  <title>Manufacturing Process | VitraGroup</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text x='50%25' y='55%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='white' font-family='Georgia' font-weight='bold'>V</text></svg>" />
+  <style>
+    .process-timeline { position:relative; }
+    .process-timeline::before { content:''; position:absolute; left:40px; top:0; bottom:0; width:1px; background:linear-gradient(to bottom, var(--emerald), rgba(16,185,129,0.05)); }
+    .process-timeline-item {
+      display:flex; gap:var(--space-8); padding-bottom:var(--space-12); position:relative;
+      opacity:0; transform:translateX(-20px); transition:all 0.6s cubic-bezier(0.4,0,0.2,1);
+    }
+    .process-timeline-item.timeline-visible { opacity:1; transform:translateX(0); }
+    .process-timeline-item:last-child { padding-bottom:0; }
+    .ptl-num-wrap { position:relative; flex-shrink:0; }
+    .ptl-num {
+      width:80px; height:80px; background:linear-gradient(135deg, rgba(16,185,129,0.15), rgba(16,185,129,0.05));
+      border:2px solid var(--glass-border-em); border-radius:var(--radius-full);
+      display:flex; align-items:center; justify-content:center;
+      font-family:var(--font-display); font-size:var(--text-2xl); font-weight:800; color:var(--emerald);
+      position:relative; z-index:1; backdrop-filter:blur(8px);
+    }
+    .ptl-content { flex:1; padding-top:var(--space-3); }
+    .ptl-step-label { font-family:var(--font-mono); font-size:var(--text-xs); color:var(--emerald); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:var(--space-2); }
+    .ptl-step-title { font-family:var(--font-display); font-size:var(--text-2xl); font-weight:700; color:var(--white); margin-bottom:var(--space-3); }
+    .ptl-step-desc { font-size:var(--text-base); color:var(--silver-mid); line-height:1.7; margin-bottom:var(--space-4); }
+    .ptl-details { display:flex; flex-wrap:wrap; gap:var(--space-3); }
+    .ptl-detail { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius-md); padding:var(--space-2) var(--space-4); font-size:var(--text-xs); color:var(--silver); font-family:var(--font-mono); }
+
+    .quality-check {
+      display:flex; align-items:center; gap:var(--space-3); padding:var(--space-3) var(--space-4);
+      background:rgba(16,185,129,0.06); border:1px solid rgba(16,185,129,0.15); border-radius:var(--radius-md);
+      font-size:var(--text-sm); color:var(--emerald); font-weight:500; margin-top:var(--space-3);
+    }
+
+    .equipment-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-4); }
+    .equipment-card { padding:var(--space-5); background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:var(--radius-lg); }
+    .equipment-icon { font-size:1.5rem; margin-bottom:var(--space-3); }
+    .equipment-name { font-weight:600; color:var(--white); font-size:var(--text-sm); margin-bottom:var(--space-2); }
+    .equipment-spec { font-size:var(--text-xs); color:var(--silver-mid); font-family:var(--font-mono); }
+
+    @media(max-width:768px) {
+      .process-timeline::before { left:28px; }
+      .ptl-num { width:56px; height:56px; font-size:var(--text-xl); }
+      .equipment-grid { grid-template-columns:repeat(2,1fr); }
+    }
+    @media(max-width:600px) { .equipment-grid { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+<div id="reading-progress"></div>
+<div id="page-loader"><div class="loader-logo">Vitra<span>Group</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div></div>
+
+<nav class="navbar"><div class="navbar-inner">
+  <a href="index.html" class="navbar-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></a>
+  <nav class="navbar-nav">
+    <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+    <a href="products.html" class="nav-link">Products</a><a href="industries.html" class="nav-link">Industries</a>
+    <a href="projects.html" class="nav-link">Projects</a><a href="sustainability.html" class="nav-link">Sustainability</a><a href="blog.html" class="nav-link">Blog</a>
+  </nav>
+  <div class="navbar-cta"><a href="contact.html" class="btn btn-primary btn-sm magnetic">Get a Quote</a></div>
+  <button class="nav-toggle" id="nav-toggle"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+  <a href="products.html" class="nav-link">Products</a><a href="contact.html" class="nav-link">Contact</a>
+</div>
+
+<section class="page-hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">Manufacturing Process</span></div>
+    <div class="page-hero-eyebrow">Our Process</div>
+    <h1 class="page-hero-title">Precision at Every<br/><span class="gradient-text">Stage of Production</span></h1>
+    <p class="page-hero-subtitle">From raw silica to finished architectural glass — every step in our manufacturing process is engineered for perfection, monitored for quality, and optimized for sustainability.</p>
+  </div>
+  <div class="orb orb-emerald" style="width:500px;height:500px;top:0;right:-150px;opacity:0.3;" aria-hidden="true"></div>
+</section>
+
+<!-- PLANT STATS -->
+<section style="padding:var(--space-10) 0;background:var(--charcoal);border-bottom:1px solid rgba(255,255,255,0.06);">
+  <div class="container">
+    <div class="grid-4 stagger">
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="4" data-suffix="">4</span></div><div class="stat-label">Manufacturing Plants</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="6000" data-suffix=" m²">6000 m²</span></div><div class="stat-label">Daily Glass Capacity</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="1600" data-suffix="°C">1600°C</span></div><div class="stat-label">Furnace Temperature</div></div>
+      <div class="stat-card reveal"><div class="stat-number">±0.2mm</div><div class="stat-label">Cut Tolerance</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GLASS PROCESS TIMELINE -->
+<section class="section bg-mesh">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-label">Glass Manufacturing</div>
+      <h2 class="section-title">Glass Manufacturing<br/><span class="gradient-text">Step by Step</span></h2>
+    </div>
+    <div class="container-narrow">
+      <div class="process-timeline">
+        <div class="process-timeline-item timeline-item">
+          <div class="ptl-num-wrap"><div class="ptl-num">01</div></div>
+          <div class="ptl-content">
+            <div class="ptl-step-label">Raw Material</div>
+            <div class="ptl-step-title">Batch Preparation & Melting</div>
+            <div class="ptl-step-desc">Premium silica sand (SiO₂ >99.5%), soda ash, limestone, and cullet are precisely weighed and blended in our automated batch plant. The mixture is fed into a 1,600°C float glass furnace where it melts into a homogeneous molten glass over 24+ hours.</div>
+            <div class="ptl-details"><span class="ptl-detail">Temperature: 1,600°C</span><span class="ptl-detail">Silica Purity: 99.5%+</span><span class="ptl-detail">Furnace Capacity: 600 TPD</span></div>
+            <div class="quality-check">✅ Batch composition verified by automated weighing systems with ±0.1% accuracy</div>
+          </div>
+        </div>
+        <div class="process-timeline-item timeline-item">
+          <div class="ptl-num-wrap"><div class="ptl-num">02</div></div>
+          <div class="ptl-content">
+            <div class="ptl-step-label">Float Process</div>
+            <div class="ptl-step-title">Tin Bath Float Formation</div>
+            <div class="ptl-step-desc">Molten glass flows onto a bath of molten tin. Because glass floats on tin and the surface tension creates a perfectly flat ribbon, this process produces glass of exceptional optical clarity and flatness. Ribbon thickness is precisely controlled from 2mm to 25mm.</div>
+            <div class="ptl-details"><span class="ptl-detail">Tin Bath: 600–1000°C</span><span class="ptl-detail">Flatness: ≤0.1% distortion</span><span class="ptl-detail">Width: Up to 3,300mm</span></div>
+            <div class="quality-check">✅ Online optical distortion monitoring with camera systems</div>
+          </div>
+        </div>
+        <div class="process-timeline-item timeline-item">
+          <div class="ptl-num-wrap"><div class="ptl-num">03</div></div>
+          <div class="ptl-content">
+            <div class="ptl-step-label">Annealing & Cooling</div>
+            <div class="ptl-step-title">Controlled Cooling (Lehr)</div>
+            <div class="ptl-step-desc">The glass ribbon passes through the annealing lehr — a controlled cooling tunnel that eliminates internal stresses by slowly reducing temperature from 600°C to room temperature. Precise cooling rates ensure the glass is stress-free and dimensionally stable.</div>
+            <div class="ptl-details"><span class="ptl-detail">Lehr Length: 100m+</span><span class="ptl-detail">Cooling Rate: Controlled</span><span class="ptl-detail">Exit Temp: 35–40°C</span></div>
+          </div>
+        </div>
+        <div class="process-timeline-item timeline-item">
+          <div class="ptl-num-wrap"><div class="ptl-num">04</div></div>
+          <div class="ptl-content">
+            <div class="ptl-step-label">Inspection</div>
+            <div class="ptl-step-title">Automated Quality Scanning</div>
+            <div class="ptl-step-desc">The continuous glass ribbon passes through our automated inspection line with high-resolution cameras and laser systems that detect inclusions, bubbles, scratches, thickness variations, and optical defects at speeds up to 400 m/minute.</div>
+            <div class="ptl-details"><span class="ptl-detail">Defect Detection: <0.3mm</span><span class="ptl-detail">Scan Speed: 400m/min</span><span class="ptl-detail">AI-Assisted Analysis</span></div>
+            <div class="quality-check">✅ 100% of glass is scanned — no defective glass proceeds to cutting</div>
+          </div>
+        </div>
+        <div class="process-timeline-item timeline-item">
+          <div class="ptl-num-wrap"><div class="ptl-num">05</div></div>
+          <div class="ptl-content">
+            <div class="ptl-step-label">Processing</div>
+            <div class="ptl-step-title">CNC Cutting, Tempering & Processing</div>
+            <div class="ptl-step-desc">Float glass sheets are cut to size by CNC water-jet or diamond cutting heads, then processed as required: tempering (700°C heat treatment), laminating (PVB/SGP interlayer autoclave), coating (magnetron sputtering), drilling, edge working, and IGU assembly.</div>
+            <div class="ptl-details"><span class="ptl-detail">Tempering: 700°C+</span><span class="ptl-detail">Autoclave: 14 bar / 140°C</span><span class="ptl-detail">Sputtering: 7-chamber</span></div>
+            <div class="quality-check">✅ Post-tempering fracture test on 100% of toughened glass</div>
+          </div>
+        </div>
+        <div class="process-timeline-item timeline-item">
+          <div class="ptl-num-wrap"><div class="ptl-num">06</div></div>
+          <div class="ptl-content">
+            <div class="ptl-step-label">Final QC & Dispatch</div>
+            <div class="ptl-step-title">Packaging & Secure Delivery</div>
+            <div class="ptl-step-desc">Each finished glass product undergoes final dimension check, visual inspection, and labeling before being packed in custom timber crates, A-frames, or purpose-built containers with vibration-dampening materials for safe transit to sites worldwide.</div>
+            <div class="ptl-details"><span class="ptl-detail">Custom Crating</span><span class="ptl-detail">GPS Tracked Shipments</span><span class="ptl-detail">Worldwide Delivery</span></div>
+            <div class="quality-check">✅ Every delivery comes with quality certificates and test reports</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPMENT -->
+<section class="section section-deep">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Equipment</div>
+      <h2 class="section-title">State-of-the-Art<br/><span class="gradient-text">Machinery</span></h2>
+    </div>
+    <div class="equipment-grid stagger">
+      <div class="equipment-card reveal"><div class="equipment-icon">🔥</div><div class="equipment-name">Float Glass Furnace</div><div class="equipment-spec">600 TPD capacity, 1,600°C operating temp, tin bath technology</div></div>
+      <div class="equipment-card reveal"><div class="equipment-icon">⚡</div><div class="equipment-name">Tempering Furnace</div><div class="equipment-spec">Horizontal roller hearth, 3,210 × 2,000mm max size, forced convection</div></div>
+      <div class="equipment-card reveal"><div class="equipment-icon">🔬</div><div class="equipment-name">Autoclave (Laminating)</div><div class="equipment-spec">7m diameter, 140°C / 14 bar, PVB + SGP interlayers</div></div>
+      <div class="equipment-card reveal"><div class="equipment-icon">💎</div><div class="equipment-name">Magnetron Sputtering</div><div class="equipment-spec">7-chamber in-line coater, Low-E, solar control, TiO₂ coatings</div></div>
+      <div class="equipment-card reveal"><div class="equipment-icon">✂️</div><div class="equipment-name">CNC Cutting Centre</div><div class="equipment-spec">Water-jet + diamond wheels, ±0.2mm tolerance, complex shapes</div></div>
+      <div class="equipment-card reveal"><div class="equipment-icon">📡</div><div class="equipment-name">Automated Inspection Line</div><div class="equipment-spec">400 m/min, AI vision, defect detection <0.3mm, 100% coverage</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <div class="cta-banner-content reveal-scale">
+    <h2 class="cta-banner-title">See the Process<br/><span class="gradient-text">In Action</span></h2>
+    <p class="cta-banner-desc">Schedule a factory visit or request a virtual tour of our manufacturing facilities.</p>
+    <div style="display:flex;justify-content:center;gap:var(--space-4);flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary btn-xl magnetic">Schedule Factory Visit →</a>
+      <a href="quality.html" class="btn btn-secondary btn-xl">View Quality Certs</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="container">
+  <div class="footer-grid">
+    <div class="footer-brand"><div class="footer-brand-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Vitra<span>Group</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></div><p class="footer-tagline">Precision-engineered glass and building materials since 1989.</p><div class="footer-social"><a href="#" class="footer-social-link">in</a></div></div>
+    <div><div class="footer-col-title">Products</div><div class="footer-links"><a href="glass-solutions.html" class="footer-link">Glass Solutions</a><a href="plywood-solutions.html" class="footer-link">Plywood Solutions</a></div></div>
+    <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html" class="footer-link">About Us</a><a href="quality.html" class="footer-link">Quality</a><a href="sustainability.html" class="footer-link">Sustainability</a></div></div>
+    <div><div class="footer-col-title">Resources</div><div class="footer-links"><a href="industries.html" class="footer-link">Industries</a><a href="gallery.html" class="footer-link">Gallery</a></div></div>
+    <div><div class="footer-col-title">Contact</div><div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+911234567890" style="color:inherit">+91 484 123 4567</a></div></div>
+  </div>
+  <div class="footer-bottom"><div class="footer-copy">© 2026 VitraGroup. All rights reserved.</div><div class="footer-legal"><a href="#" class="footer-legal-link">Privacy Policy</a></div></div>
+</div></footer>
+<button id="back-to-top">↑</button>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
