@@ -3,9 +3,12 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, Box, Check, ShieldCheck, Zap, Layers, Sparkles, Award, Sliders } from 'lucide-react';
 import Hero3DCanvas from '../components/home/Hero3DCanvas';
 import FeatureStrip from '../components/home/FeatureStrip';
+import TrustedSolutionsShowcase from '../components/home/TrustedSolutionsShowcase';
 import GlassVisualizerCanvas from '../components/tools/GlassVisualizerCanvas';
 import AcousticSimulatorCanvas from '../components/tools/AcousticSimulatorCanvas';
 import SpecCalculator from '../components/tools/SpecCalculator';
+import WhyChooseUs from '../components/home/WhyChooseUs';
+import EngineeredMaterialSection from '../components/home/EngineeredMaterialSection';
 import { useSampleCart } from '../context/SampleCartContext';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 
@@ -28,26 +31,26 @@ export default function Home() {
       type: 'glass'
     },
     {
-      id: 'insulated-glass',
-      name: 'Insulated Double & Triple Units',
+      id: 'heat-resistant-glass',
+      name: 'Heat-Resistant Glass & Mirrors',
       category: 'GLASS',
-      image: '/assets/images/insulated-glass.png',
-      desc: 'Argon gas filled dual and triple seals for maximum HVAC thermal efficiency and noise reduction.',
-      tag: 'U-Value 0.65',
-      uVal: '0.65 W/m²K',
-      stc: '42 dB',
+      image: '/assets/images/heat-resistant-glass.png',
+      desc: 'High-temperature thermal shock resistant glass and premium zero-distortion mirrors engineered for fireplaces, kitchens, and architectural interiors.',
+      tag: '700°C Thermal Rated',
+      uVal: '700°C Temp',
+      stc: 'Class A Fire',
       type: 'glass'
     },
     {
-      id: 'bwp-plywood',
-      name: 'BWP Marine Grade Plywood',
-      category: 'PLYWOOD',
-      image: '/assets/images/bwp-plywood.png',
-      desc: '100% boiling waterproof, phenol-formaldehyde synthetic resin bonded hardwood plywood.',
-      tag: 'BS 1088 Standard',
-      uVal: '72hr Boiling',
-      stc: 'IS 710',
-      type: 'plywood'
+      id: 'glass-installation',
+      name: 'Architectural Glass Installation',
+      category: 'INSTALLATION',
+      image: '/assets/images/glass-installation.png',
+      desc: 'Turnkey structural glazing, curtain wall fitting, spider glass systems, and custom interior mirror mounting by certified structural engineers.',
+      tag: 'Turnkey Execution',
+      uVal: 'Precision Fit',
+      stc: 'ISO 9001',
+      type: 'glass'
     },
     {
       id: 'laminated-glass',
@@ -89,192 +92,16 @@ export default function Home() {
       {/* 3D Glass & Plywood Full-Screen Hero Canvas Scrubber */}
       <Hero3DCanvas />
 
-      {/* Feature Highlights Strip */}
+      {/* Trusted Architectural Solutions Showcase */}
       <div className="reveal-glass-3d">
-        <FeatureStrip />
+        <TrustedSolutionsShowcase />
       </div>
 
       {/* Featured Products Section with 3D Glass & Plywood Cards */}
-      <section style={{ padding: '6rem 1.5rem', background: '#080C14', position: 'relative' }}>
-        {/* Subtle Ambient Lighting Orbs */}
-        <div className="orb orb-blue" style={{ top: '10%', left: '5%', width: '400px', height: '400px', opacity: 0.15 }} />
-        <div className="orb orb-emerald" style={{ bottom: '15%', right: '5%', width: '500px', height: '500px', opacity: 0.1 }} />
+      <EngineeredMaterialSection />
 
-        <div style={{ maxWidth: '1340px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-          {/* Section Header */}
-          <div className="reveal-glass-3d" style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#60A5FA', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '0.75rem' }}>
-              <Sparkles size={14} /> ARCHITECTURAL MATERIAL EXCELLENCE
-            </div>
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3.25rem)', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
-              ENGINEERED <span>3D GLASS & PLYWOOD</span>
-            </h2>
-            <p style={{ color: '#94A3B8', marginTop: '1rem', maxWidth: '640px', marginInline: 'auto', fontSize: '1.0625rem', lineHeight: 1.6 }}>
-              Explore structural safety glass, acoustic sound barriers, and boiling waterproof marine hardwood ply crafted for modern architectural landmarks.
-            </p>
-          </div>
-
-          {/* Cards Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-            {productCards.map((p, idx) => {
-              const isPly = p.type === 'plywood';
-              return (
-                <div
-                  key={p.id}
-                  className={`reveal-glass-3d specular-sheen ${isPly ? 'plywood-card-3d' : 'glass-card-3d'}`}
-                  style={{
-                    transitionDelay: `${(idx % 3) * 120}ms`,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    overflow: 'hidden',
-                  }}
-                >
-                  {/* Card Image Container with Specular Glow */}
-                  <div style={{ position: 'relative', height: '240px', overflow: 'hidden', background: '#0B132B' }}>
-                    <img
-                      src={p.image}
-                      alt={p.name}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                        transition: 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-                      }}
-                      onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.08)'; }}
-                      onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)'; }}
-                    />
-                    
-                    {/* Category Tag */}
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '1rem',
-                        left: '1rem',
-                        background: isPly ? 'rgba(217, 119, 6, 0.85)' : 'rgba(29, 78, 216, 0.85)',
-                        color: '#FFFFFF',
-                        padding: '0.3rem 0.875rem',
-                        borderRadius: '9999px',
-                        fontSize: '0.6875rem',
-                        fontWeight: 900,
-                        letterSpacing: '0.08em',
-                        backdropFilter: 'blur(8px)',
-                      }}
-                    >
-                      {p.category}
-                    </div>
-
-                    {/* Standard Tag */}
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: '1rem',
-                        right: '1rem',
-                        background: 'rgba(8, 12, 20, 0.8)',
-                        border: '1px solid rgba(255,255,255,0.15)',
-                        color: isPly ? '#F59E0B' : '#60A5FA',
-                        padding: '0.3rem 0.75rem',
-                        borderRadius: '9999px',
-                        fontSize: '0.6875rem',
-                        fontWeight: 800,
-                        backdropFilter: 'blur(8px)',
-                      }}
-                    >
-                      {p.tag}
-                    </div>
-                  </div>
-
-                  {/* Card Body */}
-                  <div style={{ padding: '1.75rem', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                    <div>
-                      <h3 style={{ fontSize: '1.35rem', fontWeight: 800, color: '#F8FAFC', marginBottom: '0.625rem', lineHeight: 1.25 }}>
-                        {p.name}
-                      </h3>
-                      <p style={{ color: '#94A3B8', fontSize: '0.9375rem', lineHeight: '1.6', marginBottom: '1.5rem' }}>
-                        {p.desc}
-                      </p>
-
-                      {/* Technical Specs Strip */}
-                      <div
-                        style={{
-                          display: 'flex',
-                          gap: '1rem',
-                          padding: '0.75rem',
-                          background: 'rgba(255,255,255,0.03)',
-                          borderRadius: '12px',
-                          border: '1px solid rgba(255,255,255,0.06)',
-                          marginBottom: '1.5rem',
-                        }}
-                      >
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: '0.625rem', color: '#64748B', fontWeight: 700, textTransform: 'uppercase' }}>SPEC / EFFICIENCY</div>
-                          <div style={{ fontSize: '0.875rem', fontWeight: 800, color: isPly ? '#F59E0B' : '#60A5FA' }}>{p.uVal}</div>
-                        </div>
-                        <div style={{ width: '1px', background: 'rgba(255,255,255,0.08)' }} />
-                        <div style={{ flex: 1 }}>
-                          <div style={{ fontSize: '0.625rem', color: '#64748B', fontWeight: 700, textTransform: 'uppercase' }}>RATING / CERT</div>
-                          <div style={{ fontSize: '0.875rem', fontWeight: 800, color: '#34D399' }}>{p.stc}</div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div style={{ display: 'flex', gap: '0.75rem', marginTop: 'auto' }}>
-                      <Link
-                        to="/products"
-                        style={{
-                          flex: 1,
-                          display: 'inline-flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '0.5rem',
-                          padding: '0.75rem 1rem',
-                          borderRadius: '10px',
-                          background: isPly
-                            ? 'linear-gradient(135deg, #B45309 0%, #D97706 100%)'
-                            : 'linear-gradient(135deg, #1D4ED8 0%, #3B82F6 100%)',
-                          color: '#FFFFFF',
-                          fontWeight: 800,
-                          fontSize: '0.75rem',
-                          letterSpacing: '0.04em',
-                          textDecoration: 'none',
-                          boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
-                          transition: 'all 0.3s ease',
-                        }}
-                      >
-                        <span>VIEW SPECS</span>
-                        <ArrowRight size={14} />
-                      </Link>
-                      <button
-                        onClick={() => addItem({ id: p.id, name: p.name, type: p.category })}
-                        style={{
-                          padding: '0.75rem 1rem',
-                          borderRadius: '10px',
-                          border: '1px solid rgba(255,255,255,0.18)',
-                          background: 'rgba(255,255,255,0.06)',
-                          backdropFilter: 'blur(10px)',
-                          cursor: 'pointer',
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '0.375rem',
-                          fontSize: '0.75rem',
-                          fontWeight: 800,
-                          color: '#F8FAFC',
-                          transition: 'all 0.3s ease',
-                        }}
-                        onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.15)'; }}
-                        onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; }}
-                      >
-                        <Box size={14} color={isPly ? '#F59E0B' : '#60A5FA'} />
-                        <span>SAMPLE</span>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+      {/* WHY CHOOSE TRIVANDRUM GLASS SECTION */}
+      <WhyChooseUs background="#04070D" />
 
       {/* Interactive 3D Canvas Optics & Light Visualizer */}
       <div className="reveal-depth">

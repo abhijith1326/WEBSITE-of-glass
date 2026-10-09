@@ -4,6 +4,7 @@ import { Search, Box, Volume2, VolumeX, Menu, X, ArrowRight, ChevronRight } from
 import { useSampleCart } from '../../context/SampleCartContext';
 import { useCommandPalette } from '../../context/CommandPaletteContext';
 import { useAudioFX } from '../../context/AudioFXContext';
+import Logo from '../common/Logo';
 
 export default function Navbar() {
   const location = useLocation();
@@ -32,7 +33,6 @@ export default function Navbar() {
     { name: 'PRODUCTS', path: '/products' },
     { name: 'SERVICES', path: '/process' },
     { name: 'PROJECTS', path: '/projects' },
-    { name: 'GALLERY', path: '/gallery' },
     { name: 'CONTACT US', path: '/contact' },
   ];
 
@@ -46,18 +46,8 @@ export default function Navbar() {
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-inner">
         {/* Brand Logo */}
-        <Link to="/" className="glaze-logo" onClick={() => setMobileOpen(false)}>
-          <div className="glaze-logo-icon">
-            <div className="glaze-logo-pane-dark"></div>
-            <div className="glaze-logo-pane-blue"></div>
-            <div className="glaze-logo-pane-blue"></div>
-            <div className="glaze-logo-pane-dark"></div>
-          </div>
-          <div className="glaze-logo-text">
-            GLAZE
-            <span>TEMP</span>
-          </div>
-        </Link>
+        <Logo size="medium" onClick={() => setMobileOpen(false)} />
+
 
         {/* Desktop Navigation Links */}
         <nav className="nav-menu">

@@ -21,7 +21,7 @@ export default function Careers() {
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
           <div style={{ color: '#60A5FA', fontSize: '0.8125rem', fontWeight: 800, textTransform: 'uppercase' }}>JOIN OUR TEAM</div>
           <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, textTransform: 'uppercase', marginTop: '0.5rem', color: '#fff' }}>
-            BUILD YOUR CAREER AT <span style={{ color: '#1D4ED8' }}>GLAZE TEMP</span>
+            BUILD YOUR CAREER AT <span style={{ color: '#1D4ED8' }}>TRIVANDRUM GLASS & PLYWOOD</span>
           </h1>
           <p style={{ color: '#94A3B8', marginTop: '0.75rem', fontSize: '1.125rem', lineHeight: 1.6 }}>
             Shape the future of modern architecture alongside 2,800+ engineers, material scientists, and craftsmen.

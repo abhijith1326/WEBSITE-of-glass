@@ -906,3 +906,21 @@
   left: 200%;
 }
 
+/* Mobile Animation & Transform Optimizations */
+@media (max-width: 768px) {
+  .reveal-glass-3d {
+    transform: translateY(25px) scale(0.97);
+  }
+  .reveal-depth {
+    transform: scale(0.95);
+  }
+  .glass-card-3d:hover,
+  .plywood-card-3d:hover {
+    transform: translateY(-4px);
+  }
+  /* Prevent horizontal scroll clipping from keyframes */
+  body, #root {
+    overflow-x: hidden;
+  }
+}
+

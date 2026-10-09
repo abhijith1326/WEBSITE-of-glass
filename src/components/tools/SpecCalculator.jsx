@@ -1,316 +1,369 @@
-import React, { useState } from 'react';
-import { Calculator, Download, CheckCircle, ShieldAlert, Award } from 'lucide-react';
-import { useToast } from '../../context/ToastContext';
-import { useAudioFX } from '../../context/AudioFXContext';
+import React from 'react';
+import { 
+  Building2, 
+  Landmark, 
+  Cpu, 
+  Layers, 
+  Compass, 
+  Briefcase, 
+  Gem, 
+  Sofa, 
+  Stethoscope, 
+  Wrench, 
+  Sparkles, 
+  Award, 
+  Package, 
+  Lightbulb, 
+  Factory,
+  ShieldCheck,
+  CheckCircle2
+} from 'lucide-react';
 
 export default function SpecCalculator() {
-  const { addToast } = useToast();
-  const { playTone } = useAudioFX();
+  const row1Distributors = [
+    { name: 'Alakapuri Convention Centre Pvt Ltd', code: 'ACC', icon: <Landmark size={22} />, color: '#60A5FA', category: 'Convention & Commercial' },
+    { name: 'Alpha Minerals & Chemicals', logo: '/images/partners/image13.png', code: 'AMC', icon: <Cpu size={22} />, color: '#34D399', category: 'Chemicals & Processing' },
+    { name: 'Alpha Minerals', code: 'AM', icon: <Layers size={22} />, color: '#FBBF24', category: 'Mineral Products' },
+    { name: 'Amish Interior Consultants Pvt Ltd', logo: '/images/partners/image14.png', code: 'AIC', icon: <Compass size={22} />, color: '#A78BFA', category: 'Interior Design' },
+    { name: 'Annai Infra Developers Ltd', code: 'AID', icon: <Building2 size={22} />, color: '#F472B6', category: 'Infrastructure' },
+    { name: 'Arcon Home Builders Pvt Ltd', logo: '/images/partners/image15.png', code: 'AHB', icon: <Briefcase size={22} />, color: '#38BDF8', category: 'Residential Construction' },
+    { name: 'Benoy Marbles', logo: '/images/partners/image16.png', code: 'BM', icon: <Gem size={22} />, color: '#E879F9', category: 'Marbles & Natural Stone' },
+    { name: 'Bharath Furniture', logo: '/images/partners/image17.png', code: 'BF', icon: <Sofa size={22} />, color: '#F97316', category: 'Architectural Furniture' },
+    { name: "Chotty's Building Promoters Pvt Ltd", code: 'CBP', icon: <Landmark size={22} />, color: '#60A5FA', category: 'Real Estate Development' },
+    { name: 'Cordial Properties India Pvt Ltd', logo: '/images/partners/image19.png', code: 'CPI', icon: <Building2 size={22} />, color: '#34D399', category: 'Commercial Properties' },
+    { name: 'CDFC Hospital', logo: '/images/partners/image20.png', code: 'CDFC', icon: <Stethoscope size={22} />, color: '#EF4444', category: 'Healthcare Facility' },
+    { name: 'Cosmopolitan Hospital', logo: '/images/partners/image21.png', code: 'CH', icon: <Stethoscope size={22} />, color: '#F43F5E', category: 'Healthcare Facility' },
+    { name: 'GG Hospital', logo: '/images/partners/image22.png', code: 'GGH', icon: <Stethoscope size={22} />, color: '#EC4899', category: 'Super Specialty Hospital' },
+    { name: 'Sree Chaitanya Constructions', logo: '/images/partners/image23.png', code: 'SCC', icon: <Wrench size={22} />, color: '#F59E0B', category: 'Civil Contracting' },
+    { name: 'MLOFT', logo: '/images/partners/image24.png', code: 'ML', icon: <Sparkles size={22} />, color: '#8B5CF6', category: 'Modern Architecture' },
+    { name: 'Lions Gym', logo: '/images/partners/image25.png', code: 'LG', icon: <Award size={22} />, color: '#10B981', category: 'Commercial Fitness' },
+    { name: 'SKP Traders', code: 'SKP', icon: <Package size={22} />, color: '#06B6D4', category: 'Material Distribution' },
+    { name: 'Sky Light Homes', code: 'SLH', icon: <Lightbulb size={22} />, color: '#FBBF24', category: 'Premium Housing' },
+  ];
 
-  const [category, setCategory] = useState('glass');
-  const [productType, setProductType] = useState('facade-triple');
-  const [widthM, setWidthM] = useState(2.4);
-  const [heightM, setHeightM] = useState(3.6);
-  const [quantity, setQuantity] = useState(25);
-  const [windLoad, setWindLoad] = useState('high');
+  const row2Distributors = [
+    { name: 'City Traders Prompt UPVC', logo: '/images/partners/image1.png', code: 'CTP', icon: <Layers size={22} />, color: '#60A5FA', category: 'UPVC Glazing Systems' },
+    { name: 'Mass Aluminium', logo: '/images/partners/image2.png', code: 'MA', icon: <Factory size={22} />, color: '#94A3B8', category: 'Aluminium Fabrication' },
+    { name: 'Heather Construction', logo: '/images/partners/image3.png', code: 'HC', icon: <Building2 size={22} />, color: '#38BDF8', category: 'Turnkey Construction' },
+    { name: 'Heather Homes', logo: '/images/partners/image4.png', code: 'HH', icon: <Landmark size={22} />, color: '#34D399', category: 'Luxury Residences' },
+    { name: 'Heather Infrastructure', code: 'HI', icon: <Wrench size={22} />, color: '#F59E0B', category: 'Heavy Infrastructure' },
+    { name: 'Thomson Furniture', logo: '/images/partners/image5.png', code: 'TF', icon: <Sofa size={22} />, color: '#F97316', category: 'Interior Fitouts' },
+    { name: 'Jindroyal Furniture', logo: '/images/partners/image6.png', code: 'JF', icon: <Sofa size={22} />, color: '#A78BFA', category: 'Custom Furniture' },
+    { name: 'Barinua Industries', code: 'BI', icon: <Factory size={22} />, color: '#EF4444', category: 'Industrial Supplies' },
+    { name: 'Flytech Industries', logo: '/images/partners/image7.png', code: 'FI', icon: <Cpu size={22} />, color: '#06B6D4', category: 'Precision Engineering' },
+    { name: 'Hitech Aluminium', logo: '/images/partners/image8.png', code: 'HA', icon: <Factory size={22} />, color: '#E879F9', category: 'Facade Systems' },
+    { name: 'Popular Aluminium', code: 'PA', icon: <Factory size={22} />, color: '#60A5FA', category: 'Extrusion & Windows' },
+    { name: 'Instyle Decorators', code: 'ID', icon: <Sparkles size={22} />, color: '#F472B6', category: 'Interior Aesthetics' },
+    { name: 'A.S Care Homes Pvt Ltd', logo: '/images/partners/image9.png', code: 'ASC', icon: <Stethoscope size={22} />, color: '#10B981', category: 'Healthcare Infra' },
+    { name: 'Agraham Design Studio', logo: '/images/partners/image10.png', code: 'ADS', icon: <Compass size={22} />, color: '#8B5CF6', category: 'Architectural Studio' },
+    { name: 'Ganapathy Lights', logo: '/images/partners/image11.png', code: 'GL', icon: <Lightbulb size={22} />, color: '#FBBF24', category: 'Architectural Lighting' },
+    { name: 'Adithya Interior', code: 'AI', icon: <Compass size={22} />, color: '#38BDF8', category: 'Interior Contracting' },
+    { name: 'Adrak Engineering and Construction India Pvt Ltd', logo: '/images/partners/image12.png', code: 'AEC', icon: <Wrench size={22} />, color: '#F59E0B', category: 'EPC Construction' },
+  ];
 
-  const calculateMetrics = () => {
-    const areaPerUnit = widthM * heightM;
-    const totalArea = areaPerUnit * quantity;
-
-    let basePricePerM2 = 145;
-    let weightPerM2 = 32;
-    let thermalSavingsPerYearM2 = 18;
-
-    if (category === 'glass') {
-      if (productType === 'facade-triple') {
-        basePricePerM2 = 210;
-        weightPerM2 = 42;
-        thermalSavingsPerYearM2 = 34;
-      } else if (productType === 'acoustic-pvb') {
-        basePricePerM2 = 185;
-        weightPerM2 = 36;
-        thermalSavingsPerYearM2 = 22;
-      } else if (productType === 'solar-electro') {
-        basePricePerM2 = 390;
-        weightPerM2 = 48;
-        thermalSavingsPerYearM2 = 58;
-      } else {
-        basePricePerM2 = 160;
-        weightPerM2 = 30;
-        thermalSavingsPerYearM2 = 15;
-      }
-    } else {
-      if (productType === 'marine-ply') {
-        basePricePerM2 = 68;
-        weightPerM2 = 14;
-        thermalSavingsPerYearM2 = 8;
-      } else if (productType === 'fire-retardant') {
-        basePricePerM2 = 92;
-        weightPerM2 = 16;
-        thermalSavingsPerYearM2 = 10;
-      } else {
-        basePricePerM2 = 55;
-        weightPerM2 = 12;
-        thermalSavingsPerYearM2 = 6;
-      }
-    }
-
-    let windMultiplier = 1.0;
-    if (windLoad === 'medium') windMultiplier = 1.15;
-    if (windLoad === 'high') windMultiplier = 1.35;
-    if (windLoad === 'extreme') windMultiplier = 1.6;
-
-    const totalWeightKg = (totalArea * weightPerM2 * windMultiplier).toFixed(0);
-    const estimatedCost = (totalArea * basePricePerM2 * (windMultiplier > 1.2 ? 1.1 : 1.0)).toFixed(0);
-    const annualSavings = (totalArea * thermalSavingsPerYearM2).toFixed(0);
-    const roiYears = (estimatedCost / (annualSavings || 1)).toFixed(1);
-
-    return {
-      totalArea: totalArea.toFixed(1),
-      totalWeightKg,
-      estimatedCost,
-      annualSavings,
-      roiYears
-    };
-  };
-
-  const metrics = calculateMetrics();
-
-  const handleExport = () => {
-    playTone(900, 0.05);
-    const specText = `
-============================================================
-GLAZE TEMP ARCHITECTURAL SPECIFICATION REPORT
-Generated: ${new Date().toLocaleDateString()}
-============================================================
-
-PROJECT PARAMETERS:
-- Material Category: ${category.toUpperCase()}
-- Product Specification: ${productType}
-- Panel Dimensions: ${widthM}m (W) x ${heightM}m (H)
-- Total Order Units: ${quantity} panels
-- Structural Wind Zone: ${windLoad.toUpperCase()}
-
-ENGINEERING CALCULATIONS & ESTIMATES:
-- Total Surface Area: ${metrics.totalArea} m²
-- Gross Structural Weight: ${Number(metrics.totalWeightKg).toLocaleString()} kg
-- Estimated Materials Investment: $${Number(metrics.estimatedCost).toLocaleString()} USD
-- Projected HVAC Energy Savings ROI: ${metrics.roiYears} Years ($${Number(metrics.annualSavings).toLocaleString()}/yr)
-
-QUALITY & CERTIFICATION COMPLIANCE:
-- Glass Standards: ISO 9001, EN 12150 Safety Tempered, ASTM C1048
-- Plywood Standards: BS 1088 Marine Grade, EN 636-3 Exterior
-- Thermal Rating: Certified Low-E Solar Energy Barrier
-
-Contact GLAZE TEMP Engineering Advisory:
-Email: spec@glazetemp.com | Web: www.glazetemp.com
-============================================================
-    `.trim();
-
-    const blob = new Blob([specText], { type: 'text/plain;charset=utf-8' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `GLAZE_TEMP_Spec_Report_${Date.now()}.txt`;
-    link.click();
-    URL.revokeObjectURL(link.href);
-
-    addToast('Downloaded official GLAZE TEMP Architectural Spec Sheet!');
-  };
+  // Tripled arrays for infinite smooth 100% seamless marquee scroll loop
+  const row1Triple = [...row1Distributors, ...row1Distributors, ...row1Distributors];
+  const row2Triple = [...row2Distributors, ...row2Distributors, ...row2Distributors];
 
   return (
-    <section id="spec-calculator" style={{ background: '#F8FAFC', padding: '4rem 1.5rem', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}>
-      <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <div style={{ color: '#1D4ED8', fontSize: '0.8125rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-            ENGINEERING & ESTIMATION TOOLS
-          </div>
-          <h2 style={{ fontSize: '2.25rem', fontWeight: 900, textTransform: 'uppercase', marginTop: '0.5rem', color: '#0F172A' }}>
-            Architectural Spec & <span style={{ color: '#1D4ED8' }}>Load Calculator</span>
-          </h2>
-          <p style={{ color: '#475569', marginTop: '0.5rem', maxWidth: '640px', marginInline: 'auto' }}>
-            Calculate total panel surface area, structural wind-load gross weight, estimated investment cost, and HVAC thermal payback ROI.
-          </p>
+    <section 
+      id="distributors-marquee" 
+      style={{ 
+        background: '#FFFFFF', 
+        padding: '5.5rem 0', 
+        position: 'relative',
+        overflow: 'hidden',
+        color: '#0F172A',
+        borderTop: '1px solid #E2E8F0',
+        borderBottom: '1px solid #E2E8F0',
+        fontFamily: "'Inter', sans-serif"
+      }}
+    >
+      <style>{`
+        @keyframes marqueeScrollLeft {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-33.3333%); }
+        }
+
+        @keyframes marqueeScrollRight {
+          0% { transform: translateX(-33.3333%); }
+          100% { transform: translateX(0%); }
+        }
+
+        .marquee-track-left {
+          display: flex;
+          gap: 1.5rem;
+          width: max-content;
+          animation: marqueeScrollLeft 120s linear infinite;
+          will-change: transform;
+        }
+
+        .marquee-track-right {
+          display: flex;
+          gap: 1.5rem;
+          width: max-content;
+          animation: marqueeScrollRight 120s linear infinite;
+          will-change: transform;
+        }
+
+        .distributor-card {
+          background: #FFFFFF;
+          border: 1px solid #E2E8F0;
+          border-radius: 16px;
+          padding: 1.15rem 1.6rem;
+          display: flex;
+          align-items: center;
+          gap: 1.1rem;
+          min-width: 310px;
+          max-width: 380px;
+          box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          cursor: pointer;
+        }
+
+        .distributor-card:hover {
+          background: #F8FAFC;
+          border-color: #3B82F6;
+          transform: translateY(-4px) scale(1.02);
+          box-shadow: 0 12px 28px rgba(29, 78, 216, 0.12);
+        }
+
+        .edge-fade-left {
+          position: absolute;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          width: 140px;
+          background: linear-gradient(to right, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+          z-index: 10;
+          pointer-events: none;
+        }
+
+        .edge-fade-right {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: 140px;
+          background: linear-gradient(to left, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+          z-index: 10;
+          pointer-events: none;
+        }
+      `}</style>
+
+      {/* Edge Gradient Shadows */}
+      <div className="edge-fade-left" />
+      <div className="edge-fade-right" />
+
+      {/* Section Header */}
+      <div style={{ maxWidth: '1240px', margin: '0 auto', textAlign: 'center', marginBottom: '3rem', padding: '0 1.5rem', position: 'relative', zIndex: 2 }}>
+        <div 
+          style={{ 
+            display: 'inline-flex', 
+            alignItems: 'center', 
+            gap: '0.6rem', 
+            background: '#EFF6FF',
+            border: '1px solid #BFDBFE',
+            padding: '0.45rem 1.25rem',
+            borderRadius: '9999px',
+            color: '#1D4ED8', 
+            fontSize: '0.78125rem', 
+            fontWeight: 800, 
+            letterSpacing: '0.12em', 
+            textTransform: 'uppercase',
+            marginBottom: '1rem'
+          }}
+        >
+          <ShieldCheck size={16} color="#1D4ED8" />
+          <span>OUR AUTHORIZED DISTRIBUTORS & PRESTIGIOUS CLIENTELE</span>
         </div>
 
-        {/* Category Toggle Tabs */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
-          {[
-            { id: 'glass', label: '🪟 Architectural Glass Solutions' },
-            { id: 'plywood', label: '🪵 High-Grade Plywood Solutions' },
-          ].map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => { setCategory(cat.id); playTone(600, 0.03); }}
-              style={{
-                padding: '0.75rem 1.5rem',
-                borderRadius: '8px',
-                border: '1px solid',
-                borderColor: category === cat.id ? '#1D4ED8' : '#CBD5E1',
-                background: category === cat.id ? '#1D4ED8' : '#FFFFFF',
-                color: category === cat.id ? '#FFFFFF' : '#1E293B',
-                fontWeight: 800,
-                fontSize: '0.875rem',
-                cursor: 'pointer',
-                boxShadow: category === cat.id ? '0 4px 12px rgba(29, 78, 216, 0.25)' : 'none',
-                transition: 'all 0.2s ease',
-              }}
-            >
-              {cat.label}
-            </button>
-          ))}
-        </div>
+        <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.75rem)', fontWeight: 900, textTransform: 'uppercase', color: '#0F172A', letterSpacing: '-0.02em', margin: '0.25rem 0 0.75rem 0' }}>
+          Our Trusted <span style={{ color: '#1D4ED8' }}>Distribution Partners</span>
+        </h2>
+        <p style={{ color: '#475569', fontSize: '1rem', maxWidth: '680px', margin: '0 auto', lineHeight: 1.6 }}>
+          Partnering with premier healthcare institutions, commercial developers, architectural studios, and engineering powerhouses across the region.
+        </p>
+      </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2.5rem', alignItems: 'start' }}>
-          {/* Inputs Form */}
-          <div style={{ background: '#FFFFFF', padding: '2rem', borderRadius: '16px', border: '1px solid #E2E8F0', boxShadow: '0 10px 30px rgba(0,0,0,0.03)', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <div>
-              <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 800, color: '#1E293B', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
-                Select Product Specification
-              </label>
-              <select
-                value={productType}
-                onChange={(e) => setProductType(e.target.value)}
-                style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', background: '#F8FAFC', fontWeight: 600, outline: 'none' }}
-              >
-                {category === 'glass' ? (
-                  <>
-                    <option value="facade-triple">GLAZE Triplex Insulating Glass (U=0.65 W/m²K)</option>
-                    <option value="acoustic-pvb">GLAZE Acoustic Laminated Glass (44dB STC)</option>
-                    <option value="solar-electro">GLAZE Smart Electrochromic Dynamic Glass</option>
-                    <option value="ultra-clear">GLAZE Clear Ultra-Low Iron Structural Glass</option>
-                  </>
-                ) : (
-                  <>
-                    <option value="marine-ply">GLAZE Core BS 1088 Marine Grade Plywood</option>
-                    <option value="fire-retardant">GLAZE Flame Fire-Retardant Architectural Ply</option>
-                    <option value="structural-hardwood">GLAZE Heavy Load Structural Hardwood</option>
-                  </>
-                )}
-              </select>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 800, color: '#1E293B', textTransform: 'uppercase', marginBottom: '0.375rem' }}>
-                  Width: {widthM} meters
-                </label>
-                <input
-                  type="range"
-                  min="0.5"
-                  max="6"
-                  step="0.1"
-                  value={widthM}
-                  onChange={(e) => setWidthM(parseFloat(e.target.value))}
-                  style={{ width: '100%', accentColor: '#1D4ED8' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 800, color: '#1E293B', textTransform: 'uppercase', marginBottom: '0.375rem' }}>
-                  Height: {heightM} meters
-                </label>
-                <input
-                  type="range"
-                  min="0.5"
-                  max="8"
-                  step="0.1"
-                  value={heightM}
-                  onChange={(e) => setHeightM(parseFloat(e.target.value))}
-                  style={{ width: '100%', accentColor: '#1D4ED8' }}
-                />
-              </div>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-              <div>
-                <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 800, color: '#1E293B', textTransform: 'uppercase', marginBottom: '0.375rem' }}>
-                  Quantity: {quantity} units
-                </label>
-                <input
-                  type="range"
-                  min="1"
-                  max="200"
-                  value={quantity}
-                  onChange={(e) => setQuantity(parseInt(e.target.value))}
-                  style={{ width: '100%', accentColor: '#1D4ED8' }}
-                />
-              </div>
-
-              <div>
-                <label style={{ display: 'block', fontSize: '0.8125rem', fontWeight: 800, color: '#1E293B', textTransform: 'uppercase', marginBottom: '0.5rem' }}>
-                  Wind Load Zone
-                </label>
-                <select
-                  value={windLoad}
-                  onChange={(e) => setWindLoad(e.target.value)}
-                  style={{ width: '100%', padding: '0.75rem', borderRadius: '8px', border: '1px solid #CBD5E1', background: '#F8FAFC', fontWeight: 600, outline: 'none' }}
+      {/* CONTINUOUS MARQUEE CAROUSEL CONTAINER */}
+      <div className="marquee-container" style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
+        
+        {/* ROW 1: Scrolling Left */}
+        <div style={{ overflow: 'hidden', width: '100%' }}>
+          <div className="marquee-track-left">
+            {row1Triple.map((item, idx) => (
+              <div key={`row1-${idx}`} className="distributor-card">
+                {/* Logo / Badge Emblem */}
+                <div 
+                  style={{ 
+                    width: '52px', 
+                    height: '52px', 
+                    borderRadius: '14px', 
+                    background: '#FFFFFF', 
+                    border: `1.5px solid ${item.color}40`, 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    flexShrink: 0,
+                    color: item.color,
+                    boxShadow: `0 4px 12px ${item.color}15`,
+                    overflow: 'hidden',
+                    padding: item.logo ? '6px' : '0'
+                  }}
                 >
-                  <option value="low">Standard Interior / Low Wind (Zone A)</option>
-                  <option value="medium">Mid-rise Building / Medium (Zone B)</option>
-                  <option value="high">High-rise Facade / High (Zone C)</option>
-                  <option value="extreme">Coastal Skyscraper / Extreme (Zone D)</option>
-                </select>
+                  {item.logo ? (
+                    <img 
+                      src={item.logo} 
+                      alt={item.name} 
+                      style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                    />
+                  ) : (
+                    item.icon
+                  )}
+                </div>
+
+                {/* Info Text */}
+                <div style={{ overflow: 'hidden' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '3px' }}>
+                    <span 
+                      style={{ 
+                        fontSize: '0.625rem', 
+                        fontWeight: 900, 
+                        background: `${item.color}15`, 
+                        color: item.color, 
+                        padding: '2px 6px', 
+                        borderRadius: '4px',
+                        letterSpacing: '0.05em'
+                      }}
+                    >
+                      {item.code}
+                    </span>
+                    <span style={{ fontSize: '0.6875rem', color: '#64748B', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {item.category}
+                    </span>
+                  </div>
+                  <div 
+                    style={{ 
+                      fontSize: '0.9375rem', 
+                      fontWeight: 800, 
+                      color: '#0F172A', 
+                      lineHeight: 1.3,
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
+                    }}
+                  >
+                    {item.name}
+                  </div>
+                </div>
               </div>
-            </div>
+            ))}
           </div>
+        </div>
 
-          {/* Results Summary Box */}
-          <div style={{ background: '#0B192C', color: '#FFFFFF', padding: '2rem', borderRadius: '16px', display: 'flex', flexDirection: 'column', gap: '1.5rem', boxShadow: '0 15px 35px rgba(11,25,44,0.2)' }}>
-            <div style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '1rem' }}>
-              <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#60A5FA', textTransform: 'uppercase' }}>ENGINEERING CALCULATION METRICS</div>
-              <div style={{ fontSize: '1.5rem', fontWeight: 900, marginTop: '4px' }}>Project Specification Summary</div>
-            </div>
+        {/* ROW 2: Scrolling Right */}
+        <div style={{ overflow: 'hidden', width: '100%' }}>
+          <div className="marquee-track-right">
+            {row2Triple.map((item, idx) => (
+              <div key={`row2-${idx}`} className="distributor-card">
+                {/* Logo / Badge Emblem */}
+                <div 
+                  style={{ 
+                    width: '52px', 
+                    height: '52px', 
+                    borderRadius: '14px', 
+                    background: '#FFFFFF', 
+                    border: `1.5px solid ${item.color}40`, 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    justifyContent: 'center', 
+                    flexShrink: 0,
+                    color: item.color,
+                    boxShadow: `0 4px 12px ${item.color}15`,
+                    overflow: 'hidden',
+                    padding: item.logo ? '6px' : '0'
+                  }}
+                >
+                  {item.logo ? (
+                    <img 
+                      src={item.logo} 
+                      alt={item.name} 
+                      style={{ width: '100%', height: '100%', objectFit: 'contain' }} 
+                    />
+                  ) : (
+                    item.icon
+                  )}
+                </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>
-                <span style={{ color: '#94A3B8', fontSize: '0.875rem' }}>Total Surface Area</span>
-                <span style={{ fontWeight: 800, fontSize: '1.125rem' }}>{metrics.totalArea} m²</span>
+                {/* Info Text */}
+                <div style={{ overflow: 'hidden' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '3px' }}>
+                    <span 
+                      style={{ 
+                        fontSize: '0.625rem', 
+                        fontWeight: 900, 
+                        background: `${item.color}15`, 
+                        color: item.color, 
+                        padding: '2px 6px', 
+                        borderRadius: '4px',
+                        letterSpacing: '0.05em'
+                      }}
+                    >
+                      {item.code}
+                    </span>
+                    <span style={{ fontSize: '0.6875rem', color: '#64748B', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                      {item.category}
+                    </span>
+                  </div>
+                  <div 
+                    style={{ 
+                      fontSize: '0.9375rem', 
+                      fontWeight: 800, 
+                      color: '#0F172A', 
+                      lineHeight: 1.3,
+                      whiteSpace: 'nowrap',
+                      overflow: 'hidden',
+                      textOverflow: 'ellipsis'
+                    }}
+                  >
+                    {item.name}
+                  </div>
+                </div>
               </div>
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>
-                <span style={{ color: '#94A3B8', fontSize: '0.875rem' }}>Gross Structural Weight</span>
-                <span style={{ fontWeight: 800, fontSize: '1.125rem', color: '#60A5FA' }}>{Number(metrics.totalWeightKg).toLocaleString()} kg</span>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>
-                <span style={{ color: '#94A3B8', fontSize: '0.875rem' }}>Estimated Investment</span>
-                <span style={{ fontWeight: 900, fontSize: '1.25rem', color: '#34D399' }}>${Number(metrics.estimatedCost).toLocaleString()} USD</span>
-              </div>
-
-              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.05)', paddingBottom: '0.5rem' }}>
-                <span style={{ color: '#94A3B8', fontSize: '0.875rem' }}>HVAC Payback ROI</span>
-                <span style={{ fontWeight: 800, fontSize: '1.125rem', color: '#FBBF24' }}>{metrics.roiYears} Years</span>
-              </div>
-            </div>
-
-            <button
-              onClick={handleExport}
-              style={{
-                marginTop: '0.5rem',
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '0.75rem',
-                width: '100%',
-                padding: '0.875rem',
-                borderRadius: '8px',
-                background: '#1D4ED8',
-                color: '#FFFFFF',
-                border: 'none',
-                fontWeight: 800,
-                fontSize: '0.875rem',
-                cursor: 'pointer',
-                boxShadow: '0 4px 14px rgba(29, 78, 216, 0.4)',
-                transition: 'all 0.2s ease',
-              }}
-            >
-              <Download size={18} />
-              <span>Export Printable Spec Sheet</span>
-            </button>
+            ))}
           </div>
+        </div>
+
+      </div>
+
+      {/* Bottom Counter Bar */}
+      <div 
+        style={{ 
+          marginTop: '3.5rem', 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          gap: '2.5rem',
+          flexWrap: 'wrap',
+          padding: '0 1.5rem',
+          position: 'relative',
+          zIndex: 2
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#475569', fontSize: '0.875rem', fontWeight: 600 }}>
+          <CheckCircle2 size={18} color="#059669" />
+          <span><strong style={{ color: '#0F172A', fontWeight: 800 }}>35+ Authorized</strong> Regional Distributors</span>
+        </div>
+        <div style={{ width: '4px', height: '4px', borderRadius: '50%', background: '#CBD5E1' }} />
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#475569', fontSize: '0.875rem', fontWeight: 600 }}>
+          <CheckCircle2 size={18} color="#1D4ED8" />
+          <span><strong style={{ color: '#0F172A', fontWeight: 800 }}>100% Certified</strong> Glass & Plywood Supply</span>
         </div>
       </div>
     </section>
   );
 }
+
+
+

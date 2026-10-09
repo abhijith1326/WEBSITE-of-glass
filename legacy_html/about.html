@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Learn about Trivandrum Glass & Plywood's 35-year journey, mission, leadership team, and core values in glass manufacturing excellence." />
+  <title>About Us | Trivandrum Glass & Plywood — Glass & Building Materials</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2310B981'/><text x='50%25' y='55%25' font-size='18' text-anchor='middle' dominant-baseline='middle' fill='white' font-family='Georgia' font-weight='bold'>V</text></svg>" />
+  <style>
+    body { background: #ffffff !important; color: #0f172a !important; }
+    .page-hero { background: #f8fafc !important; border-bottom: 1px solid #e2e8f0 !important; }
+    .page-hero-eyebrow, .section-label { color: #2563eb !important; font-weight: 800 !important; }
+    .page-hero-title, .section-title, .h2, .value-title, .history-content-title, .office-city { color: #0f172a !important; }
+    .gradient-text { background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important; -webkit-background-clip: text !important; -webkit-text-fill-color: transparent !important; }
+    .page-hero-subtitle, .body-base, .text-silver, .value-desc, .history-content-desc, .office-detail { color: #475569 !important; }
+    .section, .bg-mesh, .section-deep, .section-dark { background: #ffffff !important; }
+    .glass-emerald, .value-card, .office-card { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; color: #0f172a !important; box-shadow: 0 10px 25px rgba(37, 99, 235, 0.05) !important; }
+    .values-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-6); }
+    .value-card {
+      text-align:center; padding:var(--space-8) var(--space-5);
+      border-radius:var(--radius-xl); transition:all var(--transition-base);
+    }
+    .value-card:hover { border-color:#2563eb !important; transform:translateY(-4px); }
+    .value-icon { font-size:2.5rem; margin-bottom:var(--space-4); display:block; }
+    .value-title { font-family:var(--font-display); font-size:var(--text-lg); font-weight:600; color:#0f172a !important; margin-bottom:var(--space-3); }
+    .value-desc { font-size:var(--text-sm); color:#475569 !important; line-height:1.7; }
+
+    .leadership-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:var(--space-6); }
+
+    .company-history { display:flex; flex-direction:column; gap:var(--space-8); }
+    .history-item { display:grid; grid-template-columns:120px 1fr; gap:var(--space-8); align-items:start; }
+    .history-year {
+      font-family:var(--font-display); font-size:var(--text-4xl); font-weight:800;
+      color:#2563eb; opacity:0.6; line-height:1; text-align:right; transition:opacity var(--transition-base);
+    }
+    .history-item:hover .history-year { opacity:1; }
+    .history-content-title { font-weight:600; color:#0f172a; font-size:var(--text-lg); margin-bottom:var(--space-2); }
+    .history-content-desc { font-size:var(--text-sm); color:#475569; line-height:1.7; }
+
+    .global-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:var(--space-6); }
+    .office-card { padding:var(--space-6); background:#f8fafc; border:1px solid #e2e8f0; border-radius:var(--radius-lg); }
+    .office-flag { font-size:2rem; margin-bottom:var(--space-3); }
+    .office-city { font-family:var(--font-display); font-size:var(--text-xl); font-weight:600; color:#0f172a; margin-bottom:var(--space-2); }
+    .office-detail { font-size:var(--text-sm); color:#475569; line-height:1.6; }
+
+    @media(max-width:900px) {
+      .values-grid { grid-template-columns:repeat(2,1fr); }
+      .leadership-grid { grid-template-columns:repeat(2,1fr); }
+      .global-grid { grid-template-columns:repeat(2,1fr); }
+      .history-item { grid-template-columns:80px 1fr; gap:var(--space-4); }
+    }
+    @media(max-width:600px) {
+      .values-grid { grid-template-columns:1fr; }
+      .global-grid { grid-template-columns:1fr; }
+      .history-item { grid-template-columns:1fr; }
+      .history-year { text-align:left; font-size:var(--text-2xl); }
+    }
+  </style>
+</head>
+<body>
+<div id="reading-progress"></div>
+<div id="page-loader"><div class="loader-logo">Trivandrum<span>Glass</span></div><div class="loader-bar-wrap"><div class="loader-bar"></div></div></div>
+
+<!-- NAVBAR -->
+<nav class="navbar" role="navigation" aria-label="Main Navigation">
+  <div class="navbar-inner">
+    <a href="index.html" class="glaze-logo" id="navbar-logo">
+      <div class="glaze-logo-icon">
+        <div class="glaze-logo-pane-dark"></div>
+        <div class="glaze-logo-pane-blue"></div>
+        <div class="glaze-logo-pane-blue"></div>
+        <div class="glaze-logo-pane-dark"></div>
+      </div>
+      <div class="glaze-logo-text">
+        GLAZE
+        <span>TEMP</span>
+      </div>
+    </a>
+
+    <div class="nav-menu">
+      <a href="index.html" class="nav-link">HOME</a>
+      <a href="about.html" class="nav-link active">ABOUT US</a>
+      <a href="products.html" class="nav-link">PRODUCTS ▾</a>
+      <a href="process.html" class="nav-link">SERVICES</a>
+      <a href="projects.html" class="nav-link">PROJECTS</a>
+      <a href="gallery.html" class="nav-link">GALLERY</a>
+      <a href="contact.html" class="nav-link">CONTACT US</a>
+    </div>
+
+    <div>
+      <a href="contact.html" class="btn btn-royal btn-pill">
+        GET A QUOTE →
+      </a>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a>
+  <a href="products.html" class="nav-link">Products</a><a href="industries.html" class="nav-link">Industries</a>
+  <a href="projects.html" class="nav-link">Projects</a><a href="contact.html" class="nav-link">Contact</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero" aria-label="About page hero">
+  <div class="container page-hero-content">
+    <div class="breadcrumb"><a href="index.html">Home</a><span class="breadcrumb-sep">/</span><span class="breadcrumb-current">About Us</span></div>
+    <div class="page-hero-eyebrow">ABOUT TRIVANDRUM GLASS</div>
+    <h1 class="page-hero-title">GLASS & ARCHITECTURAL<br/><span class="gradient-text">SOLUTIONS</span></h1>
+    <p class="page-hero-subtitle">TRIVANDRUM GLASS is a glass and architectural solutions company focused on delivering high-quality glazing products for residential, commercial and architectural applications.</p>
+  </div>
+  <div class="orb orb-emerald" style="width:400px;height:400px;top:10%;right:-100px;opacity:0.5;" aria-hidden="true"></div>
+</section>
+
+<!-- ABOUT TRIVANDRUM GLASS DETAILS -->
+<section class="section bg-mesh">
+  <div class="container">
+    <div class="glass-emerald reveal" style="padding:var(--space-8);border-radius:var(--radius-xl);margin-bottom:var(--space-8)">
+      <h2 class="h2" style="color:var(--white);margin-bottom:var(--space-4)">About TRIVANDRUM GLASS</h2>
+      <p class="body-base text-silver" style="margin-bottom:var(--space-4)">TRIVANDRUM GLASS is a glass and architectural solutions company focused on delivering high-quality glazing products for residential, commercial and architectural applications.</p>
+      <p class="body-base text-silver" style="margin-bottom:var(--space-4)">We provide glass solutions that balance safety, aesthetics, functionality and durability, helping architects, interior designers, builders, businesses and homeowners bring modern design concepts to life.</p>
+      <p class="body-base text-silver" style="margin-bottom:var(--space-4)">Our approach combines carefully selected glass products, precision fabrication, professional installation and attention to project requirements.</p>
+      <p class="body-base text-silver">Whether it is a contemporary home, office, showroom, commercial building or architectural project, we aim to provide glass solutions that enhance the appearance and functionality of every space.</p>
+    </div>
+  </div>
+</section>
+
+<!-- OUR APPROACH -->
+<section class="section section-deep">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Architectural Element</div>
+      <h2 class="section-title">Our <span class="gradient-text">Approach</span></h2>
+      <p class="body-base text-silver" style="max-width:700px;margin:var(--space-4) auto 0 auto">We believe glass is more than a building material. It is an important architectural element that can make spaces:</p>
+    </div>
+    <div class="values-grid stagger">
+      <div class="value-card reveal"><span class="value-icon">✨</span><div class="value-title">Brighter</div><div class="value-desc">Maximizes natural light transmission throughout spaces.</div></div>
+      <div class="value-card reveal"><span class="value-icon">📐</span><div class="value-title">More Open</div><div class="value-desc">Creates seamless spatial transitions without visual barriers.</div></div>
+      <div class="value-card reveal"><span class="value-icon">🏙️</span><div class="value-title">Modern</div><div class="value-desc">Reflects sleek, contemporary architectural aesthetics.</div></div>
+      <div class="value-card reveal"><span class="value-icon">💎</span><div class="value-title">Elegant</div><div class="value-desc">Refined finishes and crystal-clear visual appeal.</div></div>
+      <div class="value-card reveal"><span class="value-icon">🛡️</span><div class="value-title">Functional</div><div class="value-desc">Thermal, acoustic, solar control and safety performance.</div></div>
+      <div class="value-card reveal"><span class="value-icon">👁️</span><div class="value-title">Visually Connected</div><div class="value-desc">Harmonizes interior environments with outdoor surroundings.</div></div>
+    </div>
+    <div style="text-align:center;margin-top:var(--space-8)">
+      <p class="body-base text-white" style="font-weight:600">Our goal is to deliver glass solutions that look exceptional while meeting practical safety and performance requirements.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP TEAM -->
+<section class="section section-dark">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Leadership</div>
+      <h2 class="section-title">The Minds Behind<br/><span class="gradient-text">Trivandrum Glass & Plywood</span></h2>
+    </div>
+    <div class="leadership-grid stagger">
+      <div class="team-card reveal">
+        <div class="team-card-image"><img src="assets/images/team.png" alt="CEO" loading="lazy" /></div>
+        <div class="team-card-body"><div class="team-name">Rajesh Nair</div><div class="team-role">Founder & CEO</div><div class="team-social"><a href="#" class="team-social-link">in</a><a href="#" class="team-social-link">𝕏</a></div></div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-card-image"><img src="assets/images/team.png" alt="COO" loading="lazy" /></div>
+        <div class="team-card-body"><div class="team-name">Priya Menon</div><div class="team-role">Chief Operations Officer</div><div class="team-social"><a href="#" class="team-social-link">in</a></div></div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-card-image"><img src="assets/images/team.png" alt="CTO" loading="lazy" /></div>
+        <div class="team-card-body"><div class="team-name">Dr. Arun Kumar</div><div class="team-role">Chief Technology Officer</div><div class="team-social"><a href="#" class="team-social-link">in</a></div></div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-card-image"><img src="assets/images/team.png" alt="CFO" loading="lazy" /></div>
+        <div class="team-card-body"><div class="team-name">Sunita Varma</div><div class="team-role">Chief Financial Officer</div><div class="team-social"><a href="#" class="team-social-link">in</a></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GLOBAL PRESENCE -->
+<section class="section bg-mesh">
+  <div class="container">
+    <div class="section-header centered reveal">
+      <div class="section-label">Global Presence</div>
+      <h2 class="section-title">Operations Across<br/><span class="gradient-text">4 Continents</span></h2>
+    </div>
+    <div class="global-grid stagger">
+      <div class="office-card reveal"><div class="office-flag">🇮🇳</div><div class="office-city">Cochin, India</div><div class="office-detail">Global Headquarters & Primary Manufacturing<br/>Plant Capacity: 5,000 m²/day</div></div>
+      <div class="office-card reveal"><div class="office-flag">🇦🇪</div><div class="office-city">Dubai, UAE</div><div class="office-detail">Middle East Regional Hub<br/>Sales, Distribution & Project Support</div></div>
+      <div class="office-card reveal"><div class="office-flag">🇬🇧</div><div class="office-city">London, UK</div><div class="office-detail">European Sales Office<br/>Technical Consulting & Design Services</div></div>
+      <div class="office-card reveal"><div class="office-flag">🇸🇬</div><div class="office-city">Singapore</div><div class="office-detail">Southeast Asia Distribution Hub<br/>Warehousing & Logistics Center</div></div>
+      <div class="office-card reveal"><div class="office-flag">🇺🇸</div><div class="office-city">Houston, USA</div><div class="office-detail">Americas Representative Office<br/>Business Development & Partnerships</div></div>
+      <div class="office-card reveal"><div class="office-flag">🇳🇬</div><div class="office-city">Lagos, Nigeria</div><div class="office-detail">Africa Regional Office<br/>Growing Market Presence</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="section section-deep">
+  <div class="container">
+    <div class="grid-4 stagger">
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="35" data-suffix="+">35+</span></div><div class="stat-label">Years of Excellence</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="2800" data-suffix="+">2800+</span></div><div class="stat-label">Team Members</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="4" data-suffix="">4</span></div><div class="stat-label">Manufacturing Plants</div></div>
+      <div class="stat-card reveal"><div class="stat-number"><span data-counter="48" data-suffix="">48</span></div><div class="stat-label">Countries Served</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner" aria-label="Join us">
+  <div class="cta-banner-content reveal-scale">
+    <h2 class="cta-banner-title">Ready to Partner<br/><span class="gradient-text">With Excellence?</span></h2>
+    <p class="cta-banner-desc">Let's discuss how Trivandrum Glass & Plywood can elevate your next project.</p>
+    <div style="display:flex;justify-content:center;gap:var(--space-4);flex-wrap:wrap">
+      <a href="contact.html" class="btn btn-primary btn-xl magnetic">Get a Quote →</a>
+      <a href="careers.html" class="btn btn-secondary btn-xl">Join Our Team</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (shared) -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-logo"><div class="navbar-logo-icon">🔷</div><div><div class="navbar-logo-text">Trivandrum<span>Glass</span></div><span class="navbar-logo-tagline">Glass & Building Materials</span></div></div>
+        <p class="footer-tagline">Crafting the future through precision glass manufacturing and premium building materials since 1989.</p>
+        <div class="footer-social"><a href="#" class="footer-social-link">in</a><a href="#" class="footer-social-link">𝕏</a><a href="#" class="footer-social-link">ig</a><a href="#" class="footer-social-link">▶</a></div>
+      </div>
+      <div><div class="footer-col-title">Products</div><div class="footer-links"><a href="glass-solutions.html" class="footer-link">Glass Solutions</a><a href="plywood-solutions.html" class="footer-link">Plywood Solutions</a><a href="products.html" class="footer-link">Building Products</a></div></div>
+      <div><div class="footer-col-title">Company</div><div class="footer-links"><a href="about.html" class="footer-link">About Us</a><a href="projects.html" class="footer-link">Projects</a><a href="quality.html" class="footer-link">Quality</a><a href="sustainability.html" class="footer-link">Sustainability</a><a href="careers.html" class="footer-link">Careers</a></div></div>
+      <div><div class="footer-col-title">Resources</div><div class="footer-links"><a href="industries.html" class="footer-link">Industries</a><a href="gallery.html" class="footer-link">Gallery</a><a href="blog.html" class="footer-link">Blog</a></div></div>
+      <div><div class="footer-col-title">Contact</div><div class="footer-contact-item"><span class="footer-contact-icon">📍</span><span>Cochin, Kerala — 682024, India</span></div><div class="footer-contact-item"><span class="footer-contact-icon">📞</span><a href="tel:+911234567890" style="color:inherit">+91 484 123 4567</a></div><div class="footer-contact-item"><span class="footer-contact-icon">✉️</span><a href="mailto:info@vitragroup.com" style="color:inherit">info@vitragroup.com</a></div></div>
+    </div>
+    <div class="footer-bottom"><div class="footer-copy">© 2026 Trivandrum Glass & Plywood. All rights reserved.</div><div class="footer-legal"><a href="#" class="footer-legal-link">Privacy Policy</a><a href="#" class="footer-legal-link">Terms</a></div></div>
+  </div>
+</footer>
+
+<button id="back-to-top">↑</button>
+<script src="js/animations.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>

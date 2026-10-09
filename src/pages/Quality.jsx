@@ -1,6 +1,7 @@
 import React from 'react';
 import { ShieldCheck, Award, FileText, CheckCircle, Flame, Wind } from 'lucide-react';
 import { useToast } from '../context/ToastContext';
+import WhyChooseUs from '../components/home/WhyChooseUs';
 
 export default function Quality() {
   const { addToast } = useToast();
@@ -56,6 +57,9 @@ export default function Quality() {
           ))}
         </div>
       </section>
+
+      {/* WHY CHOOSE TRIVANDRUM GLASS */}
+      <WhyChooseUs background="#04070D" />
     </div>
   );
 }

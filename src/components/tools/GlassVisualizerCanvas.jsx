@@ -136,17 +136,21 @@ export default function GlassVisualizerCanvas() {
 
       const centerX = w / 2;
       const centerY = h / 2;
-      const paneWidth = Math.min(240, w * 0.38);
-      const paneHeight = Math.min(280, h * 0.58);
+      const isMobile = w < 550;
+      const paneWidth = isMobile ? Math.min(160, w * 0.42) : Math.min(240, w * 0.38);
+      const paneHeight = isMobile ? Math.min(230, h * 0.55) : Math.min(280, h * 0.58);
 
       const paneCount = panes;
-      const spacing = 45;
+      const spacing = isMobile ? Math.min(32, w * 0.08) : 45;
       const startX = centerX - ((paneCount - 1) * spacing) / 2;
 
-      // Sun angle vector
+      // Sun angle vector (dynamically bounded so solar ray origin never clips canvas edges)
       const rad = (sunAngle * Math.PI) / 180;
-      const rayStartX = centerX - Math.cos(rad) * (w * 0.42);
-      const rayStartY = centerY - Math.sin(rad) * (h * 0.42);
+      const rayDistance = isMobile ? Math.min(w * 0.38, h * 0.35) : Math.min(w * 0.42, h * 0.42);
+      const rawRayX = centerX - Math.cos(rad) * rayDistance;
+      const rawRayY = centerY - Math.sin(rad) * rayDistance;
+      const rayStartX = Math.max(24, Math.min(w - 24, rawRayX));
+      const rayStartY = Math.max(24, Math.min(h - 24, rawRayY));
 
       // Incoming Light Ray
       const rayGrad = ctx.createLinearGradient(rayStartX, rayStartY, centerX - paneWidth / 2, centerY);
@@ -282,16 +286,16 @@ export default function GlassVisualizerCanvas() {
   }, [panes, glassType, tintLevel, thickness, sunAngle, specs]);
 
   return (
-    <section id="glass-visualizer" style={{ background: '#0B192C', color: '#fff', padding: '4rem 1.5rem', position: 'relative' }}>
+    <section id="glass-visualizer" style={{ background: '#FFFFFF', color: '#0F172A', padding: '5rem 1.5rem', position: 'relative', borderTop: '1px solid #E2E8F0', borderBottom: '1px solid #E2E8F0' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
         <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-          <div style={{ color: '#60A5FA', fontSize: '0.8125rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+          <div style={{ color: '#1D4ED8', fontSize: '0.8125rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
             interactive 3d canvas simulator
           </div>
-          <h2 style={{ fontSize: '2.25rem', fontWeight: 900, textTransform: 'uppercase', marginTop: '0.5rem', color: '#fff' }}>
-            Glass Optics & <span style={{ color: '#3B82F6' }}>Thermal Visualizer</span>
+          <h2 style={{ fontSize: '2.25rem', fontWeight: 900, textTransform: 'uppercase', marginTop: '0.5rem', color: '#0F172A' }}>
+            Glass Optics & <span style={{ color: '#1D4ED8' }}>Thermal Visualizer</span>
           </h2>
-          <p style={{ color: '#94A3B8', marginTop: '0.5rem', maxWidth: '600px', marginInline: 'auto' }}>
+          <p style={{ color: '#475569', marginTop: '0.5rem', maxWidth: '600px', marginInline: 'auto' }}>
             Simulate solar heat gain (SHGC), U-value thermal insulation, light transmittance (VLT), and acoustic STC attenuation in real-time.
           </p>
         </div>
@@ -309,15 +313,16 @@ export default function GlassVisualizerCanvas() {
               key={p.id}
               onClick={() => applyPreset(p.id)}
               style={{
-                padding: '0.5rem 1.25rem',
+                padding: '0.55rem 1.35rem',
                 borderRadius: '9999px',
                 border: '1px solid',
-                borderColor: presetActive === p.id ? '#3B82F6' : 'rgba(255,255,255,0.15)',
-                background: presetActive === p.id ? '#1D4ED8' : 'rgba(255,255,255,0.05)',
-                color: presetActive === p.id ? '#fff' : '#CBD5E1',
+                borderColor: presetActive === p.id ? '#1D4ED8' : '#CBD5E1',
+                background: presetActive === p.id ? '#1D4ED8' : '#F1F5F9',
+                color: presetActive === p.id ? '#FFFFFF' : '#334155',
                 fontSize: '0.8125rem',
                 fontWeight: 700,
                 cursor: 'pointer',
+                boxShadow: presetActive === p.id ? '0 4px 12px rgba(29, 78, 216, 0.25)' : 'none',
                 transition: 'all 0.2s ease',
               }}
             >
@@ -328,7 +333,7 @@ export default function GlassVisualizerCanvas() {
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', alignItems: 'center' }}>
           {/* Canvas Wrapper */}
-          <div style={{ background: '#0F2167', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.1)', padding: '1rem', height: '420px', position: 'relative', overflow: 'hidden' }}>
+          <div style={{ background: '#F8FAFC', borderRadius: '16px', border: '1px solid #E2E8F0', padding: '1rem', height: '420px', position: 'relative', overflow: 'hidden', boxShadow: '0 8px 30px rgba(15, 23, 42, 0.05)' }}>
             <canvas ref={canvasRef} style={{ width: '100%', height: '100%', display: 'block' }} />
           </div>
 
@@ -336,42 +341,42 @@ export default function GlassVisualizerCanvas() {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
             {/* Live Metrics Grid */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
-              <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.08)' }}>
-                <div style={{ fontSize: '0.75rem', color: '#94A3B8', fontWeight: 700 }}>U-VALUE</div>
-                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#60A5FA' }}>{specs.uValue}</div>
+              <div style={{ background: '#F8FAFC', padding: '1rem', borderRadius: '12px', border: '1px solid #E2E8F0', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
+                <div style={{ fontSize: '0.75rem', color: '#475569', fontWeight: 800 }}>U-VALUE</div>
+                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#1D4ED8' }}>{specs.uValue}</div>
                 <div style={{ fontSize: '0.6875rem', color: '#64748B' }}>W/m²K (Thermal Loss)</div>
               </div>
 
-              <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.08)' }}>
-                <div style={{ fontSize: '0.75rem', color: '#94A3B8', fontWeight: 700 }}>SHGC</div>
-                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#34D399' }}>{specs.shgc}</div>
+              <div style={{ background: '#F8FAFC', padding: '1rem', borderRadius: '12px', border: '1px solid #E2E8F0', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
+                <div style={{ fontSize: '0.75rem', color: '#475569', fontWeight: 800 }}>SHGC</div>
+                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#059669' }}>{specs.shgc}</div>
                 <div style={{ fontSize: '0.6875rem', color: '#64748B' }}>Solar Heat Gain Coeff</div>
               </div>
 
-              <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.08)' }}>
-                <div style={{ fontSize: '0.75rem', color: '#94A3B8', fontWeight: 700 }}>VLT %</div>
-                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#FBBF24' }}>{specs.vlt}%</div>
+              <div style={{ background: '#F8FAFC', padding: '1rem', borderRadius: '12px', border: '1px solid #E2E8F0', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
+                <div style={{ fontSize: '0.75rem', color: '#475569', fontWeight: 800 }}>VLT %</div>
+                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#D97706' }}>{specs.vlt}%</div>
                 <div style={{ fontSize: '0.6875rem', color: '#64748B' }}>Visual Light Trans.</div>
               </div>
 
-              <div style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.08)' }}>
-                <div style={{ fontSize: '0.75rem', color: '#94A3B8', fontWeight: 700 }}>STC SOUND</div>
-                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#A78BFA' }}>{specs.stc} dB</div>
+              <div style={{ background: '#F8FAFC', padding: '1rem', borderRadius: '12px', border: '1px solid #E2E8F0', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
+                <div style={{ fontSize: '0.75rem', color: '#475569', fontWeight: 800 }}>STC SOUND</div>
+                <div style={{ fontSize: '1.5rem', fontWeight: 900, color: '#7C3AED' }}>{specs.stc} dB</div>
                 <div style={{ fontSize: '0.6875rem', color: '#64748B' }}>Acoustic Rating</div>
               </div>
             </div>
 
             {/* Slider Controls */}
-            <div style={{ background: 'rgba(255,255,255,0.03)', padding: '1.25rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div style={{ background: '#F8FAFC', padding: '1.25rem', borderRadius: '12px', border: '1px solid #E2E8F0', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8125rem', fontWeight: 700, marginBottom: '0.375rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8125rem', fontWeight: 800, color: '#0F172A', marginBottom: '0.375rem' }}>
                   <span>Glass Type</span>
-                  <span style={{ color: '#60A5FA' }}>{glassType}</span>
+                  <span style={{ color: '#1D4ED8' }}>{glassType}</span>
                 </div>
                 <select
                   value={glassType}
                   onChange={(e) => { setGlassType(e.target.value); playTone(600, 0.03); }}
-                  style={{ width: '100%', background: '#0B192C', color: '#fff', border: '1px solid #1E293B', padding: '0.5rem', borderRadius: '6px', outline: 'none' }}
+                  style={{ width: '100%', background: '#FFFFFF', color: '#0F172A', border: '1px solid #CBD5E1', padding: '0.5rem', borderRadius: '6px', outline: 'none', fontWeight: 600 }}
                 >
                   <option value="low-e">Low-E Solar Glazing</option>
                   <option value="electrochromic">Electrochromic Smart Tint</option>
@@ -382,14 +387,14 @@ export default function GlassVisualizerCanvas() {
               </div>
 
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8125rem', fontWeight: 700, marginBottom: '0.375rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8125rem', fontWeight: 800, color: '#0F172A', marginBottom: '0.375rem' }}>
                   <span>Glass Panes</span>
-                  <span style={{ color: '#60A5FA' }}>{panes === 1 ? 'Single' : panes === 2 ? 'Double Insulated' : 'Triple Vacuum'}</span>
+                  <span style={{ color: '#1D4ED8' }}>{panes === 1 ? 'Single' : panes === 2 ? 'Double Insulated' : 'Triple Vacuum'}</span>
                 </div>
                 <select
                   value={panes}
                   onChange={(e) => { setPanes(parseInt(e.target.value)); playTone(600, 0.03); }}
-                  style={{ width: '100%', background: '#0B192C', color: '#fff', border: '1px solid #1E293B', padding: '0.5rem', borderRadius: '6px', outline: 'none' }}
+                  style={{ width: '100%', background: '#FFFFFF', color: '#0F172A', border: '1px solid #CBD5E1', padding: '0.5rem', borderRadius: '6px', outline: 'none', fontWeight: 600 }}
                 >
                   <option value={1}>Single Pane (6mm)</option>
                   <option value={2}>Double Pane IGU (12mm-24mm)</option>
@@ -398,7 +403,7 @@ export default function GlassVisualizerCanvas() {
               </div>
 
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8125rem', fontWeight: 700, marginBottom: '0.375rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8125rem', fontWeight: 800, color: '#0F172A', marginBottom: '0.375rem' }}>
                   <span>Thickness ({thickness} mm)</span>
                 </div>
                 <input
@@ -412,7 +417,7 @@ export default function GlassVisualizerCanvas() {
               </div>
 
               <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8125rem', fontWeight: 700, marginBottom: '0.375rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.8125rem', fontWeight: 800, color: '#0F172A', marginBottom: '0.375rem' }}>
                   <span>Sun Incident Angle ({sunAngle}°)</span>
                 </div>
                 <input
@@ -431,3 +436,4 @@ export default function GlassVisualizerCanvas() {
     </section>
   );
 }
+

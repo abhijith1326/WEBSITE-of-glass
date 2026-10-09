@@ -1,120 +1,218 @@
 import React, { useState } from 'react';
-import { Building2, MapPin, Calendar, Layers } from 'lucide-react';
-import { useAudioFX } from '../context/AudioFXContext';
+import { Building2, Layers, ArrowRight, Sparkles, Filter, CheckCircle2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import TypingText from '../components/common/TypingText';
 
 export default function Projects() {
-  const [filter, setFilter] = useState('all');
-  const { playTone } = useAudioFX();
+  const [selectedCategory, setSelectedCategory] = useState('ALL');
 
-  const handleFilter = (cat) => {
-    playTone(600, 0.03);
-    setFilter(cat);
-  };
-
+  // 9 Client Projects requested by user
   const projects = [
-    { id: 1, category: 'commercial', title: 'Skyline Landmark Tower', location: 'Dubai, UAE', area: '14,000 m² Facade', glass: 'Low-E Triple IGU', year: '2024', image: '/assets/images/glass-skyscraper.png' },
-    { id: 2, category: 'hospitality', title: 'Grand Resort & Spa', location: 'Maldives', area: '6,500 m² Glazing', glass: 'Acoustic PVB + Marine Ply', year: '2023', image: '/assets/images/hero-interior.png' },
-    { id: 3, category: 'residential', title: 'Horizon Luxury Penthouse', location: 'Singapore', area: '3,200 m² Glass', glass: 'Smart Electrochromic', year: '2024', image: '/assets/images/office-interior.png' },
-    { id: 4, category: 'commercial', title: 'Nexus FinTech Headquarters', location: 'Bangalore, India', area: '11,500 m² Curtain Wall', glass: 'Solar Control Low-E', year: '2023', image: '/assets/images/office.png' },
-    { id: 5, category: 'hospitality', title: 'Aura Boutique Hotel', location: 'Kochi, India', area: '4,800 m² Decorative Ply', glass: 'Custom Acid-Etched', year: '2022', image: '/assets/images/glass-partitions.png' },
-    { id: 6, category: 'industrial', title: 'BioTech Cleanroom Facility', location: 'Frankfurt, Germany', area: '8,000 m² Clean Wall', glass: 'Flush Laminated Safety', year: '2024', image: '/assets/images/factory.png' },
+    {
+      id: 'sandy-resort',
+      name: 'Sandy Resort',
+      category: 'HOSPITALITY',
+      location: 'Kovalam, Trivandrum',
+      image: '/assets/images/sandy_resort.jpg'
+    },
+    {
+      id: 'cdfc-hospital',
+      name: 'CDFC Hospital',
+      category: 'HEALTHCARE',
+      location: 'Medical College Zone, Trivandrum',
+      image: '/assets/images/cdfc_hospital.jpg'
+    },
+    {
+      id: 'm-loft',
+      name: 'M Loft',
+      category: 'RESIDENTIAL',
+      location: 'Kowdiar, Trivandrum',
+      image: '/assets/images/m_loft.jpg'
+    },
+    {
+      id: 'saint-gobain',
+      name: 'Saint Gobain',
+      category: 'COMMERCIAL',
+      location: 'Technopark Tech Zone, Trivandrum',
+      image: '/assets/images/saint_gobain.jpg'
+    },
+    {
+      id: 'cashify-store',
+      name: 'Cashify Store',
+      category: 'RETAIL',
+      location: 'Lulu Mall, Trivandrum',
+      image: '/assets/images/cashify_store.jpg'
+    },
+    {
+      id: 'bewakoof-store',
+      name: 'Bewakoof Store',
+      category: 'RETAIL',
+      location: 'Kazhakkoottam, Trivandrum',
+      image: '/assets/images/bewakoof_store.jpg'
+    },
+    {
+      id: 'the-indian-gauge',
+      name: 'The Indian Gauge',
+      category: 'COMMERCIAL',
+      location: 'Vellayambalam, Trivandrum',
+      image: '/assets/images/indian_gauge.jpg'
+    },
+    {
+      id: 'bose',
+      name: 'Bose',
+      category: 'RETAIL',
+      location: 'Mall of Travancore, Trivandrum',
+      image: '/assets/images/bose_store.jpg'
+    },
+    {
+      id: 'gg-pharmacies',
+      name: 'GG Pharmacies',
+      category: 'HEALTHCARE',
+      location: 'Pattom, Trivandrum',
+      image: '/assets/images/gg_pharmacies.jpg'
+    }
   ];
 
-  const filteredProjects = filter === 'all' ? projects : projects.filter((p) => p.category === filter);
+  const categories = ['ALL', 'RETAIL', 'COMMERCIAL', 'HOSPITALITY', 'HEALTHCARE', 'RESIDENTIAL'];
+
+  const filteredProjects = projects.filter((p) => {
+    return selectedCategory === 'ALL' || p.category === selectedCategory;
+  });
 
   return (
-    <div>
-      {/* Hero Banner */}
-      <section style={{ background: '#0B192C', color: '#fff', padding: '5rem 1.5rem', textAlign: 'center' }}>
+    <div style={{ background: '#FFFFFF', color: '#0F172A', overflowX: 'hidden', minHeight: '100vh' }}>
+      
+      {/* Hero Section */}
+      <section style={{ padding: 'clamp(4rem, 8vw, 6rem) 1.5rem clamp(3rem, 6vw, 4.5rem) 1.5rem', background: 'linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%)', borderBottom: '1px solid #E2E8F0', textAlign: 'center', position: 'relative' }}>
         <div style={{ maxWidth: '900px', margin: '0 auto' }}>
-          <div style={{ color: '#60A5FA', fontSize: '0.8125rem', fontWeight: 800, textTransform: 'uppercase' }}>PORTFOLIO & CASE STUDIES</div>
-          <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)', fontWeight: 900, textTransform: 'uppercase', marginTop: '0.5rem', color: '#fff' }}>
-            1,200+ PROJECTS <span style={{ color: '#1D4ED8' }}>WORLDWIDE</span>
+          <TypingText
+            as="div"
+            text="TRIVANDRUM GLASS • FEATURED CLIENT PORTFOLIO"
+            speed={75}
+            style={{ color: '#1D4ED8', fontSize: '0.75rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '1rem' }}
+          />
+          <h1 style={{ fontSize: 'clamp(2.25rem, 5vw, 3.75rem)', fontWeight: 900, textTransform: 'uppercase', letterSpacing: '-0.02em', color: '#0F172A', lineHeight: 1.15, marginBottom: '1.25rem' }}>
+            <TypingText text="OUR" speed={75} delay={250} showCursor={false} />{' '}
+            <TypingText text="COMPLETED PROJECTS" speed={70} delay={600} style={{ color: '#1D4ED8' }} />
           </h1>
-          <p style={{ color: '#94A3B8', marginTop: '0.75rem', fontSize: '1.125rem', lineHeight: 1.6 }}>
-            From Dubai's tallest towers to heritage hotel restorations — GLAZE TEMP materials shape iconic architectural skylines.
+          <p style={{ color: '#475569', fontSize: 'clamp(1rem, 2vw, 1.2rem)', lineHeight: 1.7, maxWidth: '780px', margin: '0 auto' }}>
+            Explore our architectural glass installations executed for prestigious corporate headquarters, retail brands, resorts, hospitals, and luxury residences.
           </p>
         </div>
       </section>
 
-      {/* Featured Project Showcase */}
-      <section style={{ padding: '3rem 1.5rem', background: '#F8FAFC' }}>
-        <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
-          <div style={{ position: 'relative', borderRadius: '20px', overflow: 'hidden', height: '400px', boxShadow: '0 20px 40px rgba(0,0,0,0.12)' }}>
-            <img src="/assets/images/glass-skyscraper.png" alt="Skyline Landmark Tower" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(11,25,44,0.95) 0%, rgba(11,25,44,0.3) 60%, transparent 100%)', padding: '2.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', color: '#fff' }}>
-              <div style={{ background: '#1D4ED8', color: '#fff', padding: '0.25rem 0.875rem', borderRadius: '9999px', fontSize: '0.75rem', fontWeight: 800, width: 'fit-content', marginBottom: '0.75rem' }}>
-                ⭐ FEATURED PROJECT OF THE YEAR
-              </div>
-              <h2 style={{ fontSize: 'clamp(1.75rem, 3.5vw, 2.5rem)', fontWeight: 900, textTransform: 'uppercase' }}>
-                Skyline Landmark Tower — Dubai, UAE
-              </h2>
-              <div style={{ display: 'flex', gap: '1.5rem', marginTop: '0.5rem', fontSize: '0.875rem', color: '#CBD5E1', flexWrap: 'wrap' }}>
-                <span><strong>Facade Area:</strong> 14,000 m²</span>
-                <span><strong>Glass Type:</strong> Low-E Solar Control IGU</span>
-                <span><strong>Plywood:</strong> Marine Core Paneling</span>
-              </div>
+      {/* Filter Bar Section */}
+      <section style={{ padding: '2rem 1.5rem', background: '#F8FAFC', borderBottom: '1px solid #E2E8F0' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
+            {/* Category Filter Pills */}
+            <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              {categories.map((cat) => {
+                const isActive = selectedCategory === cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setSelectedCategory(cat)}
+                    style={{
+                      padding: '0.55rem 1.25rem',
+                      borderRadius: '9999px',
+                      fontSize: '0.75rem',
+                      fontWeight: 800,
+                      letterSpacing: '0.05em',
+                      border: isActive ? '1px solid #1D4ED8' : '1px solid #E2E8F0',
+                      background: isActive ? 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)' : '#FFFFFF',
+                      color: isActive ? '#FFFFFF' : '#475569',
+                      cursor: 'pointer',
+                      transition: 'all 0.25s ease',
+                      boxShadow: isActive ? '0 4px 14px rgba(29, 78, 216, 0.35)' : '0 2px 6px rgba(0, 0, 0, 0.03)'
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.background = '#EFF6FF';
+                        e.currentTarget.style.color = '#1D4ED8';
+                        e.currentTarget.style.borderColor = '#BFDBFE';
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        e.currentTarget.style.background = '#FFFFFF';
+                        e.currentTarget.style.color = '#475569';
+                        e.currentTarget.style.borderColor = '#E2E8F0';
+                      }
+                    }}
+                  >
+                    {cat}
+                  </button>
+                );
+              })}
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* Filter Tabs & Grid */}
-      <section style={{ padding: '3rem 1.5rem 5rem', background: '#FFFFFF' }}>
-        <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '3rem' }}>
-            {[
-              { id: 'all', label: 'All Projects' },
-              { id: 'commercial', label: 'Commercial Towers' },
-              { id: 'hospitality', label: 'Hospitality & Hotels' },
-              { id: 'residential', label: 'Luxury Residential' },
-              { id: 'industrial', label: 'Industrial & Cleanrooms' },
-            ].map((f) => (
-              <button
-                key={f.id}
-                onClick={() => handleFilter(f.id)}
-                style={{
-                  padding: '0.625rem 1.25rem',
-                  borderRadius: '9999px',
-                  border: '1px solid',
-                  borderColor: filter === f.id ? '#1D4ED8' : '#CBD5E1',
-                  background: filter === f.id ? '#1D4ED8' : '#F8FAFC',
-                  color: filter === f.id ? '#FFFFFF' : '#0F172A',
-                  fontWeight: 800,
-                  fontSize: '0.8125rem',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                }}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
-
+      {/* 9 Projects Grid Section */}
+      <section style={{ padding: 'clamp(3rem, 6vw, 5rem) 1.5rem 6rem 1.5rem', background: '#F8FAFC' }}>
+        <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+          
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
             {filteredProjects.map((p) => (
-              <div key={p.id} style={{ background: '#F8FAFC', borderRadius: '16px', border: '1px solid #E2E8F0', overflow: 'hidden', boxShadow: '0 10px 25px rgba(0,0,0,0.04)' }}>
-                <div style={{ height: '220px', overflow: 'hidden' }}>
-                  <img src={p.image} alt={p.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <div
+                key={p.id}
+                style={{
+                  borderRadius: '20px',
+                  background: '#FFFFFF',
+                  border: '1px solid #E2E8F0',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  boxShadow: '0 8px 24px rgba(0, 0, 0, 0.05)',
+                  transition: 'transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease',
+                  cursor: 'pointer'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.boxShadow = '0 16px 36px rgba(29, 78, 216, 0.12)';
+                  e.currentTarget.style.borderColor = '#BFDBFE';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 0, 0, 0.05)';
+                  e.currentTarget.style.borderColor = '#E2E8F0';
+                }}
+              >
+                {/* Image Header with Zoom Hover */}
+                <div style={{ position: 'relative', width: '100%', height: '240px', overflow: 'hidden' }}>
+                  <img 
+                    src={p.image} 
+                    alt={p.name} 
+                    style={{ 
+                      width: '100%', 
+                      height: '100%', 
+                      objectFit: 'cover',
+                      transition: 'transform 0.5s ease'
+                    }} 
+                    onMouseOver={(e) => e.currentTarget.style.transform = 'scale(1.06)'}
+                    onMouseOut={(e) => e.currentTarget.style.transform = 'scale(1)'}
+                  />
                 </div>
-                <div style={{ padding: '1.5rem' }}>
-                  <div style={{ fontSize: '0.75rem', fontWeight: 800, color: '#1D4ED8', textTransform: 'uppercase', marginBottom: '0.25rem' }}>
-                    {p.category}
-                  </div>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0F172A', marginBottom: '0.5rem' }}>
-                    {p.title}
-                  </h3>
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.375rem', fontSize: '0.8125rem', color: '#475569' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}><MapPin size={14} color="#1D4ED8" /> {p.location}</div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}><Building2 size={14} color="#1D4ED8" /> {p.area}</div>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.375rem' }}><Layers size={14} color="#1D4ED8" /> {p.glass}</div>
-                  </div>
+
+                {/* Card Content */}
+                <div style={{ padding: '1.35rem 1.5rem', display: 'flex', flexDirection: 'column', background: '#FFFFFF' }}>
+                  <h2 style={{ fontSize: '1.4rem', fontWeight: 900, color: '#1D4ED8', margin: 0, lineHeight: 1.25 }}>
+                    {p.name}
+                  </h2>
                 </div>
+
               </div>
             ))}
           </div>
+
         </div>
       </section>
+
     </div>
   );
 }
+

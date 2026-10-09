@@ -1,11 +1,11 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, Play, Pause, Box, ChevronDown } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { useAudioFX } from '../../context/AudioFXContext';
 import { useSampleCart } from '../../context/SampleCartContext';
+import RotatingBadge from '../common/RotatingBadge';
 
 const TOTAL_FRAMES = 192;
-const NAVBAR_DARK_THRESHOLD = 35; // Scroll offset (px) where navbar turns dark black
 
 export default function Hero3DCanvas() {
   const containerRef = useRef(null);
@@ -16,10 +16,8 @@ export default function Hero3DCanvas() {
   const [images, setImages] = useState([]);
   const [loadedCount, setLoadedCount] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [autoRotate, setAutoRotate] = useState(false);
   const [frameProgress, setFrameProgress] = useState(0);
   const [activeStage, setActiveStage] = useState(0);
-  const [isCompleted, setIsCompleted] = useState(false);
 
   const targetFrameRef = useRef(0);
   const currentFrameRef = useRef(0);
@@ -77,19 +75,11 @@ export default function Hero3DCanvas() {
     } else {
       setActiveStage(2);
     }
-
-    if (prog >= 0.99) {
-      setIsCompleted(true);
-    } else {
-      setIsCompleted(false);
-    }
   };
 
   // Wheel Scroll-Lock Engine: Keeps page at top while scrubbing 192 frames. Unlocks upon completion!
   useEffect(() => {
     const handleWheel = (e) => {
-      if (autoRotate) return;
-
       const scrollY = window.scrollY || window.pageYOffset;
 
       // Check if user is at the top hero section
@@ -122,7 +112,6 @@ export default function Hero3DCanvas() {
     };
 
     const handleTouchMove = (e) => {
-      if (autoRotate) return;
       const scrollY = window.scrollY || window.pageYOffset;
 
       if (scrollY <= 15) {
@@ -157,18 +146,7 @@ export default function Hero3DCanvas() {
       window.removeEventListener('touchstart', handleTouchStart);
       window.removeEventListener('touchmove', handleTouchMove);
     };
-  }, [autoRotate]);
-
-  // Auto-rotate tick if manual auto-play is enabled
-  useEffect(() => {
-    if (!autoRotate) return;
-    const interval = setInterval(() => {
-      targetFrameRef.current = (targetFrameRef.current + 1) % TOTAL_FRAMES;
-      updateProgressState(targetFrameRef.current);
-    }, 40);
-
-    return () => clearInterval(interval);
-  }, [autoRotate]);
+  }, []);
 
   // Render loop for full-size 3D video playback with 1st image -> 2nd image vertical transition
   useEffect(() => {
@@ -209,6 +187,7 @@ export default function Hero3DCanvas() {
         const canvasRatio = w / h;
         let drawW, drawH, offsetX, offsetY;
 
+        // Full-Screen Cover Scaling: 3D video animation fills 100% of screen without blank black spaces
         if (canvasRatio > imgRatio) {
           drawW = w;
           drawH = w / imgRatio;
@@ -222,8 +201,6 @@ export default function Hero3DCanvas() {
         }
 
         // Initial vertical offset transition (1st image condition -> 2nd image condition)
-        // At frame 0, image is shifted UP by 8.5% height (1st image). When scrolling starts (frames 0 to 18),
-        // it glides down to 0 (2nd image condition) and continues 3D rotation!
         const startPhase = Math.min(1, Math.max(0, frameIdx / 18));
         const initialYShift = (1 - startPhase) * (-h * 0.085);
         offsetY += initialYShift;
@@ -231,13 +208,23 @@ export default function Hero3DCanvas() {
         // Draw 3D image
         ctx.drawImage(img, offsetX, offsetY, drawW, drawH);
 
-        // Soft gradient on the left side only for text legibility
-        const leftFade = ctx.createLinearGradient(0, 0, w * 0.55, 0);
-        leftFade.addColorStop(0, 'rgba(4, 7, 13, 0.85)');
-        leftFade.addColorStop(0.65, 'rgba(4, 7, 13, 0.35)');
-        leftFade.addColorStop(1, 'rgba(4, 7, 13, 0)');
-        ctx.fillStyle = leftFade;
-        ctx.fillRect(0, 0, w * 0.55, h);
+        if (w <= 768) {
+          // Soft dark ambient vignette so full-screen 3D animation background is visible while text overlay stays ultra-legible
+          const mobileFade = ctx.createLinearGradient(0, 0, 0, h);
+          mobileFade.addColorStop(0, 'rgba(4, 7, 13, 0.45)');
+          mobileFade.addColorStop(0.5, 'rgba(4, 7, 13, 0.65)');
+          mobileFade.addColorStop(1, 'rgba(4, 7, 13, 0.94)');
+          ctx.fillStyle = mobileFade;
+          ctx.fillRect(0, 0, w, h);
+        } else {
+          // Soft gradient on the left side only for desktop text legibility
+          const leftFade = ctx.createLinearGradient(0, 0, w * 0.55, 0);
+          leftFade.addColorStop(0, 'rgba(4, 7, 13, 0.85)');
+          leftFade.addColorStop(0.65, 'rgba(4, 7, 13, 0.35)');
+          leftFade.addColorStop(1, 'rgba(4, 7, 13, 0)');
+          ctx.fillStyle = leftFade;
+          ctx.fillRect(0, 0, w * 0.55, h);
+        }
       } else {
         ctx.fillStyle = '#04070D';
         ctx.fillRect(0, 0, w, h);
@@ -256,72 +243,51 @@ export default function Hero3DCanvas() {
     };
   }, [images]);
 
-  const toggleAutoRotate = () => {
-    playTone(620, 0.04);
-    setAutoRotate((prev) => !prev);
-  };
-
-  const currentFrameDisplay = (Math.round(currentFrameRef.current) % TOTAL_FRAMES) + 1;
   const loadPercentage = Math.round((loadedCount / TOTAL_FRAMES) * 100);
 
   // Story stages for left-aligned writings
   const storyStages = [
     {
       id: 'glass',
-      badge: '3D COMMERCIAL GLASS',
+      badge: 'TRIVANDRUM GLASS',
       badgeBg: 'rgba(29, 78, 216, 0.35)',
       badgeBorder: 'rgba(96, 165, 250, 0.5)',
       badgeColor: '#60A5FA',
-      titleLine1: 'CRYSTAL GLAZING',
-      titleLine2: '& OPTICAL REFRACTION',
+      tagline: '',
+      titleLine1: 'PREMIUM GLASS & ARCHITECTURAL',
+      titleLine2: 'SOLUTIONS IN TRIVANDRUM',
       highlightColor: '#60A5FA',
-      description:
-        'Engineered toughened glass with specular light sweeps, acoustic PVB dampening layers, and high thermal insulation for modern architectural facades.',
-      specs: [
-        { label: 'U-Value', val: '0.65 W/m²K' },
-        { label: 'Sound STC', val: '-44 dB' },
-        { label: 'Light VLT', val: '74%' },
-      ],
-      primaryBtnText: 'EXPLORE GLASS SOLUTIONS',
-      primaryBtnLink: '/glass-solutions',
+      description1: '',
+      description2: '',
+      specs: [],
     },
     {
-      id: 'plywood',
-      badge: 'PREMIUM BWP PLYWOOD',
+      id: 'custom-glazing',
+      badge: 'ARCHITECTURAL GLAZING',
       badgeBg: 'rgba(217, 119, 6, 0.35)',
       badgeBorder: 'rgba(245, 158, 11, 0.5)',
       badgeColor: '#F59E0B',
-      titleLine1: 'BWP 710 MARINE',
-      titleLine2: 'HARDWOOD PLYWOOD CORE',
+      tagline: '',
+      titleLine1: 'TOUGHENED GLASS &',
+      titleLine2: 'TRIVANDRUM GLASS SOLUTIONS',
       highlightColor: '#F59E0B',
-      description:
-        '100% boiling waterproof phenol-formaldehyde synthetic resin bonded hardwood plywood crafted for heavy structural & high-moisture interiors.',
-      specs: [
-        { label: 'Standard', val: 'IS 710 Certified' },
-        { label: 'Water Test', val: '72hr Boiling' },
-        { label: 'Core', val: 'Hardwood Ply' },
-      ],
-      primaryBtnText: 'EXPLORE PLYWOOD RANGE',
-      primaryBtnLink: '/plywood-solutions',
+      description1: '',
+      description2: '',
+      specs: [],
     },
     {
       id: 'synergy',
-      badge: 'ARCHITECTURAL SYNERGY',
+      badge: 'PRECISION & ELEGANCE',
       badgeBg: 'rgba(16, 185, 129, 0.35)',
       badgeBorder: 'rgba(52, 211, 153, 0.5)',
       badgeColor: '#34D399',
-      titleLine1: 'GLASS & WOOD',
-      titleLine2: 'HARMONIOUS SYNERGY',
+      tagline: '',
+      titleLine1: 'SAFE, ELEGANT &',
+      titleLine2: 'FUNCTIONAL SPACES',
       highlightColor: '#34D399',
-      description:
-        'Seamlessly pair transparent light-refracting glass with rich warm plywood grains for high-end interior paneling, partitions, and exterior walls.',
-      specs: [
-        { label: 'Versatility', val: 'Interior & Facades' },
-        { label: 'Finish', val: 'Ultra-Modern 3D' },
-        { label: 'Quality Pass', val: '99.8%' },
-      ],
-      primaryBtnText: 'REQUEST SPEC CONSULTATION',
-      primaryBtnLink: '/contact',
+      description1: '',
+      description2: '',
+      specs: [],
     },
   ];
 
@@ -347,44 +313,77 @@ export default function Hero3DCanvas() {
           .hero-3d-content-wrap {
             flex-direction: column !important;
             align-items: flex-start !important;
-            justify-content: flex-end !important;
+            justify-content: flex-start !important;
+            padding-top: clamp(4.75rem, 11vh, 6rem) !important;
             padding-bottom: 2rem !important;
-            gap: 1.5rem !important;
+            gap: 0.5rem !important;
+            height: 100vh !important;
           }
           .hero-3d-writings-block {
             max-width: 100% !important;
+            margin-top: 0 !important;
           }
-          .hero-3d-controls-block {
-            align-items: flex-start !important;
-            width: 100% !important;
-            flex-direction: row !important;
-            justify-content: space-between !important;
-          }
-          .hero-3d-specs-strip {
-            gap: 0.75rem !important;
-            padding: 0.625rem 1rem !important;
+          .hero-3d-rotating-badge {
+            right: 1.25rem !important;
+            bottom: 2rem !important;
+            transform: scale(0.82) !important;
+            transform-origin: bottom right !important;
           }
         }
         @media (max-width: 600px) {
+          .hero-3d-content-wrap {
+            padding-top: clamp(4.5rem, 10vh, 5.5rem) !important;
+            padding-bottom: 1.5rem !important;
+            padding-inline: 1.25rem !important;
+            justify-content: flex-start !important;
+          }
           .hero-3d-headline {
-            font-size: 1.85rem !important;
+            font-size: clamp(1.45rem, 5.5vw, 1.95rem) !important;
+            margin-bottom: 0.5rem !important;
+            line-height: 1.2 !important;
+            text-shadow: 0 4px 16px rgba(0, 0, 0, 0.95), 0 2px 6px rgba(0, 0, 0, 0.9) !important;
           }
           .hero-3d-desc {
-            font-size: 0.875rem !important;
-            margin-bottom: 1.25rem !important;
+            font-size: clamp(0.8rem, 3.2vw, 0.9rem) !important;
+            margin-bottom: 0.65rem !important;
+            line-height: 1.45 !important;
+            color: #E2E8F0 !important;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95) !important;
           }
           .hero-3d-specs-strip {
             display: grid !important;
             grid-template-columns: repeat(3, 1fr) !important;
+            gap: 0.35rem !important;
+            width: 100% !important;
+            padding: 0.45rem 0.75rem !important;
+            margin-bottom: 0.65rem !important;
+            background: rgba(8, 12, 20, 0.65) !important;
+            backdrop-filter: blur(12px) !important;
+            border-radius: 12px !important;
+          }
+          .hero-3d-btn-group {
+            display: flex !important;
+            flex-direction: row !important;
             gap: 0.5rem !important;
             width: 100% !important;
+            margin-bottom: 0.35rem !important;
           }
-          .hero-3d-status-pill {
-            font-size: 0.6875rem !important;
-            padding: 0.5rem 1rem !important;
+          .hero-3d-primary-btn {
+            padding: 0.45rem 0.85rem !important;
+            font-size: 0.75rem !important;
+            flex: 1 1 auto !important;
+            justify-content: center !important;
           }
-          .hero-3d-scrubber-box {
-            display: none !important;
+          .hero-3d-sample-btn {
+            padding: 0.45rem 0.75rem !important;
+            font-size: 0.75rem !important;
+            justify-content: center !important;
+          }
+          .hero-3d-rotating-badge {
+            right: 0.75rem !important;
+            bottom: 1.5rem !important;
+            transform: scale(0.68) !important;
+            transform-origin: bottom right !important;
           }
         }
       `}</style>
@@ -435,243 +434,158 @@ export default function Hero3DCanvas() {
         style={{
           position: 'relative',
           zIndex: 10,
-          maxWidth: '1380px',
+          maxWidth: '1440px',
           width: '100%',
-          marginInline: 'auto',
-          paddingInline: 'clamp(1rem, 4vw, 4rem)',
+          marginInline: '0 auto',
+          paddingLeft: 'clamp(1rem, 2.5vw, 2.5rem)',
+          paddingRight: 'clamp(1rem, 3vw, 4rem)',
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-start',
           alignItems: 'center',
         }}
       >
         {/* LEFT WRITINGS - Direct Floating Text without surrounding box */}
-        <div className="hero-3d-writings-block" style={{ maxWidth: '580px' }}>
-          {/* Story Stage Dots */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
-            {storyStages.map((stg, i) => (
-              <div
-                key={stg.id}
-                style={{
-                  height: '4px',
-                  width: activeStage === i ? '32px' : '10px',
-                  borderRadius: '2px',
-                  background: activeStage === i ? currentStageData.highlightColor : 'rgba(255,255,255,0.25)',
-                  transition: 'all 0.4s ease',
-                }}
-              />
-            ))}
-            <span style={{ marginLeft: '0.5rem', fontSize: '0.6875rem', fontWeight: 800, color: '#94A3B8', letterSpacing: '0.08em' }}>
-              STAGE 0{activeStage + 1} / 03
-            </span>
-          </div>
-
-          {/* Glowing Badge Pill */}
-          <div
-            style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.4rem 1rem',
-              borderRadius: '9999px',
-              background: currentStageData.badgeBg,
-              border: `1px solid ${currentStageData.badgeBorder}`,
-              color: currentStageData.badgeColor,
-              fontSize: '0.75rem',
-              fontWeight: 900,
-              letterSpacing: '0.08em',
-              marginBottom: '1.25rem',
-              backdropFilter: 'blur(10px)',
-            }}
-          >
-            <Sparkles size={13} />
-            {currentStageData.badge}
-          </div>
-
-          {/* Headline with Clean Formatting */}
+        <div className="hero-3d-writings-block" style={{ maxWidth: '560px', marginTop: '-5rem' }}>
+          {/* Main Headline */}
           <h1
             className="hero-3d-headline"
             style={{
-              fontSize: 'clamp(2.25rem, 4.5vw, 3.65rem)',
+              fontSize: 'clamp(2.2rem, 4.2vw, 3.5rem)',
               fontWeight: 900,
-              lineHeight: 1.1,
-              color: '#FFFFFF',
+              lineHeight: 1.15,
               letterSpacing: '-0.02em',
-              marginBottom: '1.25rem',
-              textShadow: '0 4px 25px rgba(0, 0, 0, 0.9)',
+              marginBottom: '0.85rem',
+              filter: 'drop-shadow(0 4px 20px rgba(0, 0, 0, 0.95))'
             }}
           >
-            <span style={{ color: currentStageData.highlightColor, display: 'block' }}>
-              {currentStageData.titleLine1}
+            <span style={{
+              background: 'linear-gradient(135deg, #FFFFFF 0%, #E2E8F0 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              display: 'block'
+            }}>
+              Premium Glass
             </span>
-            <span style={{ color: '#FFFFFF' }}>
-              {currentStageData.titleLine2}
+            <span style={{
+              background: 'linear-gradient(135deg, #60A5FA 0%, #3B82F6 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              display: 'block'
+            }}>
+              & Architectural
+            </span>
+            <span style={{
+              background: 'linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              display: 'inline-block',
+              marginRight: '0.35em'
+            }}>
+              Solutions
+            </span>
+            <span style={{
+              color: '#FFFFFF',
+              display: 'inline-block'
+            }}>
+              in Trivandrum
             </span>
           </h1>
 
-          {/* Description */}
-          <p
-            className="hero-3d-desc"
-            style={{
-              fontSize: '1.0625rem',
-              color: '#E2E8F0',
-              lineHeight: 1.65,
-              marginBottom: '2rem',
-              fontWeight: 400,
-              textShadow: '0 2px 10px rgba(0, 0, 0, 0.9)',
-            }}
-          >
-            {currentStageData.description}
-          </p>
+          {/* Tagline Sub-heading */}
+          {Boolean(currentStageData.tagline) && (
+            <div
+              style={{
+                fontSize: 'clamp(1rem, 2vw, 1.2rem)',
+                fontWeight: 800,
+                color: currentStageData.highlightColor,
+                marginBottom: '1rem',
+                letterSpacing: '0.02em',
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.9)',
+              }}
+            >
+              {currentStageData.tagline}
+            </div>
+          )}
+
+          {/* Description Paragraph 1 */}
+          {Boolean(currentStageData.description1) && (
+            <p
+              className="hero-3d-desc"
+              style={{
+                fontSize: '1rem',
+                color: '#E2E8F0',
+                lineHeight: 1.6,
+                marginBottom: '0.625rem',
+                fontWeight: 400,
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.9)',
+              }}
+            >
+              {currentStageData.description1}
+            </p>
+          )}
+
+          {/* Description Paragraph 2 */}
+          {Boolean(currentStageData.description2) && (
+            <p
+              className="hero-3d-desc"
+              style={{
+                fontSize: '0.9375rem',
+                color: '#CBD5E1',
+                lineHeight: 1.55,
+                marginBottom: '1.25rem',
+                fontWeight: 400,
+                textShadow: '0 2px 10px rgba(0, 0, 0, 0.9)',
+              }}
+            >
+              {currentStageData.description2}
+            </p>
+          )}
 
           {/* Specs Pills Strip */}
-          <div
-            className="hero-3d-specs-strip"
-            style={{
-              display: 'inline-flex',
-              gap: '1.5rem',
-              padding: '0.875rem 1.5rem',
-              background: 'rgba(8, 12, 20, 0.65)',
-              border: '1px solid rgba(255, 255, 255, 0.12)',
-              backdropFilter: 'blur(12px)',
-              borderRadius: '16px',
-              marginBottom: '2rem',
-            }}
-          >
-            {currentStageData.specs.map((sp, idx) => (
-              <div key={idx}>
-                <div style={{ fontSize: '0.625rem', color: '#94A3B8', fontWeight: 700, textTransform: 'uppercase' }}>
-                  {sp.label}
-                </div>
-                <div style={{ fontSize: '0.9375rem', fontWeight: 900, color: '#F8FAFC', marginTop: '2px' }}>
-                  {sp.val}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* CTA Buttons */}
-          <div style={{ display: 'flex', gap: '0.875rem', flexWrap: 'wrap', alignItems: 'center' }}>
-            <Link
-              to={currentStageData.primaryBtnLink}
+          {Boolean(currentStageData.specs && currentStageData.specs.length > 0) && (
+            <div
+              className="hero-3d-specs-strip"
               style={{
                 display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.625rem',
-                padding: '0.875rem 1.85rem',
-                borderRadius: '9999px',
-                background: `linear-gradient(135deg, ${currentStageData.highlightColor} 0%, #1D4ED8 100%)`,
-                color: '#FFFFFF',
-                fontWeight: 800,
-                fontSize: '0.8125rem',
-                letterSpacing: '0.04em',
-                textDecoration: 'none',
-                boxShadow: `0 8px 30px ${currentStageData.badgeBg}`,
-                transition: 'all 0.3s ease',
-              }}
-            >
-              <span>{currentStageData.primaryBtnText}</span>
-              <ArrowRight size={16} />
-            </Link>
-
-            <button
-              onClick={() => addItem({ id: currentStageData.id, name: currentStageData.badge, type: '3D ARCHITECTURE' })}
-              style={{
-                padding: '0.875rem 1.25rem',
-                borderRadius: '9999px',
-                border: '1px solid rgba(255, 255, 255, 0.25)',
+                gap: '1.25rem',
+                padding: '0.65rem 1.25rem',
                 background: 'rgba(8, 12, 20, 0.65)',
-                backdropFilter: 'blur(10px)',
-                color: '#FFFFFF',
-                fontSize: '0.8125rem',
-                fontWeight: 700,
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.375rem',
-                transition: 'all 0.3s ease',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
+                backdropFilter: 'blur(12px)',
+                borderRadius: '16px',
+                marginBottom: '1.25rem',
               }}
             >
-              <Box size={15} color={currentStageData.highlightColor} />
-              <span>SAMPLE</span>
-            </button>
-          </div>
-        </div>
+              {currentStageData.specs.map((sp, idx) => (
+                <div key={idx}>
+                  <div style={{ fontSize: '0.625rem', color: '#94A3B8', fontWeight: 700, textTransform: 'uppercase' }}>
+                    {sp.label}
+                  </div>
+                  <div style={{ fontSize: '0.875rem', fontWeight: 900, color: '#F8FAFC', marginTop: '2px' }}>
+                    {sp.val}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
 
-        {/* RIGHT FLOATING SCRUBBER & STATUS INDICATORS */}
-        <div className="hero-3d-controls-block" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '1rem' }}>
-          {/* Scroll Lock / Unlock Message Indicator */}
-          <div
-            className="hero-3d-status-pill"
-            style={{
-              background: 'rgba(8, 12, 20, 0.75)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
-              backdropFilter: 'blur(16px)',
-              padding: '0.875rem 1.5rem',
-              borderRadius: '9999px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.875rem',
-              boxShadow: '0 15px 35px rgba(0,0,0,0.4)',
-            }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.75rem', fontWeight: 800, color: isCompleted ? '#34D399' : '#60A5FA' }}>
-              <ChevronDown size={18} className={isCompleted ? '' : 'animate-pulse'} />
-              <span>
-                {isCompleted
-                  ? '3D ANIMATION COMPLETE — WEBSITE UNLOCKED 🔓'
-                  : 'SWIPE / SCROLL TO PLAY 3D ANIMATION (PINNED 🔒)'}
-              </span>
-            </div>
-            <div style={{ width: '1px', height: '18px', background: 'rgba(255,255,255,0.2)' }} />
-            <button
-              onClick={toggleAutoRotate}
-              style={{
-                background: 'transparent',
-                border: 'none',
-                color: autoRotate ? '#34D399' : '#60A5FA',
-                cursor: 'pointer',
-                fontWeight: 800,
-                fontSize: '0.75rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.375rem',
-              }}
-            >
-              {autoRotate ? <Pause size={14} /> : <Play size={14} />}
-              <span>{autoRotate ? 'PAUSE' : 'AUTO-PLAY'}</span>
-            </button>
-          </div>
 
-          {/* Frame Scrubber Bar */}
-          <div
-            className="hero-3d-scrubber-box"
-            style={{
-              background: 'rgba(8, 12, 20, 0.75)',
-              border: '1px solid rgba(255, 255, 255, 0.15)',
-              backdropFilter: 'blur(16px)',
-              padding: '0.75rem 1.25rem',
-              borderRadius: '16px',
-              minWidth: '220px',
-              boxShadow: '0 15px 35px rgba(0,0,0,0.4)',
-            }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.6875rem', fontWeight: 800, color: '#94A3B8', marginBottom: '0.375rem' }}>
-              <span>3D FRAME</span>
-              <span style={{ color: '#60A5FA' }}>{currentFrameDisplay} / {TOTAL_FRAMES}</span>
-            </div>
-            <div style={{ width: '100%', height: '4px', background: 'rgba(255,255,255,0.15)', borderRadius: '2px', overflow: 'hidden' }}>
-              <div
-                style={{
-                  width: `${(currentFrameDisplay / TOTAL_FRAMES) * 100}%`,
-                  height: '100%',
-                  background: 'linear-gradient(90deg, #3B82F6 0%, #F59E0B 50%, #34D399 100%)',
-                  transition: 'width 0.1s linear',
-                }}
-              />
-            </div>
-          </div>
         </div>
+      </div>
+
+      {/* Floating Rotating 65 Years Badge */}
+      <div
+        className="hero-3d-rotating-badge"
+        style={{
+          position: 'absolute',
+          right: 'clamp(1.5rem, 4vw, 4rem)',
+          bottom: 'clamp(5rem, 11vh, 7.5rem)',
+          zIndex: 25,
+        }}
+      >
+        <RotatingBadge size={155} number="65" subtext="YEARS" variant="light" text="TRIVANDRUM GLASS ★ 65 YEARS OF EXCELLENCE ★ " />
       </div>
     </section>
   );
 }
+

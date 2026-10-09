@@ -147,8 +147,9 @@ export default function AcousticSimulatorCanvas() {
       ctx.lineTo(w, h / 2);
       ctx.stroke();
 
-      const bars = 48;
-      const barWidth = w / bars - 3;
+      const bars = w < 480 ? 28 : 48;
+      const gap = w < 480 ? 2 : 3;
+      const barWidth = Math.max(2.5, (w / bars) - gap);
       const time = Date.now() * 0.003;
 
       for (let i = 0; i < bars; i++) {
@@ -169,7 +170,7 @@ export default function AcousticSimulatorCanvas() {
         }
 
         const barHeight = Math.max(4, amplitude * (h * 0.7));
-        const x = i * (barWidth + 3) + 1.5;
+        const x = i * (barWidth + gap) + gap / 2;
         const y = (h - barHeight) / 2;
 
         let color = '#3B82F6';
@@ -207,11 +208,11 @@ export default function AcousticSimulatorCanvas() {
           <div style={{ color: '#60A5FA', fontSize: '0.8125rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
             WEB AUDIO API SOUND SIMULATOR
           </div>
-          <h2 style={{ fontSize: '2.25rem', fontWeight: 900, textTransform: 'uppercase', marginTop: '0.5rem', color: '#fff' }}>
+          <h2 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.25rem)', fontWeight: 900, textTransform: 'uppercase', marginTop: '0.5rem', color: '#fff' }}>
             Acoustic Noise <span style={{ color: '#60A5FA' }}>Attenuation Test</span>
           </h2>
           <p style={{ color: '#94A3B8', marginTop: '0.5rem', maxWidth: '600px', marginInline: 'auto' }}>
-            Listen and visually compare external noise levels (Traffic, Airport, Rain) with Standard Glass vs. GLAZE TEMP Triplex Acoustic PVB Glass.
+            Listen and visually compare external noise levels (Traffic, Airport, Rain) with Standard Glass vs. TRIVANDRUM GLASS & PLYWOOD Triplex Acoustic PVB Glass.
           </p>
         </div>
 

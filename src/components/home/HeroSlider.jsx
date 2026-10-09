@@ -6,35 +6,35 @@ import { useAudioFX } from '../../context/AudioFXContext';
 const SLIDES = [
   {
     image: '/assets/images/slider-1.jpg',
-    badge: 'PREMIUM ARCHITECTURAL GLASS',
-    title: 'PERFECTING SPACES WITH GLASS & PLYWOODS',
-    highlight: 'GLASS & PLYWOODS',
-    subtitle: 'Experience the beauty of high-end glass that brings clarity, style, and structural strength to every architectural space.',
-    btnPrimaryText: 'EXPLORE PRODUCTS →',
-    btnPrimaryLink: '/products',
-    btnSecondaryText: 'OUR PROJECTS →',
-    btnSecondaryLink: '/projects'
+    badge: 'TRIVANDRUM GLASS',
+    title: 'PREMIUM GLASS & ARCHITECTURAL SOLUTIONS IN TRIVANDRUM',
+    highlight: 'SOLUTIONS IN TRIVANDRUM',
+    subtitle: 'High-performance glass solutions engineered for structural strength, safety and lasting quality.',
+    btnPrimaryText: 'Get a Free Quote →',
+    btnPrimaryLink: '/contact',
+    btnSecondaryText: 'Explore Our Glass Solutions →',
+    btnSecondaryLink: '/glass-solutions'
   },
   {
     image: '/assets/images/slider-2.jpg',
-    badge: 'GLASS & PLYWOOD SYNERGY',
-    title: 'PERFECT COMBINATION OF GLASS & PLYWOOD',
-    highlight: 'GLASS & PLYWOOD',
-    subtitle: 'Strength, Elegance & Versatility. Sleek toughened glass seamlessly paired with premium, moisture-resistant plywood solutions.',
-    btnPrimaryText: 'PLYWOOD SOLUTIONS →',
-    btnPrimaryLink: '/plywood-solutions',
-    btnSecondaryText: 'GET A QUOTE →',
+    badge: 'ENGINEERED FOR SAFETY',
+    title: 'TOUGHENED GLASS & TRIVANDRUM GLASS SOLUTIONS',
+    highlight: 'TRIVANDRUM GLASS SOLUTIONS',
+    subtitle: 'Toughened glass, frameless partitions, railings and custom architectural glazing.',
+    btnPrimaryText: 'Explore Our Glass Solutions →',
+    btnPrimaryLink: '/glass-solutions',
+    btnSecondaryText: 'Contact Us →',
     btnSecondaryLink: '/contact'
   },
   {
     image: '/assets/images/slider-3.jpg',
-    badge: 'HIGH-PERFORMANCE GLAZING',
-    title: 'INNOVATIVE GLASS SOLUTIONS FOR MODERN BUILDINGS',
-    highlight: 'GLASS SOLUTIONS',
-    subtitle: 'Toughened, laminated, insulated and acoustic glass engineered for commercial landmarks and luxury residential designs.',
-    btnPrimaryText: 'GLASS SOLUTIONS →',
-    btnPrimaryLink: '/glass-solutions',
-    btnSecondaryText: 'CONTACT US →',
+    badge: 'DESIGNED FOR ELEGANCE',
+    title: 'PREMIUM GLASS SOLUTIONS FOR MODERN SPACES',
+    highlight: 'MODERN SPACES',
+    subtitle: 'Certified safety glass and architectural glazing tailored for contemporary homes and commercial buildings.',
+    btnPrimaryText: 'Get a Free Quote →',
+    btnPrimaryLink: '/contact',
+    btnSecondaryText: 'Contact Us →',
     btnSecondaryLink: '/contact'
   }
 ];
@@ -87,15 +87,15 @@ export default function HeroSlider() {
               paddingBottom: '6.5rem',
             }}
           >
-            <div className="hero-overlay" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.88) 48%, rgba(255, 255, 255, 0.2) 100%)' }} />
+            <div className="hero-overlay" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.9) 55%, rgba(255, 255, 255, 0.4) 100%)' }} />
             <div className="hero-container" style={{ position: 'relative', zIndex: 10, maxWidth: '1340px', marginInline: 'auto', paddingInline: 'clamp(1rem, 4vw, 3rem)', width: '100%' }}>
               <div className="hero-content" style={{ maxWidth: '600px' }}>
                 <div className="hero-badge">{slide.badge}</div>
-                <h1 className="hero-title" style={{ fontSize: 'clamp(2.25rem, 4.5vw, 3.25rem)', fontWeight: 900, lineHeight: 1.15, textTransform: 'uppercase', marginBottom: '1.25rem', color: '#0F172A' }}>
+                <h1 className="hero-title" style={{ fontSize: 'clamp(1.65rem, 5.5vw, 3.25rem)', fontWeight: 900, lineHeight: 1.15, textTransform: 'uppercase', marginBottom: '1.25rem', color: '#0F172A' }}>
                   {slide.title.replace(slide.highlight, '')}
                   <span style={{ color: '#1D4ED8' }}>{slide.highlight}</span>
                 </h1>
-                <p className="hero-subtitle" style={{ fontSize: '1.0625rem', color: '#475569', marginBottom: '2rem', lineHeight: 1.6 }}>
+                <p className="hero-subtitle" style={{ fontSize: 'clamp(0.875rem, 3.2vw, 1.0625rem)', color: '#475569', marginBottom: '1.75rem', lineHeight: 1.6 }}>
                   {slide.subtitle}
                 </p>
                 <div className="hero-actions" style={{ display: 'flex', gap: '1.25rem', flexWrap: 'wrap' }}>
@@ -116,16 +116,17 @@ export default function HeroSlider() {
       <button
         onClick={prevSlide}
         aria-label="Previous Slide"
+        className="hero-arrow-btn hero-arrow-left"
         style={{
           position: 'absolute',
-          left: '1.5rem',
+          left: 'clamp(0.5rem, 2vw, 1.5rem)',
           top: '50%',
           transform: 'translateY(-50%)',
           zIndex: 20,
-          width: '44px',
-          height: '44px',
+          width: '40px',
+          height: '40px',
           borderRadius: '50%',
-          background: 'rgba(255, 255, 255, 0.9)',
+          background: 'rgba(255, 255, 255, 0.92)',
           border: '1px solid #CBD5E1',
           display: 'flex',
           alignItems: 'center',
@@ -134,20 +135,21 @@ export default function HeroSlider() {
           boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
         }}
       >
-        <ChevronLeft size={22} color="#0F172A" />
+        <ChevronLeft size={20} color="#0F172A" />
       </button>
 
       <button
         onClick={nextSlide}
         aria-label="Next Slide"
+        className="hero-arrow-btn hero-arrow-right"
         style={{
           position: 'absolute',
-          right: '1.5rem',
+          right: 'clamp(0.5rem, 2vw, 1.5rem)',
           top: '50%',
           transform: 'translateY(-50%)',
           zIndex: 20,
-          width: '44px',
-          height: '44px',
+          width: '40px',
+          height: '40px',
           borderRadius: '50%',
           background: 'rgba(255, 255, 255, 0.9)',
           border: '1px solid #CBD5E1',

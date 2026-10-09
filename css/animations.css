@@ -797,13 +797,19 @@
 }
 
 /* Responsive */
-@media (max-width: 900px) {
-  .gp-4, .gp-5 { display: none; }
-  .glass-stat-row { gap: var(--space-6); }
-  .glass-stat-num { font-size: var(--text-3xl); }
-}
-@media (max-width: 600px) {
-  .gp-2, .gp-3 { display: none; }
-  .glass-stat-row { gap: var(--space-4); }
-  #glass-animation { min-height: auto; }
+/* Mobile Animation & Transform Optimizations */
+@media (max-width: 768px) {
+  .reveal-glass-3d {
+    transform: translateY(25px) scale(0.97);
+  }
+  .reveal-depth {
+    transform: scale(0.95);
+  }
+  .glass-card-3d:hover,
+  .plywood-card-3d:hover {
+    transform: translateY(-4px);
+  }
+  body {
+    overflow-x: hidden;
+  }
 }

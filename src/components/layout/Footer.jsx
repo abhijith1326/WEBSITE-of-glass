@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useToast } from '../../context/ToastContext';
+import Logo from '../common/Logo';
 
 export default function Footer() {
   const { addToast } = useToast();
 
   const handleSubscribe = (e) => {
     e.preventDefault();
-    addToast('Subscribed to GLAZE TEMP Architectural Journal!');
+    addToast('Subscribed to Trivandrum Glass & Plywood Architectural Journal!');
     e.target.reset();
   };
 
@@ -18,18 +19,9 @@ export default function Footer() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '3rem', marginBottom: '3rem' }}>
           {/* Col 1: Brand Info */}
           <div>
-            <Link to="/" className="glaze-logo" style={{ marginBottom: '1.25rem', display: 'inline-flex' }}>
-              <div className="glaze-logo-icon">
-                <div className="glaze-logo-pane-dark" style={{ background: '#fff' }}></div>
-                <div className="glaze-logo-pane-blue"></div>
-                <div className="glaze-logo-pane-blue"></div>
-                <div className="glaze-logo-pane-dark" style={{ background: '#fff' }}></div>
-              </div>
-              <div className="glaze-logo-text" style={{ color: '#fff' }}>
-                GLAZE
-                <span style={{ color: '#60A5FA' }}>TEMP</span>
-              </div>
-            </Link>
+            <div style={{ marginBottom: '1.25rem' }}>
+              <Logo size="medium" />
+            </div>
             <p style={{ color: '#94A3B8', fontSize: '0.875rem', lineHeight: '1.7', marginBottom: '1.5rem' }}>
               Pioneering high-performance architectural glass and structural plywood solutions across commercial landmarks, luxury residences, and institutional developments.
             </p>
@@ -60,12 +52,11 @@ export default function Footer() {
               Quick Navigation
             </h4>
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.625rem', fontSize: '0.875rem', color: '#CBD5E1' }}>
-              <li><Link to="/about" style={{ color: 'inherit' }}>About GLAZE TEMP</Link></li>
+              <li><Link to="/about" style={{ color: 'inherit' }}>About Us</Link></li>
               <li><Link to="/process" style={{ color: 'inherit' }}>Engineering & Manufacturing Process</Link></li>
               <li><Link to="/projects" style={{ color: 'inherit' }}>Featured Project Portfolio</Link></li>
-              <li><Link to="/gallery" style={{ color: 'inherit' }}>Visual Inspiration Gallery</Link></li>
               <li><Link to="/quality" style={{ color: 'inherit' }}>Quality Testing & Certifications</Link></li>
-              <li><Link to="/sustainability" style={{ color: 'inherit' }}>Carbon Neutral & EPD Directives</Link></li>
+              <li><Link to="/sustainability" style={{ color: 'inherit' }}>Carbon Neutral Directives</Link></li>
             </ul>
           </div>
 
@@ -77,15 +68,15 @@ export default function Footer() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', fontSize: '0.875rem', color: '#CBD5E1', marginBottom: '1.5rem' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                 <MapPin size={16} color="#60A5FA" />
-                <span>Global HQ & Tempering Plant, Tech Park</span>
+                <span>HQ & Manufacturing Facilities, Trivandrum</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                 <Phone size={16} color="#60A5FA" />
-                <span>+1 (800) 555-GLAZE / +1 (800) 555-4529</span>
+                <span>+91 94471 23456 / +91 471 2345678</span>
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
                 <Mail size={16} color="#60A5FA" />
-                <span>spec@glazetemp.com</span>
+                <span>info@trivandrumglass.com</span>
               </div>
             </div>
 
@@ -108,7 +99,7 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div style={{ borderTop: '1px solid rgba(255,255,255,0.08)', paddingTop: '1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', fontSize: '0.75rem', color: '#94A3B8' }}>
-          <div>© {new Date().getFullYear()} GLAZE TEMP Inc. All Rights Reserved. Crafted with React & Modern Glass Optics.</div>
+          <div>© {new Date().getFullYear()} TRIVANDRUM GLASS & PLYWOOD. All Rights Reserved.</div>
           <div style={{ display: 'flex', gap: '1.5rem' }}>
             <Link to="/quality" style={{ color: 'inherit' }}>Privacy Policy</Link>
             <Link to="/quality" style={{ color: 'inherit' }}>Terms of Specification</Link>
@@ -119,3 +110,4 @@ export default function Footer() {
     </footer>
   );
 }
+

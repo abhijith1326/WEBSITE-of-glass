@@ -1,6 +1,5 @@
 /* ============================================================
-   GLAZE TEMP — COMPONENTS CSS
-   Exact layout matching the GLAZE TEMP UI screenshot
+   TRIVANDRUM GLASS — COMPONENTS CSS
    ============================================================ */
 
 /* Navbar Container */
@@ -673,5 +672,24 @@
   }
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(1.5rem, 5.5vw, 1.85rem) !important;
+  }
+  .hero-subtitle {
+    font-size: clamp(0.8125rem, 3.5vw, 0.9375rem) !important;
+  }
+  .section-title, .section-title-center {
+    font-size: clamp(1.35rem, 5vw, 1.65rem) !important;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+  h1, h2, h3, h4, h5, p, span {
+    max-width: 100%;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 }

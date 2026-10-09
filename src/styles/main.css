@@ -1,36 +1,49 @@
 /* ============================================================
-   GLAZE TEMP — DESIGN SYSTEM & TOKENS
-   Exact UI Match for GLAZE TEMP Royal Blue Architectural Portal
+   TRIVANDRUM GLASS & PLYWOOD — DESIGN SYSTEM & TOKENS
+   Exact UI Match for Trivandrum Glass & Plywood Architectural Portal
    ============================================================ */
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
   /* Brand Color Tokens — Royal Blue & Midnight Ocean */
-  --royal-blue:        #1D4ED8;
+  --royal-blue: #1D4ED8;
   --royal-blue-bright: #2563EB;
-  --royal-blue-hover:  #1E40AF;
-  --royal-blue-light:  #EFF6FF;
+  --royal-blue-hover: #1E40AF;
+  --royal-blue-light: #EFF6FF;
 
-  --navy-dark:         #0B192C;
-  --navy-mid:          #0F2167;
-  --navy-surface:      #122043;
-  
-  --badge-bg:          #E0F2FE;
-  --badge-text:        #1D4ED8;
+  --navy-dark: #0B192C;
+  --navy-mid: #0F2167;
+  --navy-surface: #122043;
 
-  --white:             #FFFFFF;
-  --off-white:         #F8FAFC;
-  --gray-100:          #F1F5F9;
-  --gray-200:          #E2E8F0;
-  --gray-400:          #94A3B8;
-  --gray-600:          #475569;
-  --gray-800:          #1E293B;
-  --gray-900:          #0F172A;
+  --badge-bg: #E0F2FE;
+  --badge-text: #1D4ED8;
 
-  /* Typography */
-  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --white: #FFFFFF;
+  --off-white: #F8FAFC;
+  --gray-100: #F1F5F9;
+  --gray-200: #E2E8F0;
+  --gray-400: #94A3B8;
+  --gray-600: #475569;
+  --gray-800: #1E293B;
+  --gray-900: #0F172A;
+
+  /* Typography Tokens */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Fluid Typography Scale */
+  --text-xs: clamp(0.7rem, 0.8vw, 0.75rem);
+  --text-sm: clamp(0.8rem, 1vw, 0.875rem);
+  --text-base: clamp(0.9375rem, 1.2vw, 1.0625rem);
+  --text-lg: clamp(1.0625rem, 1.5vw, 1.25rem);
+  --text-xl: clamp(1.25rem, 2vw, 1.5rem);
+  --text-2xl: clamp(1.5rem, 2.5vw, 2rem);
+  --text-3xl: clamp(1.85rem, 3.2vw, 2.5rem);
+  --text-4xl: clamp(2.25rem, 4vw, 3.25rem);
+  --text-5xl: clamp(2.75rem, 5vw, 4rem);
+
+  --section-py: clamp(3rem, 6vw, 6rem);
 
   /* Spacing */
   --space-1: 0.25rem;
@@ -44,10 +57,10 @@
   --space-12: 3rem;
 
   /* Radius */
-  --radius-sm:   6px;
-  --radius-md:   10px;
-  --radius-lg:   16px;
-  --radius-xl:   24px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
   --radius-full: 9999px;
 
   /* Container */
@@ -55,7 +68,9 @@
   --container-px: clamp(1rem, 4vw, 3rem);
 }
 
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -64,16 +79,38 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: var(--text-base);
   line-height: 1.6;
   color: var(--gray-600);
   background-color: var(--white);
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}
+
+p,
+span,
+li,
+a {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 
 a {
@@ -88,10 +125,21 @@ img {
 }
 
 /* Helper Utilities */
-.text-royal { color: var(--royal-blue) !important; }
-.text-white { color: var(--white) !important; }
-.text-dark { color: var(--gray-900) !important; }
-.text-muted { color: var(--gray-400) !important; }
+.text-royal {
+  color: var(--royal-blue) !important;
+}
+
+.text-white {
+  color: var(--white) !important;
+}
+
+.text-dark {
+  color: var(--gray-900) !important;
+}
+
+.text-muted {
+  color: var(--gray-400) !important;
+}
 
 /* Buttons */
 .btn {
@@ -116,6 +164,7 @@ img {
   background-color: var(--royal-blue);
   color: var(--white);
 }
+
 .btn-royal:hover {
   background-color: var(--royal-blue-hover);
   transform: translateY(-2px);
@@ -127,6 +176,7 @@ img {
   border: 1px solid var(--gray-200);
   color: var(--gray-900);
 }
+
 .btn-outline-white:hover {
   background: var(--white);
   border-color: var(--royal-blue);
@@ -143,6 +193,7 @@ img {
   border-radius: var(--radius-full);
   font-weight: 800;
 }
+
 .btn-white-pill:hover {
   background-color: var(--gray-100);
   transform: translateY(-2px);

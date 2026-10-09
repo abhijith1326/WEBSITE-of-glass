@@ -5,11 +5,11 @@ import { useCommandPalette } from '../../context/CommandPaletteContext';
 import { useSampleCart } from '../../context/SampleCartContext';
 
 const SEARCH_ITEMS = [
-  { title: 'GLAZE Triplex Insulating Glass', type: 'Product', path: '/glass-solutions', tags: 'glass specs thermal facade' },
-  { title: 'GLAZE Acoustic Laminated Glass (44dB)', type: 'Product', path: '/glass-solutions', tags: 'acoustic sound pvb quiet' },
-  { title: 'GLAZE Smart Electrochromic Dynamic Glass', type: 'Product', path: '/glass-solutions', tags: 'smart tint electrochromic privacy' },
-  { title: 'GLAZE Core BS 1088 Marine Grade Plywood', type: 'Product', path: '/plywood-solutions', tags: 'plywood marine bs1088 wood waterproof' },
-  { title: 'GLAZE Flame Fire-Retardant Architectural Ply', type: 'Product', path: '/plywood-solutions', tags: 'plywood fire retardant safety structural' },
+  { title: 'Trivandrum Triplex Insulating Glass', type: 'Product', path: '/glass-solutions', tags: 'glass specs thermal facade' },
+  { title: 'Trivandrum Acoustic Laminated Glass (44dB)', type: 'Product', path: '/glass-solutions', tags: 'acoustic sound pvb quiet' },
+  { title: 'Trivandrum Smart Electrochromic Dynamic Glass', type: 'Product', path: '/glass-solutions', tags: 'smart tint electrochromic privacy' },
+  { title: 'Trivandrum Core BS 1088 Marine Grade Plywood', type: 'Product', path: '/plywood-solutions', tags: 'plywood marine bs1088 wood waterproof' },
+  { title: 'Trivandrum Flame Fire-Retardant Architectural Ply', type: 'Product', path: '/plywood-solutions', tags: 'plywood fire retardant safety structural' },
   { title: 'Interactive 3D Glass Specs Visualizer', type: 'Tool', path: '/#glass-visualizer', tags: '3d canvas simulator optics light u-value' },
   { title: 'Acoustic Sound Attenuation Simulator', type: 'Tool', path: '/#acoustic-simulator', tags: 'audio simulator sound noise db attenuation' },
   { title: 'Architectural Engineering Spec Builder', type: 'Tool', path: '/#spec-calculator', tags: 'quote specs load calculator pdf export' },
